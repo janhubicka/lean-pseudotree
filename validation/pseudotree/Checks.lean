@@ -134,6 +134,15 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.Reservoir.recurrence
 #print axioms AllThoseBigRamsey.Pseudotree.Reservoir.recurrent_code_sets
 
+-- Critical-copy composition, finite and infinite pullback, and A.3(1) reduction.
+#print axioms AllThoseBigRamsey.Pseudotree.RayEmbeddings.RayStrongMap.reflect_edge
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.compose
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.pullFinite
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.le_iff_factor
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.amalgamation_nonempty_of_extension
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.depth_top
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.strict_prefix_leFin
+
 -- Check all declarations in the manuscript namespace, with transitive
 -- dependency collection through mathlib and the tree Ramsey libraries.
 run_cmd do

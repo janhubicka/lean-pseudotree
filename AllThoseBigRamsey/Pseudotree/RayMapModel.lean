@@ -67,7 +67,7 @@ def NoOne (s : List TernaryLetter) : Prop := ∀ a ∈ s, a ≠ .one
 @[simp] theorem binary_map (s : List TernaryLetter) : Binary (s.map toFin) ↔ NoOne s := by
   simp [NoOne, Binary]
 
-private theorem map_append_exact (f : RayStrongMap) (s t : Word) :
+theorem map_append_exact (f : RayStrongMap) (s t : Word) :
     ∃ padding : Word,
       f.map (s ++ t) = f.map s ++ padding ∧ (Binary padding ↔ Binary t) := by
   induction t generalizing s with
@@ -83,7 +83,7 @@ private theorem map_append_exact (f : RayStrongMap) (s t : Word) :
       · simp only [binary_cons, binary_append, hqb]
         exact ⟨fun h => ⟨h.1, h.2.2⟩, fun h => ⟨h.1, hpb h.1, h.2⟩⟩
 
-private theorem map_append_cons_exact (f : RayStrongMap) (s : Word) (a : Fin 3) (t : Word) :
+theorem map_append_cons_exact (f : RayStrongMap) (s : Word) (a : Fin 3) (t : Word) :
     ∃ padding : Word,
       f.map (s ++ a :: t) = f.map s ++ a :: padding ∧
       (a ≠ 1 → (Binary padding ↔ Binary t)) := by

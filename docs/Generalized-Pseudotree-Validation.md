@@ -42,3 +42,7 @@ GeneralizedRecovery proves the prefix-closure characterization and recovery of t
 ## Fifth batch
 
 Run 45839462556 successfully compiled FIFOIndex, FIFOEdges, GeneralizedProjection, GeneralizedDiaryGrammar, GeneralizedRecovery, and CriticalCopies. Four recursive simplifier errors in FIFOLifting prevented the full axiom audit. This batch replaces the recursive rewrites with explicit local equations. ReservoirTransitions extends the checked local rational-reservoir geometry to unbounded sources, allowing a separate target for each vertex (constant along the edges being extended). SparseRecurrence instantiates this with the actual infinite sparse tree and assembles a critical map into any prescribed sparse reduct copy, preserving all finite code-set types. New declarations await exact-head compilation and transitive audit. The relative initialization, full relative A.3/A.4, and first-order packaging remain separate tasks. The earlier chain proof is left unchanged.
+
+## Sixth batch
+
+CriticalPullback develops binary edge reflection, exact composition, finite pullback (without assuming infinite extendibility), and infinite factorization. A.3(1) is reduced to the explicit WholeBlockExtension obligation. The existing exact-tail lemma is exported without changing its proof. CriticalDepth proves the final coding level characterization of depth and the strict A.2(3) variant in the manuscript. No new axioms or sorry are introduced. All new declarations await compilation and transitive audit; whole-block extension and relative A.3(2)/A.4 remain outstanding.
