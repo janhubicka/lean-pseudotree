@@ -42,3 +42,5 @@ import PseudotreeValidation.GeneralizedDiaryGrammar
 import PseudotreeValidation.CriticalCopies
 import PseudotreeValidation.FIFOIndex
 import PseudotreeValidation.FIFOLifting
+import PseudotreeValidation.GeneralizedRecovery
+import PseudotreeValidation.GeneralizedCanonization

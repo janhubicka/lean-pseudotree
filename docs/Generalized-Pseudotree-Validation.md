@@ -34,3 +34,7 @@ exact-head validation; main stays at the previously checked revision.
 ## Third batch
 
 Run 45835182930 compiled GeneralizedProjection, GeneralizedDiaryGrammar and CriticalCopies; the full audit was blocked by six FIFOIndex elaboration errors. This batch repairs them and develops FIFOEdges and FIFOLifting. The latter instantiates a local event-tree interface on the literal generalized diaries and the actual infinite sparse tree. Both finite and infinite lifts use the explicit FIFO formula. No new axioms or sorry are introduced. Awaiting exact-head build and audit; relative lifting, literal recovery, recurrence and A.3/A.4 remain separate obligations.
+
+## Fourth batch
+
+GeneralizedRecovery proves the prefix-closure characterization and recovery of the independent literal grammar under normalization, including labels on arbitrary finite images. GeneralizedCanonization proves literal realizability and finite-fragment canonization / IRT in the concrete code-set representation, conditional only on the compilation of the actual FIFO construction imported from FIFOLifting. The first-order expansion packaging, recurrence in arbitrary reduct copies, and relative A.3/A.4 remain separate obligations. The new declarations are not marked verified until exact-head CI passes.

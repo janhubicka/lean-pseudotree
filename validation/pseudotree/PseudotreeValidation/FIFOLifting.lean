@@ -73,15 +73,14 @@ theorem liftWord_tree (F : EventTree) (f : RayStrongMap) (s : Word) :
 
 theorem liftWord_critical (F : EventTree) (f : RayStrongMap) (j : Nat) :
     liftWord F f (F.criticalWord j) = critical (liftLevel F f j) := by
-  simp only [liftWord, F.critical_length, liftedNode, if_pos rfl, liftLevel]
-  rw [eventNode_critical]
+  unfold liftWord liftLevel
+  rw [F.critical_length, liftedNode, if_pos rfl, eventNode_critical]
   rfl
 
 theorem liftWord_code (F : EventTree) (f : RayStrongMap) {s : Word}
     (hs : s = F.criticalWord s.length) (hn : F.split s.length = false) :
     liftWord F f s = HFin (f.map s) := by
-  simp only [liftWord, ← hs, liftedNode, if_pos rfl, hn, eventNode,
-    Bool.false_eq_true, if_false, label, HFin]
+  simp [liftWord, ← hs, liftedNode, hn, eventNode, label, HFin]
 
 theorem liftWord_step (F : EventTree) (f : RayStrongMap) (s : Word) (a : Fin 3)
     (hs : F.nodes (s ++ [a])) :

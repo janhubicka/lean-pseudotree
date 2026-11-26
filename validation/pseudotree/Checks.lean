@@ -119,6 +119,16 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.FIFOLifting.liftCritical
 #print axioms AllThoseBigRamsey.Pseudotree.FIFOLifting.liftCritical_code
 
+-- Generalized literal recovery and code-set IRT.
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedDiary.nodes_iff_prefix_code
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.selected_source
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.labelled_image_recovery
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.image_nodes_recovery
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.maps_point
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedCanonization.literal_realized
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedCanonization.finite_fragment
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedCanonization.codeSet_IRT
+
 -- Check all declarations in the manuscript namespace, with transitive
 -- dependency collection through mathlib and the tree Ramsey libraries.
 run_cmd do

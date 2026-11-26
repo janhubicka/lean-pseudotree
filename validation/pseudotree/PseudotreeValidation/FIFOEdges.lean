@@ -40,10 +40,9 @@ theorem liftedNode_prefix_sample (x t : Word) (split : Bool) :
     (liftedNode x t split).IsPrefix (H (x ++ sampleTail x t)) := by
   by_cases heq : x = t
   · subst x
-    simp only [liftedNode, sampleTail, if_pos rfl, List.append_nil]
     cases split
-    · exact List.prefix_rfl
-    · exact U_prefix_H _
+    · simpa [liftedNode, sampleTail, eventNode] using (List.prefix_rfl : (H t).IsPrefix (H t))
+    · simpa [liftedNode, sampleTail, eventNode] using U_prefix_H t
   · simp only [liftedNode, sampleTail, if_neg heq, passingNode]
     exact List.take_prefix _ _
 
