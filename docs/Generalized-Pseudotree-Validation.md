@@ -349,3 +349,21 @@ witness C, in the literal revised expanded language. This works even
 when the expansion has infinitely many symbols, and includes the
 empty substructures. The new proof and chart recurrence await CI.
 No new admissions or mathematical axioms.
+
+## Rightmost chain-diary batch
+
+RevisedChainDiaries implements reflection of raw finite generalized
+diagrams, including the actual lexicographic passing rule at each level.
+The revised order forces the rightmost-original condition: if a
+continuing critical word had an earlier zero, it would have a coding
+descendant containing a later one, and a coding descendant on the
+right side of that earlier split (or the critical node to its right).
+Their two prefixes of equal length are lex-separated and the later
+one-turn makes the two coding points incomparable. The right-original
+node is unique at each level; the generalized adjacent-turn rule
+therefore forces the original chain turn restriction. Reflection
+identifies the resulting literal generalized chain diaries bijectively
+with the independently enumerated PaperDiary, giving the exact count.
+This does not reflect or replace the actual FIFO queue. All new proof
+implementations await Lean and the axiom audit. Source-only commit
+preserves the current CI run. No new axioms or admissions.

@@ -299,6 +299,14 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.RevisedDiaryExpansion.finite_superstructure
 #print axioms AllThoseBigRamsey.Pseudotree.RevisedDiaryExpansion.finite_age_ramsey
 
+-- Exact revised chain-diary characterization and count.
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedChainDiaries.reflect_axioms
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedChainDiaries.separated_incomparable
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedChainDiaries.rightmost_rule
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedChainDiaries.turn_after_noncontinuation
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedChainDiaries.diaryEquiv
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedChainDiaries.chainDiary_card
+
 run_cmd do
   let env ← Lean.getEnv
   let allowed : List Lean.Name := [`propext, `Classical.choice, `Quot.sound]
