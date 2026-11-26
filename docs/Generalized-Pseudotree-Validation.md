@@ -258,3 +258,20 @@ reflected diary shapes, but the concrete revised sparse model and its
 transport require separate verification. Relative/partial markers
 must remain until that is checked. No new proof assumptions or admissions
 are introduced in this batch. It does not interrupt run 45896002915.
+
+## Literal revised sparse convention batch
+
+RevisedSparseGeometry implements the literal comparison 0 < end < 2
+and proves its conjugacy with the original word model by reflection.
+The meet-closure argument uses the existing queue separator-origin
+invariant, independent of order. The local geometry is ported from
+SparseOrder with the first and third queue children exchanged in their
+roles (not in their literal positions); the fork uses the middle and
+third children. The queue, coding lengths and passing digits are exactly
+the existing source. RevisedSparseModel then applies the checked generic
+finite-extension argument to this actual revised range, including native
+Fraisse identification and the self-embedding with that precise range.
+These are new proof implementations, pending compilation and audit.
+The generalized diary grammar, normalization and native expansion
+transport to the new orientation are not yet checked as literal
+revised statements. No new axioms or admissions.

@@ -266,6 +266,15 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.OmegaFraisse.no_finite_bound
 #print axioms AllThoseBigRamsey.Pseudotree.OmegaFraisse.no_universal_copy_partition
 
+-- Literal revised binary convention and unchanged FIFO sparse copy.
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedConvention.mirror_below_iff
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedConvention.mirror_revisedMeet
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedConvention.revised_sparse_meet_closed
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedConvention.sparse_dense
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedConvention.sparse_fork
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedConvention.RevisedSparseModel.isFraisseLimit
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedConvention.RevisedSparseModel.selfEmbedding_range
+
 run_cmd do
   let env ← Lean.getEnv
   let allowed : List Lean.Name := [`propext, `Classical.choice, `Quot.sound]
