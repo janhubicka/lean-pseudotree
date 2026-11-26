@@ -133,7 +133,7 @@ theorem local_critical (H : PreservesCoding f) {C : Finset Word} {h : Nat} (P : 
   have hnormC : GeneralizedNormalization.normalizedCritical C j = critical j := by
     unfold GeneralizedNormalization.normalizedCritical
     rw [P.schedule_eq hj,P.project_initial (w := critical j) hj (by simp)]
-    exact List.take_of_length_le (critical_length j).ge
+    exact List.take_of_length_le (critical_length j).le
   have hnode := (GeneralizedNormalization.normalized_critical P.points P.nonempty hjC).1
   have hnodeD : GeneralizedNormalization.normalizedCritical C j ∈ nodes D := by
     rw [show nodes D = nodes C from hn]
@@ -269,7 +269,10 @@ theorem extends_critical (H : PreservesCoding f) : ∃ X : CriticalMap, ∀ w (h
       intro j
       rw [hlength _ j (by simp),criticalNode_length]
       exact H.local_phase (P j) (by omega) }
-  exact ⟨X,fun w hw => H.local_coding (P w.length) hw (by omega)⟩
+  refine ⟨X,?_⟩
+  intro w hw
+  change (F w.length).map w = f w
+  exact H.local_coding (P w.length) hw (Nat.lt_succ_self _)
 
 end PreservesCoding
 

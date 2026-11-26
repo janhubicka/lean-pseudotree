@@ -49,43 +49,18 @@ jobs:
               git -C ".lake/packages/$dependency" apply "$patch_path"
             fi
           done
-      - name: Build and audit generalized diary canonization and recurrence
-        id: generalized_audit
+      - name: Audit compiled local pigeonhole and relative initialization
+        id: local_pigeonhole_audit
         run: |
           set -euo pipefail
-          lake build PseudotreeValidation.GeneralizedBase
-          lake env lean GeneralizedChecks.lean | tee generalized-axioms.txt
-          if grep -q 'sorryAx' generalized-axioms.txt; then exit 1; fi
+          lake build PseudotreeValidation.LocalPigeonholeBase
+          lake env lean LocalPigeonholeChecks.lean | tee local-pigeonhole-axioms.txt
+          if grep -q 'sorryAx' local-pigeonhole-axioms.txt; then exit 1; fi
       - uses: actions/upload-artifact@v4
-        if: ${{ always() && steps.generalized_audit.outcome == 'success' }}
+        if: ${{ always() && steps.local_pigeonhole_audit.outcome == 'success' }}
         with:
-          name: generalized-pseudotree-axioms
-          path: validation/pseudotree/generalized-axioms.txt
-      - name: Audit relative geometry and fixed-prefix Milliken independently
-        id: geometry_audit
-        run: |
-          set -euo pipefail
-          lake build PseudotreeValidation.CriticalGeometryBase
-          lake env lean GeometryChecks.lean | tee geometry-axioms.txt
-          if grep -q 'sorryAx' geometry-axioms.txt; then exit 1; fi
-      - uses: actions/upload-artifact@v4
-        if: ${{ always() && steps.geometry_audit.outcome == 'success' }}
-        with:
-          name: pseudotree-relative-geometry-axioms
-          path: validation/pseudotree/geometry-axioms.txt
-      - name: Audit whole-block extension and coding relation restriction
-        if: ${{ !cancelled() }}
-        id: extension_audit
-        run: |
-          set -euo pipefail
-          lake build PseudotreeValidation.CriticalExtensionBase
-          lake env lean ExtensionChecks.lean | tee extension-axioms.txt
-          if grep -q 'sorryAx' extension-axioms.txt; then exit 1; fi
-      - uses: actions/upload-artifact@v4
-        if: ${{ always() && steps.extension_audit.outcome == 'success' }}
-        with:
-          name: pseudotree-whole-block-extension-axioms
-          path: validation/pseudotree/extension-axioms.txt
+          name: pseudotree-local-pigeonhole-axioms
+          path: validation/pseudotree/local-pigeonhole-axioms.txt
       - name: Build the actual model and Ramsey adapters
         if: ${{ !cancelled() }}
         run: lake build PseudotreeValidation

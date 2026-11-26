@@ -64,8 +64,16 @@ theorem value_at (R : TailRun targets h) (k : Nat) (u : Level sparseSource (h+k)
   have hk : u.length-h = k := by omega
   unfold value
   rw [dif_pos hh]
-  -- Transport only the index of the step and its level-subtype input.
-  simp only [hk]
+  -- Transport the index and the dependent proof together, not by
+  -- rewriting just the index in the subtype-valued argument.
+  let eval (i : Nat) (hi : u.length = h+i) : Word :=
+    ((R.step i).roots ⟨u,hu,hi⟩).map toFin
+  have hall (i j : Nat) (hi : u.length = h+i) (hj : u.length = h+j) :
+      eval i hi = eval j hj := by
+    have he : i = j := by omega
+    subst j
+    rfl
+  exact hall (u.length-h) k (by omega) hlen
 
 theorem value_length (R : TailRun targets h) (u : Node) (hu : h ≤ u.val.length) :
     (R.value u).length = R.levels u.val.length := by
@@ -90,7 +98,9 @@ theorem critical_value (R : TailRun targets h) (i : Nat) (hi : h ≤ i) :
     ((R.step k).roots (criticalAt sparseSource (h+k))).map toFin at hc
   rw [hc,(R.step k).critical]
   have he : h+k-h = k := by omega
-  simp only [levels,he,critical]
+  change (Sparse.critical (R.step k).level).map toFin =
+    (Sparse.critical (R.step (h+k-h)).level).map toFin
+  exact congrArg (fun i : Nat => (Sparse.critical (R.step i).level).map toFin) he.symm
 
 theorem phase (R : TailRun targets h) (i : Nat) (_hi : h ≤ i) :
     R.levels i % 3 = 2 ↔ i % 3 = 2 := by
@@ -158,8 +168,8 @@ theorem coding_supported (R : TailRun targets h) (u : Node) (hu : h ≤ u.val.le
 theorem fork_supported (R : TailRun targets h) (stable : StableAfter targets h)
     (i : Nat) (hi : h ≤ i) (hsplit : i % 3 ≠ 2) :
     ∃ y ∈ Set.range (targets (critical i)), ∃ z ∈ Set.range (targets (critical i)),
-      ((R.value (CriticalCopies.criticalNode i)).map toLetter ++ [.zero]).IsPrefix (fromBlocks y) ∧
-      ((R.value (CriticalCopies.criticalNode i)).map toLetter ++ [.two]).IsPrefix (fromBlocks z) := by
+      ((R.value (CriticalCopies.criticalNode i)).map toLetter ++ [TernaryLetter.zero]).IsPrefix (fromBlocks y) ∧
+      ((R.value (CriticalCopies.criticalNode i)).map toLetter ++ [TernaryLetter.two]).IsPrefix (fromBlocks z) := by
   obtain ⟨k,rfl⟩ := Nat.exists_eq_add_of_le hi
   obtain ⟨y,hy,z,hz,h0,h2⟩ := (R.step k).split_supported
     (stable (h+k) (by omega)) hsplit
@@ -187,8 +197,8 @@ theorem relative_reservoir {j : Nat} (e : FiniteCritical (j+1))
         DiaryChains.model (X.map u) ∈ Set.range (targets u.val)) ∧
       ∀ i, j+1 ≤ i → i % 3 ≠ 2 →
         ∃ y ∈ Set.range (targets (critical i)), ∃ z ∈ Set.range (targets (critical i)),
-          ((X.map (CriticalCopies.criticalNode i)).map toLetter ++ [.zero]).IsPrefix (fromBlocks y) ∧
-          ((X.map (CriticalCopies.criticalNode i)).map toLetter ++ [.two]).IsPrefix (fromBlocks z) := by
+          ((X.map (CriticalCopies.criticalNode i)).map toLetter ++ [TernaryLetter.zero]).IsPrefix (fromBlocks y) ∧
+          ((X.map (CriticalCopies.criticalNode i)).map toLetter ++ [TernaryLetter.two]).IsPrefix (fromBlocks z) := by
   obtain ⟨P,hP,hslot⟩ := relativeInitial Q
   let R := TailRun.ofInitial P hsparse stable
   let T : RelativeTail e := {
@@ -228,8 +238,9 @@ theorem relative_reservoir {j : Nat} (e : FiniteCritical (j+1))
       · intro ha
         apply (binary_map _).mpr
         intro x hx hx1
+        have hlast : last w = a := last_childNode u a hs
         have hbno : TernaryLetter.one ∉ b :=
-          hbbin (by simpa only [w,last_childNode] using ha)
+          hbbin (by rw [hlast]; exact ha)
         have hnot : TernaryLetter.one ∉ b++c := by simp [hbno,hcbin]
         exact hnot (hx1 ▸ hx) }
   let X := T.assemble (by omega : 0 < j+1)

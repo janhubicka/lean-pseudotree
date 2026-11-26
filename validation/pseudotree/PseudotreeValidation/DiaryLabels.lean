@@ -25,9 +25,11 @@ theorem code_length_lt_iff {C : Finset Word} (hC : C.Nonempty)
   let g := rayMap hC
   have hmono : StrictMono g.level := fun _ _ h => g.level_strict h
   have h₁ : g.level (code C s).length = s.length := by
-    simpa only [g.length_map] using congrArg List.length (rayMap_code hC hs)
+    have hm : g.map (code C s) = s := rayMap_code hC hs
+    rw [← g.length_map,hm]
   have h₂ : g.level (code C t).length = t.length := by
-    simpa only [g.length_map] using congrArg List.length (rayMap_code hC ht)
+    have hm : g.map (code C t) = t := rayMap_code hC ht
+    rw [← g.length_map,hm]
   rw [← h₁,← h₂]
   exact hmono.lt_iff_lt.symm
 
