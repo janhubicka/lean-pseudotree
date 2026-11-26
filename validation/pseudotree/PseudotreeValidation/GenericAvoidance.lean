@@ -55,16 +55,16 @@ theorem withBot_tree
     (htree : ∀ {x y z : M}, x ≤ z → y ≤ z → x ≤ y ∨ y ≤ x)
     {x y z : WithBot M} (hx : x ≤ z) (hy : y ≤ z) : x ≤ y ∨ y ≤ x := by
   cases x with
-  | none => exact Or.inl bot_le
-  | some x =>
+  | bot => exact Or.inl bot_le
+  | coe x =>
     cases y with
-    | none => exact Or.inr bot_le
-    | some y =>
+    | bot => exact Or.inr bot_le
+    | coe y =>
       cases z with
-      | none =>
+      | bot =>
         have h : (x : WithBot M) ≤ ⊥ := hx
         exact False.elim (not_le_of_gt (WithBot.bot_lt_coe x) h)
-      | some z =>
+      | coe z =>
         have hx' : x ≤ z := WithBot.coe_le_coe.mp hx
         have hy' : y ≤ z := WithBot.coe_le_coe.mp hy
         rcases htree hx' hy' with h | h
@@ -92,36 +92,36 @@ theorem finite_withBot_embeds [NoMinOrder M]
     apply Subtype.ext
     change WithBot.unbotD p x = WithBot.unbotD p y at he
     cases x with
-    | none =>
+    | bot =>
       cases y with
-      | none => rfl
-      | some y =>
+      | bot => rfl
+      | coe y =>
         have h : p = y := he
         exact False.elim ((hlt y hy).ne h)
-    | some x =>
+    | coe x =>
       cases y with
-      | none =>
+      | bot =>
         have h : x = p := he
         exact False.elim ((hlt x hx).ne h.symm)
-      | some y =>
+      | coe y =>
         have h : x = y := he
         exact congrArg (fun t : M => (t : WithBot M)) h
   · rintro ⟨x,hx⟩ ⟨y,hy⟩
     change WithBot.unbotD p (x ⊓ y) =
       WithBot.unbotD p x ⊓ WithBot.unbotD p y
     cases x with
-    | none =>
+    | bot =>
       cases y with
-      | none => simp [WithBot.unbotD_bot]
-      | some y =>
+      | bot => simp [WithBot.unbotD_bot]
+      | coe y =>
         change p = p ⊓ y
         exact (inf_eq_left.mpr (hlt y hy).le).symm
-    | some x =>
+    | coe x =>
       cases y with
-      | none =>
+      | bot =>
         change p = x ⊓ p
         exact (inf_eq_right.mpr (hlt x hx).le).symm
-      | some y => rfl
+      | coe y => rfl
 
 /-- The finite embedding property plus ultrahomogeneity gives the actual
 one-point extension pair for the countable bottom-adjoined structure. -/
@@ -159,10 +159,15 @@ theorem embed_withBot_at [NoMinOrder M] [Countable M]
     · exact FirstOrder.Language.Substructure.closure_le.mpr (fun x hx => hx)
     · intro x hx
       exact FirstOrder.Language.Substructure.subset_closure (show x ∈ ({⊥} : Set (WithBot M)) from hx)
-  let e : S ↪[language] M := embeddingOfInfMap (fun _ => a)
-    (by intro x y _; apply Subtype.ext; exact (show x.val = ⊥ from x.property).trans
-      (show y.val = ⊥ from y.property).symm)
-    (by intro x y; exact (inf_idem a).symm)
+  let e : S ↪[language] M := by
+    apply embeddingOfInfMap (fun _ : S => a)
+    · intro x y _
+      apply Subtype.ext
+      have hx : x.val = (⊥ : WithBot M) := x.property
+      have hy : y.val = (⊥ : WithBot M) := y.property
+      exact hx.trans hy.symm
+    · intro x y
+      exact (inf_idem a).symm
   let F : language.FGEquiv (WithBot M) M :=
     ⟨⟨S,e.toHom.range,e.equivRange⟩,hS⟩
   obtain ⟨g,hg⟩ := FirstOrder.Language.embedding_from_cg
@@ -180,13 +185,14 @@ theorem finite_set_avoidance [NoMinOrder M] [NoMaxOrder M] [Countable M]
     ∃ g : M ↪[language] M, ∀ x, g x ∉ F := by
   obtain ⟨a,ha⟩ := finite_escape hF.toFinset
   obtain ⟨h,hh⟩ := embed_withBot_at htree hhom a
-  let coe : M ↪[language] WithBot M :=
+  let inclusion : M ↪[language] WithBot M :=
     embeddingOfInfMap (fun x => (x : WithBot M)) WithBot.coe_injective WithBot.coe_inf
-  refine ⟨h.comp coe,fun x hx => ?_⟩
+  refine ⟨h.comp inclusion,fun x hx => ?_⟩
   have hax : a < h (x : WithBot M) := by
     rw [← hh]
     exact (embedding_lt_iff h _ _).mpr (WithBot.bot_lt_coe x)
-  have hmem : h (x : WithBot M) ∈ hF.toFinset := by simpa using hx
+  change h (x : WithBot M) ∈ F at hx
+  have hmem : h (x : WithBot M) ∈ hF.toFinset := hF.mem_toFinset.mpr hx
   exact ha _ hmem hax.le
 
 theorem generic_rank_avoidance [NoMinOrder M] [NoMaxOrder M] [Countable M]

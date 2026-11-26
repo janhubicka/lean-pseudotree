@@ -214,3 +214,23 @@ These new implementations await compilation and audit; no new assumptions
 except the explicit usual structural hypothesis of no minimal points.
 A separate concrete Fraisse identification of the countably branching
 pseudotree remains outside the verified model scope.
+
+## Twenty-second batch
+
+Exact-head run 45894948513 at 48ba4c1df26d091ab7a52359bdae8519002960a0
+passed the expanded independent audit of 4794 declarations, including
+the homeomorphism, native IRT and recurrence, abstract analytic-image
+argument, anchored oscillation and the binary embedding obstruction.
+Both AnalyticCopies and CopyPartitionTransfer compiled successfully in
+the full build. The only failing module was GenericAvoidance. The errors
+were constructor alternatives for WithBot (bot/coe rather than none/some),
+the inline tactic layout for the constant singleton embedding, and the
+coercion from the composed embedding into the finite forbidden set.
+This batch repairs these causes, and includes both compiled adapters
+in the independent audit.
+
+The previously audited module blobs have been promoted to main at
+f7d8286dfde16b5239ebcb754ffed934d8d45755 without a duplicate build. This commit incorporates that
+promotion as an additional parent, preserving the new work in the branch.
+Generic finite-avoidance and countable-model endpoints await compilation.
+No new axioms or admissions.
