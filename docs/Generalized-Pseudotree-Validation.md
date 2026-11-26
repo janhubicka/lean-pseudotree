@@ -67,3 +67,20 @@ binary model. The full build failed only on singleton bottom membership
 in GenericAvoidance. This promotion preserves the audited blobs exactly
 and changes the aggregate audit entry point and documentation. No new
 main CI is requested for the source-identical promotion.
+
+## Audited revised-convention checkpoint
+
+Run 45899356350 (job 140181040711) at 1026d1d6021999d5acaec3b64f11c0276787dac1
+passed the independent ConcreteEndpointBase build and transitive audit
+of 5110 pseudotree declarations, using only propext, Classical.choice,
+and Quot.sound. The exact audited blobs are promoted here, including
+GenericAvoidance, revised word and sparse Fraisse model, revised
+native diary relations, IRT, expanded embedding equivalence, metric
+homeomorphism and analytic Ramsey theorem. LowerSplit is the audited
+generalization used by both orientations. OmegaFraisseApplication and
+RevisedAgeRamsey also compiled in the subsequent full build but were
+outside the independent audit. The new chart recurrence failed at
+an ambiguous dotted identifier in ReservoirChart. RevisedChainDiaries
+was added separately after this run and is not yet checked.
+The promotion preserves exact audited module blobs; only the
+aggregate audit entry and documentation change. Duplicate CI is skipped.

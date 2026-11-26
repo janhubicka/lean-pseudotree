@@ -134,8 +134,8 @@ theorem binary_tail_after_prefix (Q : RayCopy) (v : List TernaryLetter)
 /-- At a longest common prefix, a sparse single-ray rational suborder
 splits into genuine rational suborders on both binary sides. The tails are
 explicitly binary, which is needed for exact normalization of diary levels. -/
-theorem sparse_split (Q : RayCopy)
-    (hsparse : ∀ q, Sparse.InSparse (fromBlocks (Q q)))
+theorem split_of_prefix_antichain (Q : RayCopy)
+    (hanti : ∀ {a b : ℚ}, (fromBlocks (Q a)).IsPrefix (fromBlocks (Q b)) → a = b)
     (p : List TernaryLetter) (hp : ∀ q, p.IsPrefix (fromBlocks (Q q)))
     (hroot : (rayRoot Q.stem).length ≤ p.length) :
     ∃ v : List TernaryLetter, ∃ Q0 Q2 : RayCopy,
@@ -148,7 +148,7 @@ theorem sparse_split (Q : RayCopy)
   have hne : ∀ q, v ≠ fromBlocks (Q q) := by
     intro q heq
     obtain ⟨r, hqr⟩ := exists_gt q
-    have hsame := Q.sparse_prefix_antichain hsparse (heq ▸ hv r)
+    have hsame := hanti (heq ▸ hv r)
     exact hqr.ne hsame
   have tails := Q.binary_tail_after_prefix v (hroot.trans hpv.length_le) hv hne
   have hz : ∃ q, ∃ b : List TernaryLetter, .one ∉ b ∧ fromBlocks (Q q) = v ++ .zero :: b := by
@@ -188,6 +188,20 @@ theorem sparse_split (Q : RayCopy)
       rw [ht, hb] at hle
       exact False.elim (not_zero_below_two v bt bb hle)
     · simpa only [htq] using h2
+
+
+/-- Original sparse instance of the orientation-independent ray split. -/
+theorem sparse_split (Q : RayCopy)
+    (hsparse : ∀ q, Sparse.InSparse (fromBlocks (Q q)))
+    (p : List TernaryLetter) (hp : ∀ q, p.IsPrefix (fromBlocks (Q q)))
+    (hroot : (rayRoot Q.stem).length ≤ p.length) :
+    ∃ v : List TernaryLetter, ∃ Q0 Q2 : RayCopy,
+      p.IsPrefix v ∧ Q0.stem = Q.stem ∧ Q2.stem = Q.stem ∧
+      Set.range Q0.embedding ⊆ Set.range Q.embedding ∧
+      Set.range Q2.embedding ⊆ Set.range Q.embedding ∧
+      (∀ q, ∃ b : List TernaryLetter, .one ∉ b ∧ fromBlocks (Q0 q) = v ++ .zero :: b) ∧
+      (∀ q, ∃ b : List TernaryLetter, .one ∉ b ∧ fromBlocks (Q2 q) = v ++ .two :: b) :=
+  Q.split_of_prefix_antichain (fun h => Q.sparse_prefix_antichain hsparse h) p hp hroot
 
 end RayCopy
 
