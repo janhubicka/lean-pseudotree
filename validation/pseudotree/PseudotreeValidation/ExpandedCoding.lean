@@ -24,15 +24,15 @@ structure PreservesCoding (f : Word → Word) : Prop where
 
 namespace PreservesCoding
 
-variable {f : Word → Word} (H : PreservesCoding f)
+variable {f : Word → Word}
 
-theorem image_points {C : Finset Word} (hC : ∀ w ∈ C, Point w) :
+theorem image_points (H : PreservesCoding f) {C : Finset Word} (hC : ∀ w ∈ C, Point w) :
     ∀ w ∈ C.image f, Point w := by
   intro w hw
   obtain ⟨v,hv,rfl⟩ := Finset.mem_image.mp hw
   exact H.points _ (hC _ hv)
 
-theorem image_codes {C : Finset Word} (hC : ∀ w ∈ C, Point w) :
+theorem image_codes (H : PreservesCoding f) {C : Finset Word} (hC : ∀ w ∈ C, Point w) :
     codes (C.image f) = codes C := by
   classical
   unfold codes
@@ -41,7 +41,7 @@ theorem image_codes {C : Finset Word} (hC : ∀ w ∈ C, Point w) :
   intro w hw
   exact H.labelled C hC w hw
 
-theorem image_nodes {C : Finset Word} (hC : ∀ w ∈ C, Point w) :
+theorem image_nodes (H : PreservesCoding f) {C : Finset Word} (hC : ∀ w ∈ C, Point w) :
     nodes (C.image f) = nodes C := by
   unfold nodes
   rw [H.image_codes hC]
@@ -51,13 +51,13 @@ existing inverse-normalization completion. -/
 noncomputable def localMap {C : Finset Word} (hC : C.Nonempty) : RayStrongMap :=
   rayMap (hC.image f)
 
-theorem local_code {C : Finset Word} {h : Nat} (P : CodingCover C h)
+theorem local_code (H : PreservesCoding f) {C : Finset Word} {h : Nat} (P : CodingCover C h)
     {w : Word} (hw : w ∈ C) :
     (localMap (f:=f) P.nonempty).map (code C w) = f w := by
   rw [← H.labelled C P.points w hw]
   exact GeneralizedNormalization.rayMap_code (P.nonempty.image f) (Finset.mem_image.mpr ⟨w,hw,rfl⟩)
 
-theorem local_prefix {C : Finset Word} {h : Nat} (P : CodingCover C h)
+theorem local_prefix (H : PreservesCoding f) {C : Finset Word} {h : Nat} (P : CodingCover C h)
     (u : Node) (hu : u.val.length < h) {w : Word} (hw : w ∈ C)
     (hp : u.val.IsPrefix w) :
     (localMap (f:=f) P.nonempty).map u.val =
@@ -76,17 +76,17 @@ theorem local_prefix {C : Finset Word} {h : Nat} (P : CodingCover C h)
   have he : v.take u.val.length = u.val :=
     (P.code_take hw hu hp.length_le).trans (List.prefix_iff_eq_take.mp hp).symm
   have ht := map_take (localMap (f:=f) P.nonempty) v u.val.length hlen
-  rw [he,H.local_code P hw] at ht
+  rw [he,show (localMap (f:=f) P.nonempty).map v = f w from H.local_code P hw] at ht
   exact ht
 
-theorem local_tree {C : Finset Word} {h : Nat} (P : CodingCover C h)
+theorem local_tree (H : PreservesCoding f) {C : Finset Word} {h : Nat} (P : CodingCover C h)
     (u : Node) (hu : u.val.length < h) :
     SparseNormalization.Tree ((localMap (f:=f) P.nonempty).map u.val) := by
   obtain ⟨w,hw,hpre⟩ := P.descendant u hu
   rw [H.local_prefix P u hu hw hpre]
   exact tree_prefix (point_tree (H.points w (P.points w hw))) (List.take_prefix _ _)
 
-theorem local_coding {C : Finset Word} {h : Nat} (P : CodingCover C h)
+theorem local_coding (H : PreservesCoding f) {C : Finset Word} {h : Nat} (P : CodingCover C h)
     {w : Word} (hw : Point w) (hl : w.length < h) :
     (localMap (f:=f) P.nonempty).map w = f w := by
   obtain ⟨hm,he⟩ := (point_at_level rfl).mp hw
@@ -109,7 +109,7 @@ theorem source_fork {C : Finset Word} {h : Nat} (P : CodingCover C h)
   have hij : i = j := hg.injective (he.symm.trans hlevel.symm)
   exact hij ▸ hi
 
-theorem local_fork {C : Finset Word} {h : Nat} (P : CodingCover C h)
+theorem local_fork (H : PreservesCoding f) {C : Finset Word} {h : Nat} (P : CodingCover C h)
     {s t : Word} (hs : s ∈ C) (ht : t ∈ C) {j : Nat}
     (hj : j < h) (hf : FirstFork s t j) :
     FirstFork (f s) (f t) ((localMap (f:=f) P.nonempty).level j) := by
@@ -119,7 +119,7 @@ theorem local_fork {C : Finset Word} {h : Nat} (P : CodingCover C h)
 
 /-- Critical vertices in both finite normalizations are literally the
 same, by uniqueness of the generalized local grammar. -/
-theorem local_critical {C : Finset Word} {h : Nat} (P : CodingCover C h)
+theorem local_critical (H : PreservesCoding f) {C : Finset Word} {h : Nat} (P : CodingCover C h)
     {j : Nat} (hj : j < h) :
     (localMap (f:=f) P.nonempty).map (critical j) =
       critical ((localMap (f:=f) P.nonempty).level j) := by
@@ -147,7 +147,9 @@ theorem local_critical {C : Finset Word} {h : Nat} (P : CodingCover C h)
   have he := (GeneralizedLevel.unique L M).1
   have hcritD : critical j = GeneralizedNormalization.normalizedCritical D j :=
     hnormC.symm.trans he
-  have hmem : critical j ∈ nodes D := hnormC ▸ hnodeD
+  have hmem : critical j ∈ nodes D := by
+    rw [← hnormC]
+    exact hnodeD
   have hDom := (GeneralizedNormalization.mem_nodes_iff_domain hD).mp hmem
   change (rayMap hD).map (critical j) = critical (schedule (selected D) j)
   unfold GeneralizedNormalization.rayMap
@@ -156,7 +158,7 @@ theorem local_critical {C : Finset Word} {h : Nat} (P : CodingCover C h)
   rw [hcritD]
   exact (GeneralizedNormalization.normalized_critical hpD hD hjD).2
 
-theorem local_phase {C : Finset Word} {h : Nat} (P : CodingCover C h)
+theorem local_phase (H : PreservesCoding f) {C : Finset Word} {h : Nat} (P : CodingCover C h)
     {j : Nat} (hj : j < h) :
     (localMap (f:=f) P.nonempty).level j % 3 = 2 ↔ j % 3 = 2 := by
   by_cases hm : j % 3 = 2
@@ -178,7 +180,7 @@ theorem local_phase {C : Finset Word} {h : Nat} (P : CodingCover C h)
 /-- On overlapping covered levels, reconstruction is independent of the
 finite witness set. Coding heights are fixed by one point and split
 heights by a witnessed first fork. -/
-theorem local_levels_of_subset {C D : Finset Word} {h : Nat}
+theorem local_levels_of_subset (H : PreservesCoding f) {C D : Finset Word} {h : Nat}
     (P : CodingCover C h) (Q : CodingCover D h) (hCD : C ⊆ D)
     {j : Nat} (hj : j < h) :
     (localMap (f:=f) P.nonempty).level j = (localMap (f:=f) Q.nonempty).level j := by
@@ -192,7 +194,7 @@ theorem local_levels_of_subset {C D : Finset Word} {h : Nat}
     exact firstFork_unique (H.local_fork P hs ht hj hf)
       (H.local_fork Q (hCD hs) (hCD ht) hj hf)
 
-theorem local_agrees_of_subset {C D : Finset Word} {h : Nat}
+theorem local_agrees_of_subset (H : PreservesCoding f) {C D : Finset Word} {h : Nat}
     (P : CodingCover C h) (Q : CodingCover D h) (hCD : C ⊆ D)
     (u : Node) (hu : u.val.length < h) :
     (localMap (f:=f) P.nonempty).map u.val = (localMap (f:=f) Q.nonempty).map u.val := by
@@ -203,7 +205,7 @@ theorem local_agrees_of_subset {C D : Finset Word} {h : Nat}
 /-- No nested choice of witness sets is required: their union is a
 common refinement, so the reconstructed maps agree wherever both
 covers are defined. -/
-theorem local_agrees {C D : Finset Word} {h k : Nat}
+theorem local_agrees (H : PreservesCoding f) {C D : Finset Word} {h k : Nat}
     (P : CodingCover C h) (Q : CodingCover D k)
     (u : Node) (hu : u.val.length < h) (hv : u.val.length < k) :
     (localMap (f:=f) P.nonempty).map u.val = (localMap (f:=f) Q.nonempty).map u.val := by
@@ -224,7 +226,7 @@ theorem local_agrees {C D : Finset Word} {h k : Nat}
 /-- The main reconstruction theorem for the actual sparse coding set.
 It requires only the explicit finite labelled relations, not
 recurrence, A.3, A.4, or an assumed infinite extension. -/
-theorem extends_critical : ∃ X : CriticalMap, ∀ w (hw : Point w),
+theorem extends_critical (H : PreservesCoding f) : ∃ X : CriticalMap, ∀ w (hw : Point w),
     X.map ⟨w,point_tree hw⟩ = f w := by
   classical
   let C (j : Nat) := (CodingCover.exists_cover (j+1)).choose

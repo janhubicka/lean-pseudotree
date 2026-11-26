@@ -157,7 +157,7 @@ theorem relative_next_colour (X : CriticalMap) {n d : Nat} (hn : 0 < n) (hd : 0 
       intro u hu
       rw [heq u (by omega),hf u hu]
     change χ E = _
-    rw [χ,dif_pos hE]
+    simp only [χ,dif_pos hE]
     exact hcolour _ _ (C.liftStrong_approx_eq hn E.realizer f hE hf heq)
   obtain ⟨c,g,hg,_,hmono⟩ := next_block_milliken n χ
   let G := slotMapsOfStrong hn g hg

@@ -8,3 +8,4 @@ import PseudotreeValidation.SlotSuffixMaps
 import PseudotreeValidation.ConcreteEllentuck
 import PseudotreeValidation.CodingTopology
 import PseudotreeValidation.DiaryRestriction
+import PseudotreeValidation.ExpandedCopyLanguage

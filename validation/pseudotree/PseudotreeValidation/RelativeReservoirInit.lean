@@ -144,7 +144,8 @@ theorem Step.split_supported {targets : Word → Target} {j : Nat}
     have hh : (S.roots (criticalAt sparseSource j) ++ [TernaryLetter.zero] ++ b).IsPrefix
         (fromBlocks (S.next.copies u0 0)) := by
       change (S.roots u ++ [TernaryLetter.zero] ++ b).IsPrefix _
-      simpa only [List.append_assoc,List.singleton_append] using hp
+      have hzero : toLetter (0 : Fin 3) = TernaryLetter.zero := rfl
+      simpa only [List.append_assoc,List.singleton_append,hzero] using hp
     exact (List.prefix_append _ _).trans hh
   · obtain ⟨b,hb,_⟩ := S.edge u 2 ha2
     have hp := S.next.common_prefix u2 0
@@ -152,7 +153,8 @@ theorem Step.split_supported {targets : Word → Target} {j : Nat}
     have hh : (S.roots (criticalAt sparseSource j) ++ [TernaryLetter.two] ++ b).IsPrefix
         (fromBlocks (S.next.copies u2 0)) := by
       change (S.roots u ++ [TernaryLetter.two] ++ b).IsPrefix _
-      simpa only [List.append_assoc,List.singleton_append] using hp
+      have htwo : toLetter (2 : Fin 3) = TernaryLetter.two := rfl
+      simpa only [List.append_assoc,List.singleton_append,htwo] using hp
     exact (List.prefix_append _ _).trans hh
 
 end AllThoseBigRamsey.Pseudotree.Reservoir

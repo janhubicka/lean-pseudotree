@@ -211,6 +211,15 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.CodingRelations.labelled_of_closed
 #print axioms AllThoseBigRamsey.Pseudotree.CodingRelations.closed_image_iff
 
+-- Native expansion language and correspondence with critical embeddings.
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.labelled_of_codes
+#print axioms AllThoseBigRamsey.Pseudotree.CodingRelations.labelled_of_named_diaries
+#print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.exists_increasing_tuple
+#print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.criticalEmbedding
+#print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.embedding_labelled
+#print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.embeddingEquiv
+#print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.range_le_iff
+
 -- Check all declarations in the manuscript namespace, with transitive
 -- dependency collection through mathlib and the tree Ramsey libraries.
 run_cmd do
