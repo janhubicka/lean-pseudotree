@@ -307,6 +307,12 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.RevisedChainDiaries.diaryEquiv
 #print axioms AllThoseBigRamsey.Pseudotree.RevisedChainDiaries.chainDiary_card
 
+-- Literal normalized chain partition gives the exact degree.
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedChainDegrees.realized
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedChainDegrees.unavoidable
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedChainDegrees.canonical
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedChainDegrees.exact_degree
+
 run_cmd do
   let env ← Lean.getEnv
   let allowed : List Lean.Name := [`propext, `Classical.choice, `Quot.sound]

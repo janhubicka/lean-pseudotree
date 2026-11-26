@@ -367,3 +367,23 @@ with the independently enumerated PaperDiary, giving the exact count.
 This does not reflect or replace the actual FIFO queue. All new proof
 implementations await Lean and the axiom audit. Source-only commit
 preserves the current CI run. No new axioms or admissions.
+
+## Revised normalized chain degree assembly
+
+Run 45899356350 at 1026d1d6021999d5acaec3b64f11c0276787dac1
+audited 5110 declarations; both OmegaFraisseApplication and
+RevisedAgeRamsey compiled. The sole failure was the unqualified
+.one literal in ReservoirChart.opposite_continuation. It is now
+explicitly typed. The audited exact blobs have been promoted to
+main at 5ef68d4a56f6aba5d963021c4905a56a75aca186. The independent audit now additionally imports
+the two compiled modules above.
+
+RevisedChainDegrees implements the exact literal normalized
+chain partition on the actual revised sparse model. It obtains
+matching bounds directly from generalized finite-fragment
+canonization, the finite chain-diary equivalence, and recurrence.
+The normalized type map has the exact code set, realizes every
+chain diary, and each class is unavoidable. No abstract
+isomorphism is used to identify the two literal queues. This
+proof and the revised rightmost characterization and recurrence
+remain to be compiled. No new axioms or admitted declarations.

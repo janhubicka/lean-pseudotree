@@ -34,7 +34,7 @@ structure ReservoirChart where
   opposite_continuation : ∀ (Q : RayCopy) (f : TernaryModel ↪[language] TernaryModel),
     Set.range Q.embedding ⊆ Set.range f → ∀ q : ℚ,
       ∃ R : RayCopy, Set.range R.embedding ⊆ Set.range f ∧
-        ∀ t, Q q < R t ∧ (decode (Q q) ++ [.one]).IsPrefix (decode (R t))
+        ∀ t, Q q < R t ∧ (decode (Q q) ++ [TernaryLetter.one]).IsPrefix (decode (R t))
 
 def ReservoirChart.original : ReservoirChart where
   decode := fromBlocks
