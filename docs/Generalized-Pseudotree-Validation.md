@@ -21,3 +21,12 @@ recovery for arbitrary literal generalized diaries, FIFO lifting (absolute
 and relative), recurrence, expanded copy identification, A.3 and A.4.
 The current upstream A.2 interface uses non-strict initial segments; the
 strict variant in the manuscript should also be proved explicitly.
+
+## Second batch
+
+Repairs the eight elaboration errors in GeneralizedProjection and CriticalCopies
+from run 45833869256. Adds FIFOIndex: breadth-first heap indexing of the actual
+sparse queue; the code/head cone formulas, event heights and waiting-node
+separation; binary continuation of waiting branches. These are prerequisites
+for the complete local-to-global FIFO lift, not yet the lift itself. Pending
+exact-head validation; main stays at the previously checked revision.

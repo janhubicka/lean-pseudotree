@@ -102,6 +102,17 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.tychonoffClosed
 #print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.ellentuck_of_axioms
 
+-- FIFO stage indexing and actual event geometry (no queue axioms).
+#print axioms AllThoseBigRamsey.Pseudotree.Sparse.FIFO.labelStage_injective
+#print axioms AllThoseBigRamsey.Pseudotree.Sparse.FIFO.labelStage_surjective
+#print axioms AllThoseBigRamsey.Pseudotree.Sparse.FIFO.child_head
+#print axioms AllThoseBigRamsey.Pseudotree.Sparse.FIFO.H_surjective_sparse
+#print axioms AllThoseBigRamsey.Pseudotree.Sparse.FIFO.U_descendant
+#print axioms AllThoseBigRamsey.Pseudotree.Sparse.FIFO.H_branch
+#print axioms AllThoseBigRamsey.Pseudotree.Sparse.FIFO.eventNode_critical
+#print axioms AllThoseBigRamsey.Pseudotree.Sparse.FIFO.passingNode_geometry
+#print axioms AllThoseBigRamsey.Pseudotree.Sparse.FIFO.passingEdge_binary
+
 -- Check all declarations in the manuscript namespace, with transitive
 -- dependency collection through mathlib and the tree Ramsey libraries.
 run_cmd do

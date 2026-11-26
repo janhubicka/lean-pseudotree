@@ -76,9 +76,11 @@ noncomputable def partialMap (X : CriticalMap) : PrefixRayMap Tree where
     obtain ⟨p, hp, hb⟩ := X.step s a hs
     refine ⟨p, ?_, hb⟩
     change onWord X (s ++ [a]) = onWord X s ++ a :: p
+    have hparent : Tree s := tree_prefix hs (List.prefix_append s [a])
     rw [onWord_agrees X (⟨s ++ [a], hs⟩ : Node),
-      onWord_agrees X (parentNode s a hs)]
+      onWord_agrees X (⟨s, hparent⟩ : Node)]
     exact hp
+
 
 noncomputable def total (X : CriticalMap) : RayStrongMap := (partialMap X).completion
 
@@ -165,7 +167,7 @@ instance prefix_finite (n : Nat) : Finite (Prefix n) := by
   intro u v h
   apply Subtype.ext
   apply Subtype.ext
-  exact congrArg Subtype.val h
+  exact congrArg (fun w : {w : Word // w ∈ wordsThrough (3*n)} => w.val) h
 
 /-- The literal finite range, as in the manuscript (not a map outside its
 source prefix). -/
@@ -179,12 +181,14 @@ def leFin (a b : system.FiniteApprox) : Prop := finiteRange a ⊆ finiteRange b
 
 theorem prefixRange_mono (X : CriticalMap) {n m : Nat} (hnm : n ≤ m) :
     finiteRange (system.finiteApprox n X) ⊆ finiteRange (system.finiteApprox m X) := by
+  change Set.range (restriction n X) ⊆ Set.range (restriction m X)
   rintro _ ⟨u, rfl⟩
   exact ⟨⟨u.val, by have := u.property; omega⟩, rfl⟩
 
 theorem value_mem_prefix (X : CriticalMap) (u : Node) :
-    X.map u ∈ finiteRange (system.finiteApprox (u.val.length+1) X) :=
-  ⟨⟨u, by omega⟩, rfl⟩
+    X.map u ∈ finiteRange (system.finiteApprox (u.val.length+1) X) := by
+  change X.map u ∈ Set.range (restriction (u.val.length+1) X)
+  exact ⟨⟨u, by omega⟩, rfl⟩
 
 theorem finite_subset_prefix (X : CriticalMap) {t : Set Word}
     (ht : t.Finite) (hsub : t ⊆ copyRange X) :

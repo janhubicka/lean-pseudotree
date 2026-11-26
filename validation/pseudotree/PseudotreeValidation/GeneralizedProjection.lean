@@ -26,11 +26,11 @@ theorem mem_nodes_iff {C : Finset Word} {s : Word} :
     obtain ⟨w, hw, rfl⟩ := Finset.mem_image.mp hu
     obtain ⟨j, hj, rfl⟩ := Finset.mem_image.mp hs
     have hj' : j ≤ rank (selected C) w.length := by
-      simpa only [Finset.mem_range, project_length, Nat.lt_succ_iff] using hj
+      simpa only [Finset.mem_range, code, project_length, Nat.lt_succ_iff] using hj
     exact ⟨w, hw, j, hj', (project_take _ _ hj').symm⟩
   · rintro ⟨w, hw, j, hj, rfl⟩
     refine Finset.mem_biUnion.mpr ⟨_, Finset.mem_image.mpr ⟨w, hw, rfl⟩, ?_⟩
-    exact Finset.mem_image.mpr ⟨j, by simpa using hj, project_take _ _ hj⟩
+    exact Finset.mem_image.mpr ⟨j, by simpa [code] using hj, by simpa only [code] using project_take _ _ hj⟩
 
 theorem mem_nodes_iff_domain {C : Finset Word} {s : Word} (hC : C.Nonempty) :
     s ∈ nodes C ↔ Domain (C : Set Word) (schedule (selected C)) s := by
@@ -133,7 +133,7 @@ theorem code_iff_inverse {C : Finset Word} {s : Word} (hC : C.Nonempty)
   constructor
   · intro hc
     obtain ⟨w, hw, heq⟩ := Finset.mem_image.mp hc
-    rw [← heq, inverse_project (schedule_strict (selected_nonempty hC))
+    rw [← heq, code, inverse_project (schedule_strict (selected_nonempty hC))
       (separates C) hw
       (schedule_rank (essential_subset_selected C (length_mem_essential hw))).le,
       schedule_rank (essential_subset_selected C (length_mem_essential hw)), List.take_length]
@@ -145,7 +145,7 @@ theorem code_iff_inverse {C : Finset Word} {s : Word} (hC : C.Nonempty)
       apply (schedule_strict (selected_nonempty hC)).injective
       rw [schedule_rank (essential_subset_selected C (length_mem_essential hw))]
       exact inverse_length hC hs
-    exact Finset.mem_image.mpr ⟨w, hw, by rw [hlen]; exact project_of_node hC hs⟩
+    exact Finset.mem_image.mpr ⟨w, hw, by unfold code; rw [hlen]; exact project_of_node hC hs⟩
 
 /-- Compression retains precisely the actual children of each prefix in the
 finite coding tree. Empty stretches have one descendant and add no branch. -/
