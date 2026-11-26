@@ -52,6 +52,7 @@ def conjugate (f : RayStrongMap) : RayStrongMap where
   level_strict := f.level_strict
   length_map := by
     intro s
+    change (reflectWord (f.map (reflectWord s))).length = f.level s.length
     rw [reflectWord_length,f.length_map,reflectWord_length]
   step := by
     intro s a

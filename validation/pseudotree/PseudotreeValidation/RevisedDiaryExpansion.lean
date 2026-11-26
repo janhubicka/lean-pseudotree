@@ -29,10 +29,10 @@ theorem word_point (x : RevisedSparseModel) : Point (word x) := by
   exact x.property
 
 def ofPoint (w : Word) (hw : Point w) : RevisedSparseModel :=
-  RevisedSparseModel.ofWord (w.map toLetter) hw
+  RevisedConvention.RevisedSparseModel.ofWord (w.map toLetter) hw
 
 @[simp] theorem word_ofPoint (w : Word) (hw : Point w) : word (ofPoint w hw) = w := by
-  simp [word,ofPoint,RevisedSparseModel.ofWord,List.map_map,Function.comp_def]
+  simp [word,ofPoint,RevisedConvention.RevisedSparseModel.ofWord,List.map_map,Function.comp_def]
 
 @[simp] theorem ofPoint_word (x : RevisedSparseModel) : ofPoint (word x) (word_point x) = x := by
   apply Subtype.ext
@@ -52,7 +52,7 @@ theorem word_injective : Function.Injective word := by
 @[simp] theorem word_inf (x y : RevisedSparseModel) :
     word (x ⊓ y) = RevisedCodingRelations.meet (word x) (word y) := by
   apply RevisedCodingRelations.model_injective
-  rw [RevisedCodingRelations.meet_model,word_model,word_model,word_model,RevisedSparseModel.val_inf]
+  rw [RevisedCodingRelations.meet_model,word_model,word_model,word_model,RevisedConvention.RevisedSparseModel.val_inf]
 
 /-- A tuple's actual coding set. Repetitions are excluded by the
 strictly increasing height condition in the relation. -/

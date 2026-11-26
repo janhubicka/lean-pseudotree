@@ -303,3 +303,21 @@ introduced. Recurrence in arbitrary revised reduct copies, the exact
 rightmost-chain diary characterization, and the finite age Ramsey
 corollary remain separate tasks. All revised adapters await the compiler
 and axiom audit. This source-only batch preserves run 45897025781.
+
+## Repairs and consolidated CI
+
+Run 45897025781 (job 140173342358) at 10cbfc073920893973c36a9e8740b6fa3143dd26
+again passed the 4822-declaration independent audit. GenericAvoidance
+compiled, including the countable embedding and literal-copy
+noncanonization endpoints without the auxiliary avoidance premise.
+It is now imported by the independent audit entry point.
+The full build reported one simplification error in RevisedSparseGeometry
+(the binary comparison induction hypothesis, after unfolding flipBits)
+and errors in OmegaFraisseApplication (implicit bundled structures,
+the change through a bundled carrier, and missing decidability of the
+fork order). The repairs give explicit bundles, use the age witness
+directly, prove fork comparability by its defining root/equality
+relation, and prove the two strict inequalities by le and ne.
+The next full CI also includes the source-only revised native adapters.
+Their compilation and the transitive audit remain pending.
+No new admitted declarations or new proof axioms have been added.

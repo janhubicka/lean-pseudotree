@@ -7,3 +7,4 @@ import PseudotreeValidation.AnalyticApproximation
 import PseudotreeValidation.NoInfiniteCanonical
 import PseudotreeValidation.AnalyticCopies
 import PseudotreeValidation.CopyPartitionTransfer
+import PseudotreeValidation.GenericAvoidance

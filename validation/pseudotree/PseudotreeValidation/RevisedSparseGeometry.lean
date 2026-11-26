@@ -63,7 +63,7 @@ theorem binaryLE_revised_eq (s t : List Bool) :
     cases t with
     | nil => cases a <;> rfl
     | cons b t =>
-      cases a <;> cases b <;> simp [binaryLERevised,binaryLE,flipBits,← ih t]
+      cases a <;> cases b <;> simp [binaryLERevised,binaryLE,flipBits] <;> exact ih t
 
 theorem parse_mirror (s : Word) :
     parseWord (mirror s) = RayTree.map flipBits (parseWord s) := by

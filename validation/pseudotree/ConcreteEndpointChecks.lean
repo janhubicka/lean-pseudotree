@@ -199,6 +199,10 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.analytic_copies_ramsey
 #print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.ternary_no_universal_copy_partition
 
+#print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.finite_set_avoidance
+#print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.no_universal_partition_of_countable
+#print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.no_universal_copy_partition_of_countable
+
 run_cmd do
   let env ← Lean.getEnv
   let allowed : List Lean.Name := [`propext, `Classical.choice, `Quot.sound]

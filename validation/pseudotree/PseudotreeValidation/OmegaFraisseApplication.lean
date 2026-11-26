@@ -33,18 +33,25 @@ variable {M : Type} [SemilatticeInf M] [language.Structure M]
 
 /-- Every finite chain occurs in the intrinsic age. -/
 theorem chain_mem_class (n : Nat) :
-    CategoryTheory.Bundled.of (Fin n) ∈ finiteMeetTreeClass := by
+    (⟨Fin n, inferInstance⟩ : CategoryTheory.Bundled language.Structure) ∈ finiteMeetTreeClass := by
   refine ⟨inferInstance,inferInstance,inferInstance,?_⟩
   intro x y z hx hy
   exact le_total x y
 
 /-- The finite fork is in the same age. -/
 theorem fork_mem_class :
-    CategoryTheory.Bundled.of Incomparables.Fork ∈ finiteMeetTreeClass := by
+    (⟨Incomparables.Fork, inferInstance⟩ : CategoryTheory.Bundled language.Structure) ∈ finiteMeetTreeClass := by
   refine ⟨inferInstance,inferInstance,inferInstance,?_⟩
-  have h : ∀ x y z : Incomparables.Fork, x ≤ z → y ≤ z → x ≤ y ∨ y ≤ x := by decide
-  intro x y z
-  exact h x y z
+  intro x y z hx hy
+  change x = Incomparables.Fork.root ∨ x = z at hx
+  change y = Incomparables.Fork.root ∨ y = z at hy
+  change (x = Incomparables.Fork.root ∨ x = y) ∨
+    (y = Incomparables.Fork.root ∨ y = x)
+  rcases hx with hx | hx
+  · exact Or.inl (Or.inl hx)
+  · rcases hy with hy | hy
+    · exact Or.inr (Or.inl hy)
+    · exact Or.inl (Or.inr (hx.trans hy.symm))
 
 theorem chain_embeds (hM : language.IsFraisseLimit finiteMeetTreeClass M)
     (n : Nat) : Nonempty (Fin n ↪[language] M) := by
@@ -70,11 +77,9 @@ theorem predecessors (hM : language.IsFraisseLimit finiteMeetTreeClass M)
   have hB : B.FG := FirstOrder.Language.Substructure.fg_closure (by simp)
   have ha := FirstOrder.Language.age.fg_substructure hB
   rw [hM.age] at ha
-  change Finite B ∧ ∃ i : SemilatticeInf B, letI := i
-    MeetsInterpreted B ∧ (∀ {p q r : B}, p ≤ r → q ≤ r → p ≤ q ∨ q ≤ p) at ha
   obtain ⟨_,i,hi,ht⟩ := ha
-  letI := i
-  letI := hi
+  letI : SemilatticeInf B := i
+  letI : MeetsInterpreted B := hi
   let p : B := ⟨x,FirstOrder.Language.Substructure.subset_closure (by simp)⟩
   let q : B := ⟨y,FirstOrder.Language.Substructure.subset_closure (by simp)⟩
   let r : B := ⟨z,FirstOrder.Language.Substructure.subset_closure (by simp)⟩
@@ -159,8 +164,13 @@ theorem model_dense (hM : language.IsFraisseLimit finiteMeetTreeClass M) :
 
 theorem opposite_branch (hM : language.IsFraisseLimit finiteMeetTreeClass M)
     {a b : M} (hab : a < b) : ∃ c, a < c ∧ c ⊓ b = a := by
-  let g : Fin 2 ↪[language] Incomparables.Fork :=
-    pair (show Incomparables.Fork.root < Incomparables.Fork.left by decide)
+  have hl : Incomparables.Fork.root < Incomparables.Fork.left :=
+    lt_of_le_of_ne (show Incomparables.Fork.root ≤ Incomparables.Fork.left from Or.inl rfl)
+      (by decide)
+  have hr : Incomparables.Fork.root < Incomparables.Fork.right :=
+    lt_of_le_of_ne (show Incomparables.Fork.root ≤ Incomparables.Fork.right from Or.inl rfl)
+      (by decide)
+  let g : Fin 2 ↪[language] Incomparables.Fork := pair hl
   obtain ⟨e,he⟩ := hM.ultrahomogeneous.extend_embedding
     (FirstOrder.Language.Structure.FG.of_finite :
       FirstOrder.Language.Structure.FG language (Fin 2))
@@ -172,7 +182,7 @@ theorem opposite_branch (hM : language.IsFraisseLimit finiteMeetTreeClass M)
   refine ⟨e Incomparables.Fork.right,?_⟩
   rw [h₀,h₁]
   constructor
-  · exact (embedding_lt_iff e _ _).mpr (by decide)
+  · exact (embedding_lt_iff e _ _).mpr hr
   · rw [← embedding_map_inf]
     rfl
 
