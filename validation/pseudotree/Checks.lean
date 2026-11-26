@@ -76,6 +76,15 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.chain_degree
 #print axioms AllThoseBigRamsey.Pseudotree.chain_degree_diaries
 
+-- Concrete critical-copy approximation system and upstream Ellentuck endpoint.
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.system
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.finiteRange_injective
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.finitization
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.closed
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.tychonoffClosed
+#print axioms RamseySpace.abstractEllentuck_textbook
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.ellentuck_of_axioms
+
 -- Check all declarations in the manuscript namespace, with transitive
 -- dependency collection through mathlib and the tree Ramsey libraries.
 run_cmd do
