@@ -193,6 +193,17 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.ramseySpace
 #print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.concrete_ellentuck
 
+-- Coding map reconstruction, uniqueness, order and finite-coordinate continuity.
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.CodingCover.exists_cover
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.PreservesCoding.local_agrees
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.PreservesCoding.extends_critical
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.PreservesCoding.unique_extension
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.codingRange_characterization
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.codingRange_le_iff
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.codingRange_injective
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.codingRange_agrees_short
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.finite_cylinder_recovers_approx
+
 -- Check all declarations in the manuscript namespace, with transitive
 -- dependency collection through mathlib and the tree Ramsey libraries.
 run_cmd do

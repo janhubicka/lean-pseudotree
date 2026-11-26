@@ -18,6 +18,7 @@ noncomputable def blockNodes (n : Nat) : Finset Word := by
 @[simp] theorem mem_blockNodes (n : Nat) (w : Word) :
     w ∈ blockNodes n ↔ SparseNormalization.Tree w ∧ w.length < 3*n := by
   classical
+  letI : Fintype (Prefix n) := Fintype.ofFinite _
   unfold blockNodes
   constructor
   · intro h

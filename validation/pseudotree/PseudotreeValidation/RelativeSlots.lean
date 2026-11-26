@@ -346,7 +346,7 @@ noncomputable def relativeLabels {j : Nat} {e : FiniteCritical (j+1)}
     have hslot : slot e w = e.map (parentNode s a hs) ++ [a] := by
       have he : oldParent w = parentNode s a hs := by
         apply Subtype.ext
-        exact congrArg Subtype.val hpar
+        exact congrArg (fun v : Reservoir.Level sparseSource j => v.val) hpar
       rw [slot,he,hlast]
     rw [hslot,List.map_append,List.map_cons,List.map_nil] at hb
     refine ⟨b,?_,?_⟩

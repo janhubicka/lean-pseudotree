@@ -61,7 +61,20 @@ jobs:
         with:
           name: generalized-pseudotree-axioms
           path: validation/pseudotree/generalized-axioms.txt
+      - name: Audit relative geometry and fixed-prefix Milliken independently
+        id: geometry_audit
+        run: |
+          set -euo pipefail
+          lake build PseudotreeValidation.CriticalGeometryBase
+          lake env lean GeometryChecks.lean | tee geometry-axioms.txt
+          if grep -q 'sorryAx' geometry-axioms.txt; then exit 1; fi
+      - uses: actions/upload-artifact@v4
+        if: ${{ always() && steps.geometry_audit.outcome == 'success' }}
+        with:
+          name: pseudotree-relative-geometry-axioms
+          path: validation/pseudotree/geometry-axioms.txt
       - name: Build the actual model and Ramsey adapters
+        if: ${{ !cancelled() }}
         run: lake build PseudotreeValidation
       - name: Audit all pseudotree proof dependencies
         run: |
