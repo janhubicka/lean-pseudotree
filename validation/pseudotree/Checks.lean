@@ -1,4 +1,4 @@
-import PseudotreeValidation.GeneralizedBase
+import PseudotreeValidation.CriticalGeometryBase
 import Lean
 
 -- The two substantive tree Ramsey inputs are imported with proofs.
@@ -133,6 +133,18 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.Reservoir.exists_step
 #print axioms AllThoseBigRamsey.Pseudotree.Reservoir.recurrence
 #print axioms AllThoseBigRamsey.Pseudotree.Reservoir.recurrent_code_sets
+
+-- Independently compiling relative geometry and fixed-prefix Milliken.
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.le_iff_factor
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.depth_top
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.strict_prefix_leFin
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.RelativeLabels.extendCritical
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.RelativeTail.assemble
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.le_iff_coding_inclusion
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.refinement_of_support
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.amalgamation_refine_of_support
+#print axioms AllThoseBigRamsey.Pseudotree.Sparse.FIFO.slot_rayCopy
+#print axioms AllThoseBigRamsey.Pseudotree.RayMilliken.restricted_milliken_relative
 
 -- Check all declarations in the manuscript namespace, with transitive
 -- dependency collection through mathlib and the tree Ramsey libraries.

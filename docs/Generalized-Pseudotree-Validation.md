@@ -18,3 +18,7 @@ import, audit entry point, documentation and workflow selection differ from
 the audited branch. Unfinished relative modules are retained on
 critical-copy-space-validation, not included in the main library. The
 full branch run had failed after the successful generalized audit.
+
+## Audited relative geometry checkpoint
+
+The independently compiled and transitively audited CriticalGeometryBase at 08ad7fb47ef224e74f1a788a0e2148822ceb3219 passed steps 7–8 of Actions run 45863816431 (job 140061409213). All 4126 declarations in the pseudotree namespace use only propext, Classical.choice and Quot.sound. The core build also passed. This checkpoint promotes exactly those imported relative-geometry modules, preserving their source blobs unchanged and retaining the main workflow. It includes strict A.2, depth, critical-copy pullback, relative FIFO local geometry and prefix/tail gluing, coding-range support and inclusion, the conditional A.3(2) range reduction, rational slot reservoirs, and relative restricted Milliken. It does not claim the complete A.3(1), A.3(2), A.4, reconstruction or topology endpoints; these remain on the validation branch. A.3(1) and next-block Milliken compiled in the subsequent full-build step, but were outside the independent transitive audit.
