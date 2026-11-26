@@ -30,3 +30,7 @@ sparse queue; the code/head cone formulas, event heights and waiting-node
 separation; binary continuation of waiting branches. These are prerequisites
 for the complete local-to-global FIFO lift, not yet the lift itself. Pending
 exact-head validation; main stays at the previously checked revision.
+
+## Third batch
+
+Run 45835182930 compiled GeneralizedProjection, GeneralizedDiaryGrammar and CriticalCopies; the full audit was blocked by six FIFOIndex elaboration errors. This batch repairs them and develops FIFOEdges and FIFOLifting. The latter instantiates a local event-tree interface on the literal generalized diaries and the actual infinite sparse tree. Both finite and infinite lifts use the explicit FIFO formula. No new axioms or sorry are introduced. Awaiting exact-head build and audit; relative lifting, literal recovery, recurrence and A.3/A.4 remain separate obligations.

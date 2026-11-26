@@ -113,6 +113,12 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.Sparse.FIFO.passingNode_geometry
 #print axioms AllThoseBigRamsey.Pseudotree.Sparse.FIFO.passingEdge_binary
 
+-- Absolute FIFO lift, for literal generalized diaries and the infinite sparse tree.
+#print axioms AllThoseBigRamsey.Pseudotree.Sparse.FIFO.liftedNode_step
+#print axioms AllThoseBigRamsey.Pseudotree.FIFOLifting.diary_lift
+#print axioms AllThoseBigRamsey.Pseudotree.FIFOLifting.liftCritical
+#print axioms AllThoseBigRamsey.Pseudotree.FIFOLifting.liftCritical_code
+
 -- Check all declarations in the manuscript namespace, with transitive
 -- dependency collection through mathlib and the tree Ramsey libraries.
 run_cmd do

@@ -41,3 +41,4 @@ import PseudotreeValidation.GeneralizedProjection
 import PseudotreeValidation.GeneralizedDiaryGrammar
 import PseudotreeValidation.CriticalCopies
 import PseudotreeValidation.FIFOIndex
+import PseudotreeValidation.FIFOLifting

@@ -50,6 +50,8 @@ theorem labelStage_bounds (w : Word) :
     simp only [List.reverse_cons, List.length_append, List.length_singleton,
       labelStage_snoc, depthStart]
     have ha := rank_lt_three a
+    have hi := ih.2
+    change labelStage w.reverse < 3 * depthStart w.reverse.length + 1 at hi
     omega
 
 theorem labelStage_lt_of_length_lt {s t : Word} (h : s.length < t.length) :
@@ -326,7 +328,8 @@ theorem sample_length {x t : Word} (h : x.length = t.length)
     eventLength t split < (U (x ++ [a])).length := by
   have hl : t.length < (x ++ [a]).length := by simp [h]
   have hstage := labelStage_lt_of_length_lt hl
-  cases split <;> simp [eventLength] <;> omega
+  cases split <;> simp only [eventLength, U_length, Bool.false_eq_true,
+    if_false, if_true] <;> omega
 
 def passingDigit (x t : Word) : TernaryLetter :=
   if lexLess x t then .zero else .two
@@ -342,7 +345,7 @@ theorem passingNode_length {x t : Word} (h : x.length = t.length) (split : Bool)
     (passingNode x t split).length = eventLength t split := by
   have hl := sample_length h (passingDigit x t) split
   have hle := (U_prefix_H (x ++ [passingDigit x t])).length_le
-  simp [passingNode, Nat.min_eq_left (hl.le.trans hle)]
+  rw [passingNode, List.length_take, Nat.min_eq_left (hl.le.trans hle)]
 
 theorem passingNode_eq_head_take {x t : Word} (h : x.length = t.length)
     (split : Bool) :
@@ -434,6 +437,7 @@ theorem passingEdge_prefix {x t : Word} (hlen : x.length = t.length)
   rw [← eventNode_critical t split] at h
   have ha : w[j] = passingDigit x t := by
     simpa [CriticalChildren, hn, direction, hlex, passingDigit] using h
+  change (passingNode x t split ++ [passingDigit x t]).IsPrefix w
   rw [← ha, htake, List.take_append_getElem hj]
   exact List.take_prefix _ _
 
@@ -474,12 +478,12 @@ theorem passingEdge_binary {x t : Word} (hlen : x.length = t.length)
     cases split <;> simp [eventLength] <;> omega
   have hlabel : (x ++ [d]) ++ v = p ++ a :: d :: v := by simp [hx, List.append_assoc]
   obtain ⟨b, hb, hbb⟩ := H_branch p a (d :: v)
-  have hbno := hbb (by simp [hd, hv])
+  have hbno := hbb (by simp [Ne.symm hd, hv])
   have hprefix : (passingNode x t split ++ [d]).IsPrefix (H ((x ++ [d]) ++ v)) :=
     (passingEdge_prefix hlen hne split).trans (U_prefix_code_descendant (x ++ [d]) v)
   rw [hlabel, hb] at hprefix ⊢
   apply binary_suffix_of_prefix hbno hprefix
   simp only [List.length_append, List.length_singleton, passingNode_length hlen split]
-  exact hbound.trans (Nat.le_succ _)
+  simpa only [List.length_append] using hbound.trans (Nat.le_succ (eventLength t split))
 
 end AllThoseBigRamsey.Pseudotree.Sparse.FIFO
