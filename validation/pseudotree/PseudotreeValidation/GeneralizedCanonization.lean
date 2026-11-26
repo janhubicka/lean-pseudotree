@@ -73,6 +73,7 @@ theorem literal_realized (D : GeneralizedDiary n) :
       ∀ w ∈ D.codes, code (D.codes.image HFin) (HFin w) = w := by
   classical
   obtain ⟨f, _, hf⟩ := diary_lift D RayStrongMap.identity
+  change ∀ s ∈ D.codes, f.map s = HFin s at hf
   have himage : D.codes.image f.map = D.codes.image HFin := by
     apply Finset.image_congr
     intro w hw

@@ -14,6 +14,7 @@ def sparseSource : Source where
   nodes := {w | Tree w}
   codes := {w | Point w}
   root_mem := by
+    change Tree []
     have h := (CriticalCopies.criticalNode 0).property
     have hz : critical 0 = [] := List.length_eq_zero_iff.mp (critical_length 0)
     simpa only [CriticalCopies.criticalNode, hz] using h

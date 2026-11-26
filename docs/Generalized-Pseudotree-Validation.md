@@ -46,3 +46,5 @@ Run 45839462556 successfully compiled FIFOIndex, FIFOEdges, GeneralizedProjectio
 ## Sixth batch
 
 CriticalPullback develops binary edge reflection, exact composition, finite pullback (without assuming infinite extendibility), and infinite factorization. A.3(1) is reduced to the explicit WholeBlockExtension obligation. The existing exact-tail lemma is exported without changing its proof. CriticalDepth proves the final coding level characterization of depth and the strict A.2(3) variant in the manuscript. No new axioms or sorry are introduced. All new declarations await compilation and transitive audit; whole-block extension and relative A.3(2)/A.4 remain outstanding.
+
+Run 45842568797 successfully compiled FIFOLifting and ReservoirTransitions in addition to the earlier modules. It failed on two elaboration errors in the endpoint modules: membership in the root set and the identity-map expression in labelled recovery. Both are repaired by explicit change statements in the follow-up. The full axiom audit was not reached.
