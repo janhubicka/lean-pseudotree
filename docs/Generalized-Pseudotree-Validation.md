@@ -55,3 +55,15 @@ GenericAvoidance remain on critical-copy-space-validation pending the
 next audit. The core run 45894948543 passed. A redundant main CI run
 is skipped for this source-identical promotion; the consolidated branch
 will undergo the next full build and cumulative audit.
+
+## Audited native analytic and copy-level checkpoint
+
+Run 45896002915 (job 140169930739) at 598926e3b3e35cf28cd4d47172c09ca4ab948c1b
+passed the independent ConcreteEndpointBase build and audit of 4822
+pseudotree declarations, using only the three permitted standard axioms.
+The audited additions are the native analytic-copy Ramsey theorem and the
+transfer of the noncanonization theorem to literal copies in the concrete
+binary model. The full build failed only on singleton bottom membership
+in GenericAvoidance. This promotion preserves the audited blobs exactly
+and changes the aggregate audit entry point and documentation. No new
+main CI is requested for the source-identical promotion.
