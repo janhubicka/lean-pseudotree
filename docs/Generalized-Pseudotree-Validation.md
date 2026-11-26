@@ -34,3 +34,24 @@ Actions run 45868929249, job 140078951502, at e0800b70dede66dc93e116c5c5171426df
 ## Audited reconstruction checkpoint
 
 Actions run 45870721374 at 5590db2535622c4e26055ba1cb493d1c027f897f, job 140085123309, completed the independent ReconstructionBase build and transitive audit successfully (steps 5–6). The exact unchanged audited source blobs are promoted here. This includes the infinite relative reservoir continuation, critical-map reconstruction from all labelled finite coding relations, label recovery from the length order and meet-closed diary relations, and the native first-order expansion with preservation/reflection by critical embeddings and labelled preservation by native embeddings. The full branch build of A.3(2), ambient A.4, range identification and analytic transfer was still in progress at promotion; no claim about those endpoints is made here. Main workflow unchanged. Manuscript PDF verification is manual.
+
+## Audited concrete Ellentuck, native Ramsey and anchored obstruction checkpoint
+
+Exact-head run 45894948513, job 140166450040, at
+48ba4c1df26d091ab7a52359bdae8519002960a0 completed the independent
+ConcreteEndpointBase build and transitive audit of 4794 pseudotree
+declarations, using only propext, Classical.choice and Quot.sound.
+The audit additionally explicitly prints the dependencies of the abstract
+analytic-image theorem. This promotion preserves the exact audited module
+blobs and changes the aggregate import and audit entry point only.
+It includes concrete A.3(2), A.4, the Ellentuck theorem, identification
+with native embeddings, the metric homeomorphism, native recurrence and
+IRT, anchored oscillation, and the binary embedding-level four-colour
+noncanonization theorem.
+
+AnalyticCopies and CopyPartitionTransfer compiled in the following
+full build but were outside the independent audit. They and the unfinished
+GenericAvoidance remain on critical-copy-space-validation pending the
+next audit. The core run 45894948543 passed. A redundant main CI run
+is skipped for this source-identical promotion; the consolidated branch
+will undergo the next full build and cumulative audit.

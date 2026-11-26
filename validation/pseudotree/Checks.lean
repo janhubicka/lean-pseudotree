@@ -1,4 +1,4 @@
-import PseudotreeValidation.ReconstructionBase
+import PseudotreeValidation
 import Lean
 
 -- The two substantive tree Ramsey inputs are imported with proofs.
@@ -175,8 +175,27 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.criticalEmbedding
 #print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.embedding_labelled
 
+-- Concrete A.3/A.4, Ellentuck, and native embedding identification.
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.relative_support_construction
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.amalgamation_refine
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.pigeonhole
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.ramseySpace
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.concrete_ellentuck
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.codingRange_injective
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.finite_cylinder_recovers_approx
+#print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.embeddingEquiv
+#print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.range_le_iff
+
 -- Check all declarations in the manuscript namespace, with transitive
 -- dependency collection through mathlib and the tree Ramsey libraries.
+-- Further independently compiled endpoints, before the final adapters.
+#print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.copyHomeomorph
+#print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.native_IRT
+#print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.native_recurrence
+#print axioms RamseySpace.prefixContinuous_range_isRamsey
+#print axioms AllThoseBigRamsey.Pseudotree.Profiles.System.anchored_oscillations
+#print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.ternary_no_universal_partition
+
 run_cmd do
   let env ← Lean.getEnv
   let allowed : List Lean.Name := [`propext, `Classical.choice, `Quot.sound]
