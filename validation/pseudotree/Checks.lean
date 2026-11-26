@@ -1,4 +1,4 @@
-import PseudotreeValidation
+import PseudotreeValidation.GeneralizedBase
 import Lean
 
 -- The two substantive tree Ramsey inputs are imported with proofs.
@@ -86,6 +86,53 @@ import Lean
 
 -- The actual exported Abstract Ellentuck Theorem at the inherited pin.
 #print axioms RamseySpace.abstractEllentuck_textbook
+
+-- Generalized diary grammar and its Milliken shape interface.
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.adjacent_next
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedLevel.unique
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedDiary.shape
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.normalized_axioms
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.extraction
+
+-- Critical-copy space: sequencing, finitization, and closedness.
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.system
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.finiteRange_injective
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.finitization
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.closed
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.tychonoffClosed
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.ellentuck_of_axioms
+
+-- FIFO stage indexing and actual event geometry (no queue axioms).
+#print axioms AllThoseBigRamsey.Pseudotree.Sparse.FIFO.labelStage_injective
+#print axioms AllThoseBigRamsey.Pseudotree.Sparse.FIFO.labelStage_surjective
+#print axioms AllThoseBigRamsey.Pseudotree.Sparse.FIFO.child_head
+#print axioms AllThoseBigRamsey.Pseudotree.Sparse.FIFO.H_surjective_sparse
+#print axioms AllThoseBigRamsey.Pseudotree.Sparse.FIFO.U_descendant
+#print axioms AllThoseBigRamsey.Pseudotree.Sparse.FIFO.H_branch
+#print axioms AllThoseBigRamsey.Pseudotree.Sparse.FIFO.eventNode_critical
+#print axioms AllThoseBigRamsey.Pseudotree.Sparse.FIFO.passingNode_geometry
+#print axioms AllThoseBigRamsey.Pseudotree.Sparse.FIFO.passingEdge_binary
+
+-- Absolute FIFO lift, for literal generalized diaries and the infinite sparse tree.
+#print axioms AllThoseBigRamsey.Pseudotree.Sparse.FIFO.liftedNode_step
+#print axioms AllThoseBigRamsey.Pseudotree.FIFOLifting.diary_lift
+#print axioms AllThoseBigRamsey.Pseudotree.FIFOLifting.liftCritical
+#print axioms AllThoseBigRamsey.Pseudotree.FIFOLifting.liftCritical_code
+
+-- Generalized literal recovery and code-set IRT.
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedDiary.nodes_iff_prefix_code
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.selected_source
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.labelled_image_recovery
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.image_nodes_recovery
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.maps_point
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedCanonization.literal_realized
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedCanonization.finite_fragment
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedCanonization.codeSet_IRT
+
+-- Unbounded rational reservoir transitions and recurrence.
+#print axioms AllThoseBigRamsey.Pseudotree.Reservoir.exists_step
+#print axioms AllThoseBigRamsey.Pseudotree.Reservoir.recurrence
+#print axioms AllThoseBigRamsey.Pseudotree.Reservoir.recurrent_code_sets
 
 -- Check all declarations in the manuscript namespace, with transitive
 -- dependency collection through mathlib and the tree Ramsey libraries.
