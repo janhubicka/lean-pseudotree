@@ -174,7 +174,10 @@ theorem embed_withBot_at [NoMinOrder M] [Countable M]
     FirstOrder.Language.Structure.cg_of_countable F (withBot_extensionPair htree hhom)
   refine ⟨g,?_⟩
   obtain ⟨hle,he⟩ := (FirstOrder.Language.PartialEquiv.le_def F.val g.toPartialEquiv).mp hg
-  have hh := congrArg (fun e' : S ↪[language] M => e' ⟨⊥,by simp [S,substructureOfInfClosed]⟩) he
+  have hbot : (⊥ : WithBot M) ∈ S := by
+    change (⊥ : WithBot M) ∈ ({⊥} : Set (WithBot M))
+    simp
+  have hh := congrArg (fun e' : S ↪[language] M => e' ⟨⊥,hbot⟩) he
   change g ⊥ = a at hh
   exact hh
 
