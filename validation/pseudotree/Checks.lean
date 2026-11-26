@@ -182,6 +182,12 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.no_universal_partition
 #print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.ternary_no_universal_partition
 
+-- Transfer to literal copies (nonrigid patterns allowed).
+#print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.factorThrough_comp
+#print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.tag_rep_comp
+#print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.transfer_obstruction
+#print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.ternary_no_universal_copy_partition
+
 -- Check all declarations in the manuscript namespace, with transitive
 -- dependency collection through mathlib and the tree Ramsey libraries.
 run_cmd do

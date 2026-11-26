@@ -1,2 +1,3 @@
 import PseudotreeValidation.ReconstructionBase
 import PseudotreeValidation.NoInfiniteCanonical
+import PseudotreeValidation.CopyPartitionTransfer

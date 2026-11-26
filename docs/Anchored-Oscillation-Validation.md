@@ -17,3 +17,17 @@ The native embedding obstruction and anchored lemma are proof implementations,
 not yet Lean-verified. The transfer from copy partitions to embedding partitions
 and the generic countably branching model's finite-avoidance argument remain
 to be formalized. No admissions or new mathematical axioms are intended.
+
+## Copy-level transfer batch
+
+CopyPartitionTransfer defines copies as literal embedding ranges, constructs
+the factor through a containing embedding using mathlib's equivRange, and
+indexes the fibre over any copy by self-embeddings of the finite pattern.
+This proves the exact image-level obstruction using a finite tuple of
+four-colour values. It does not assume rigidity or require that the chosen
+representatives commute with ambient embeddings. The generic transfer
+works independently of the pseudotree geometry and the concrete endpoint
+uses ternary_no_universal_partition. All added proofs await compilation.
+The generic countably branching application still requires finite-set
+avoidance or a concrete model construction. The prior CI is intentionally
+not cancelled by this source-only batch.
