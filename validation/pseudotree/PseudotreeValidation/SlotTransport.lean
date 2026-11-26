@@ -83,7 +83,8 @@ def zeroPrefix (L : Nat → Nat) (hL : StrictMono L) : PrefixRayMap (fun w : Wor
     root_mem := rfl
     prefix_closed := by
       intro s t h
-      exact (List.append_eq_nil.mp h).1
+      change s ++ t = [] at h
+      cases s <;> simp_all
     map := fun _ => List.replicate (L 0) 0
     level := L
     level_strict := fun h => hL h
@@ -262,8 +263,10 @@ noncomputable def suffixes (T : SlotTransport j k) (H : CriticalMap)
     intro i l hil
     have hlt := H.level_strict (Nat.add_lt_add_left hil (j+1))
     change H.level (j+1+i) < H.level (j+1+l) at hlt
-    have hm := H.level_strict.monotone (show j+1 ≤ j+1+i by omega)
+    have hm : H.level (j+1) ≤ H.level (j+1+i) :=
+      H.level_strict.monotone (show j+1 ≤ j+1+i by omega)
     have hlo := T.image_boundary_level H he
+    change H.level (j+1+i)-(k+1) < H.level (j+1+l)-(k+1)
     omega
   levels := by
     intro w i
@@ -316,9 +319,11 @@ theorem labels_comp (T : SlotTransport j k)
     change (H.map u).take (k+1) = v.val
     rw [hw]
     have hvlen : v.val.length = k+1 := v.property.2
-    simpa only [hvlen] using (List.take_append_length v.val z)
+    have ht : (v.val ++ z).take v.val.length = v.val := List.take_append_length
+    simpa only [hvlen] using ht
   have hz : (H.map u).drop (k+1) = z := by
-    rw [hw,← v.property.2,List.drop_left' rfl]
+    rw [hw]
+    exact List.drop_left' v.property.2
   rw [B.labelsMap_eq _ (H.maps_tree u) hlen,
     (T.restrictRoots B).labelsMap_eq _ u.property hu]
   change B.root V ++ ((SlotMaps.transport T G).maps V).map ((H.map u).drop (k+1)) =

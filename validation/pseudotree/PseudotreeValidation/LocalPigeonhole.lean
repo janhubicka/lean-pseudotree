@@ -114,7 +114,7 @@ theorem labelsMap_of_composed_suffixes {n : Nat} (hn : 0 < n)
     ((slotMapsOfStrong hn g hg).maps w).map ((K.maps w).map z) =
       B.root w ++ (g.map (f.map u.val)).drop (j+1)
   rw [hf,← slotMapsOfStrong_apply hn g hg w ((K.maps w).map z)]
-  rw [← w.property.2,List.drop_left' rfl]
+  rw [List.drop_left' w.property.2]
 
 end SlotFamily
 

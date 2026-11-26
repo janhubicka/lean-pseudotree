@@ -70,7 +70,9 @@ theorem exists_cover (h : Nat) : ∃ C : Finset Word, CodingCover C h := by
     let u : Prefix (h+1) := ⟨criticalNode j,by simp; omega⟩
     have hpoint : Point u.val.val := (point_at_level (criticalNode_length j)).mpr ⟨hm,rfl⟩
     have he := hself u hpoint
-    exact he ▸ hmem u
+    have hw := hmem u
+    rw [he] at hw
+    exact hw
   · intro j hj hm
     have hc : SparseNormalization.Tree (critical j) := (criticalNode j).property
     have h0 : SparseNormalization.Tree (critical j ++ [0]) := by

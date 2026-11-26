@@ -129,16 +129,15 @@ theorem relevant_seed (X : CriticalMap) {n d j : Nat} (hn : 0 < n)
   have heq : X.map u ++ [a] = w.val :=
     hpre.eq_of_length (by rw [List.length_append,List.length_singleton,hlen,w.property.2])
   have hlast : Reservoir.last w = a := by
-    have hh := congrArg (fun v : Word => v[j]?) heq
-    have hlen' : (X.map u).length ≤ j := hlen.le
-    rw [List.getElem?_append_right hlen',hlen,Nat.sub_self] at hh
-    have hidx : j < w.val.length := by rw [w.property.2]; omega
-    rw [List.getElem?_eq_getElem hidx] at hh
-    exact (Option.some.inj hh).symm
+    have hword := Reservoir.child_parent w
+    have hh := congrArg List.getLast? (hword.trans heq.symm)
+    simpa only [child,List.getLast?_concat,Option.some.injEq] using hh
   obtain ⟨Q,hQ,hQtail⟩ := live_ray n (u.val ++ [a]) ha
     (by rw [List.length_append,List.length_singleton,hu]; omega)
   obtain ⟨R,hR,hRtail⟩ := Q.mapped_slot (total X) (u.val ++ [a]) hQtail
   obtain ⟨pad,hpad,hpbin⟩ := X.step u.val a ha
+  have hpar : parentNode u.val a ha = u := Subtype.ext rfl
+  rw [hpar] at hpad
   have hstep : (total X).map (u.val ++ [a]) = w.val ++ pad := by
     rw [show (total X).map (u.val ++ [a]) = X.map ⟨u.val ++ [a],ha⟩
       from total_agrees X ⟨u.val ++ [a],ha⟩,hpad]

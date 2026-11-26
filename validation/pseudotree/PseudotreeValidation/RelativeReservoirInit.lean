@@ -143,7 +143,7 @@ theorem Step.split_supported {targets : Word → Target} {j : Nat}
     rw [hb] at hp
     have hh : (S.roots (criticalAt sparseSource j) ++ [TernaryLetter.zero] ++ b).IsPrefix
         (fromBlocks (S.next.copies u0 0)) := by
-      change (S.roots u ++ [.zero] ++ b).IsPrefix _
+      change (S.roots u ++ [TernaryLetter.zero] ++ b).IsPrefix _
       simpa only [List.append_assoc,List.singleton_append] using hp
     exact (List.prefix_append _ _).trans hh
   · obtain ⟨b,hb,_⟩ := S.edge u 2 ha2
@@ -151,7 +151,7 @@ theorem Step.split_supported {targets : Word → Target} {j : Nat}
     rw [hb] at hp
     have hh : (S.roots (criticalAt sparseSource j) ++ [TernaryLetter.two] ++ b).IsPrefix
         (fromBlocks (S.next.copies u2 0)) := by
-      change (S.roots u ++ [.two] ++ b).IsPrefix _
+      change (S.roots u ++ [TernaryLetter.two] ++ b).IsPrefix _
       simpa only [List.append_assoc,List.singleton_append] using hp
     exact (List.prefix_append _ _).trans hh
 
