@@ -344,13 +344,16 @@ noncomputable def relativeLabels {j : Nat} {e : FiniteCritical (j+1)}
     have hpar : Reservoir.parent w = u := Reservoir.parent_childNode u a hs
     have hlast : Reservoir.last w = a := Reservoir.last_childNode u a hs
     have hslot : slot e w = e.map (parentNode s a hs) ++ [a] := by
-      unfold slot oldParent
-      rw [hpar,hlast]
-      rfl
+      have he : oldParent w = parentNode s a hs := by
+        apply Subtype.ext
+        exact congrArg Subtype.val hpar
+      rw [slot,he,hlast]
     rw [hslot,List.map_append,List.map_cons,List.map_nil] at hb
     refine ⟨b,?_,?_⟩
     · change U ((B.labelsMap G (s ++ [a])).map toLetter) =
         (e.map (parentNode s a hs)).map toLetter ++ toLetter a :: b
+      change U ((B.labelsMap G (s ++ [a])).map toLetter) =
+        (e.map (parentNode s a hs)).map toLetter ++ [toLetter a] ++ b at hb
       simpa only [List.append_assoc,List.singleton_append] using hb
     · intro ha
       apply hbbin

@@ -182,6 +182,17 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.suffixLift
 #print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.suffixLift_fixesBlock
 
+-- Relative FIFO comparison, concrete A.4, and Abstract Ellentuck assembly.
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.SlotTransport.inject_injective
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.SlotTransport.suffixes
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.SlotTransport.labels_comp
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.SlotTransport.lift_comp
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.relative_next_colour
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.absolute_next_colour
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.pigeonhole
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.ramseySpace
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.concrete_ellentuck
+
 -- Check all declarations in the manuscript namespace, with transitive
 -- dependency collection through mathlib and the tree Ramsey libraries.
 run_cmd do

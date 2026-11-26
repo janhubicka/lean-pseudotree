@@ -5,3 +5,4 @@ import PseudotreeValidation.SlotReservoirs
 import PseudotreeValidation.RelativeReservoirInit
 import PseudotreeValidation.RelevantReservoirs
 import PseudotreeValidation.SlotSuffixMaps
+import PseudotreeValidation.ConcreteEllentuck

@@ -99,13 +99,6 @@ theorem restriction_top_le {F G : Shape} (hGF : G.nodes ⊆ F.nodes)
     (e.restrict G hGF).topLevel ≤ e.topLevel := by
   exact e.length_bounded ⟨G.topNode.val,hGF G.topNode.property⟩
 
-theorem truncate_of_truncate_nodes (F : Shape) {k h : Nat}
-    (hk : 0 < k) (hh : 0 < h) (hkh : k ≤ h) :
-    ((F.truncate h hh).truncate k hk).nodes = (F.truncate k hk).nodes := by
-  ext s
-  simp only [Shape.mem_truncate]
-  omega
-
 /-- Work with arbitrary initial subshapes rather than dependent
 equalities between nested truncations. -/
 def InitialShape (G F : Shape) : Prop :=
