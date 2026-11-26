@@ -254,6 +254,16 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.no_universal_partition_of_countable
 #print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.no_universal_copy_partition_of_countable
 
+-- Geometry-independent reservoir transitions and revised native recurrence.
+#print axioms AllThoseBigRamsey.Pseudotree.LowerGeometry.RayCopy.split_of_prefix_antichain
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedConvention.reflected_prefix_antichain
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedConvention.revised_sparse_split
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedConvention.revisedChart
+#print axioms AllThoseBigRamsey.Pseudotree.ChartReservoir.exists_step
+#print axioms AllThoseBigRamsey.Pseudotree.ChartReservoir.recurrence
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedConvention.revised_recurrent_code_sets
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedDiaryExpansion.native_recurrence
+
 -- Check all declarations in the manuscript namespace, with transitive
 -- dependency collection through mathlib and the tree Ramsey libraries.
 -- Defining Fraisse-age application for Psi_omega.
