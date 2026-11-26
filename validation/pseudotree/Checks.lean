@@ -175,6 +175,13 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.criticalEmbedding
 #print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.embedding_labelled
 
+-- Anchored oscillation and the four-colour obstruction.
+#print axioms AllThoseBigRamsey.Pseudotree.FiniteOscillation.two_family_tail
+#print axioms AllThoseBigRamsey.Pseudotree.Profiles.System.anchored_oscillations
+#print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.prescribe_bits
+#print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.no_universal_partition
+#print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.ternary_no_universal_partition
+
 -- Check all declarations in the manuscript namespace, with transitive
 -- dependency collection through mathlib and the tree Ramsey libraries.
 run_cmd do
