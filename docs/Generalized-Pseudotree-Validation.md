@@ -413,3 +413,31 @@ The endpoint uses realized labels (rather than a separate proof
 that every abstract diary of type A is realized). The new proofs
 and exact chain assembly await compilation and cumulative audit.
 No admissions or new axioms are introduced.
+
+## Audited recurrence and the abstract diary realization interface
+
+Run 45902825240 (job 140192444532) at d1468d3c52b06441405b56c75fbc5ccbbdf9c463
+passed the independent audit of 5336 declarations, including native
+revised recurrence. The audited blobs are promoted to main at bc373c870701090b29a8fa05fe406224e08ba1c7.
+RevisedChainDiaries and RevisedCopyCanonization compiled in the same run.
+The sole failing module, RevisedChainDegrees, required an explicit
+Point membership witness and the GenericIncomparables import.
+Both underlying issues have been repaired. The next independent
+audit imports the already compiled chain-diary and copy partition
+modules as well.
+
+RevisedDiaryRealization implements the abstract pair (D,iota) in the
+manuscript. Every pair with the correct code-set range is realized
+with its prescribed labels using the finite FIFO lift. Conversely,
+the normalization inverse factors the original finite embedding
+through an actual revised-model ray embedding, recovering the
+normalized labeled embedding. The realized copy-label range equals
+the abstract diary code sets of A. Nonprecompactness for every
+nonchain follows directly from the checked oscillation colourings
+and finite-fragment canonization: finitely many labels would bound
+the palette of every image-invariant colouring. This avoids a
+separate infinite-fork diagram enumeration. These new endpoints
+and the repaired exact degree theorem await CI. Identification
+of equality of the entire induced expanded relational structure
+with equality of the labeled pair remains a separate packaging
+step. No new admissions or mathematical axioms.

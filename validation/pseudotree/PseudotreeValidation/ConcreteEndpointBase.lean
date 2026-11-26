@@ -13,3 +13,5 @@ import PseudotreeValidation.RevisedNativeRamsey
 import PseudotreeValidation.OmegaFraisseApplication
 import PseudotreeValidation.RevisedAgeRamsey
 import PseudotreeValidation.RevisedRecurrence
+import PseudotreeValidation.RevisedChainDiaries
+import PseudotreeValidation.RevisedCopyCanonization

@@ -1,3 +1,4 @@
+import PseudotreeValidation.GenericIncomparables
 import PseudotreeValidation.RevisedChainDiaries
 import PseudotreeValidation.RevisedRecurrence
 import PseudotreeValidation.ExpandedCopyLanguage
@@ -163,7 +164,7 @@ theorem realize_words (C : Finset Word) (hC : ∀ w ∈ C, Point w) (hc : IsChai
     refine Finset.mem_image.mpr ⟨a,Finset.mem_univ _,?_⟩
     change word (i (i.symm ⟨v,hv⟩)).val = w
     rw [OrderIso.apply_symm_apply]
-    exact word_ofPoint _ _
+    exact word_ofPoint w (hC w hw)
 
 /-- Every independently specified revised chain diary occurs on the
 actual sparse set and its normalized label is exactly the given diary. -/
