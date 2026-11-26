@@ -80,3 +80,15 @@ identification remain outstanding.
 Run 45845706438 passed the independent generalized audit (3841 declarations; standard axioms only) and compiled CriticalPullback and CriticalDepth. The only reported failure was the synchronized-slot length calculation in FIFOBoundary, now rewritten explicitly. The independently audited sources have been promoted to main at 69c5ddeab9d8a5a7b44eac92d1af973b1e80275c; unfinished relative modules stay on this branch. CriticalSupport develops retention of genuine fork heights and membership of range prefixes at selected levels, plus the implication from coding-set inclusion to tree-range inclusion. SlotReservoirs constructs an actual rational interval in any live slot and transports it by a ray-preserving map. These are the geometric prerequisites to initialize the relative reservoir continuation in A.3(2), not an assertion that A.3(2) is already verified. New files await exact-head Lean checking.
 
 RelativeReservoirInit constructs a synchronized initial reservoir layer from the incoming slot reservoirs, and proves the explicit prefix and fork support invariants of each subsequent reservoir step. These permit the relative continuation to track selected target heights. The final choice of targets by relevance and the infinite relative assembly remain to be connected to A.3(2).
+
+## Ninth batch
+
+The audited main checkpoint 69c5ddeab9d8a5a7b44eac92d1af973b1e80275c has passed both CI jobs (45853473098 and 45853473115). Branch run 45853957205 again passed the 3841-declaration generalized audit and compiled FIFOBoundary, CriticalPullback and CriticalDepth. RelativeFIFO and CriticalSupport failed on naming, unfolding, dependent rewrite and subtype elaboration issues. This batch addresses those errors; no mathematical theorem was removed or weakened.
+
+New development:
+- RelativeTail: glue a fixed finite critical map to a critical tail with explicit local conditions.
+- RelativeReservoirRun: iterate the actual rational reservoir transitions starting at a prescribed frontier; preserve each slot's target and record coding, fork and prefix witnesses.
+- CriticalAmalgamation: isolate the range-inclusion argument and transport it through arbitrary ambient critical copies, with the relative support construction as an explicit premise.
+- RelevantReservoirs: construct the actual target assignments and rational seeds, derive relative support from the reservoir witnesses, and discharge the premise in the A.3(2) endpoint.
+
+These new modules are proof implementations, pending compilation and transitive audit. The stable generalized base remains independently checked; no new axioms or sorry are introduced. The new A.3(2) endpoint is not yet a checked theorem. A.4 and full identification with expanded self-copies remain outstanding.

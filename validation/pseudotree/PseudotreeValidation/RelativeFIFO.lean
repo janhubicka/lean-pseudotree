@@ -8,17 +8,17 @@ is needed. The boundary condition explicitly retains binary padding
 on an incoming binary edge. -/
 namespace AllThoseBigRamsey.Pseudotree.CriticalCopies
 open RayEmbeddings RayMapModel Sparse.FIFO
-open SparseNormalization (Tree critical critical_length tree_prefix)
+open SparseNormalization (critical critical_length tree_prefix)
 
 /-- Label data only on the levels being extended. -/
 structure TailLabels (h : Nat) where
   map : Word → Word
   level : Nat → Nat
   strict : ∀ {i j}, h ≤ i → i < j → level i < level j
-  length_map : ∀ s, Tree s → h ≤ s.length → (map s).length = level s.length
-  ordered : ∀ {s t}, Tree s → Tree t → h ≤ s.length →
+  length_map : ∀ s, SparseNormalization.Tree s → h ≤ s.length → (map s).length = level s.length
+  ordered : ∀ {s t}, SparseNormalization.Tree s → SparseNormalization.Tree t → h ≤ s.length →
     s.length = t.length → s < t → map s < map t
-  step : ∀ s a, Tree (s ++ [a]) → h ≤ s.length →
+  step : ∀ s a, SparseNormalization.Tree (s ++ [a]) → h ≤ s.length →
     ∃ p : Word, map (s ++ [a]) = map s ++ a :: p ∧
       (a ≠ 1 → Binary p)
 
@@ -26,12 +26,12 @@ namespace TailLabels
 
 def label (L : TailLabels h) (s : Word) : Sparse.Word := (L.map s).map toLetter
 
-theorem label_length (L : TailLabels h) {s : Word} (hs : Tree s)
+theorem label_length (L : TailLabels h) {s : Word} (hs : SparseNormalization.Tree s)
     (hj : h ≤ s.length) :
     (L.label s).length = L.level s.length := by
   rw [label,List.length_map,L.length_map s hs hj]
 
-theorem label_lex (L : TailLabels h) {s t : Word} (hs : Tree s) (ht : Tree t)
+theorem label_lex (L : TailLabels h) {s t : Word} (hs : SparseNormalization.Tree s) (ht : SparseNormalization.Tree t)
     (hj : h ≤ s.length) (hlen : s.length = t.length) :
     Sparse.lexLess (L.label s) (L.label t) = decide (s < t) := by
   have hjt : h ≤ t.length := hlen ▸ hj
@@ -49,7 +49,7 @@ theorem label_lex (L : TailLabels h) {s t : Word} (hs : Tree s) (ht : Tree t)
   simp only [he]
 
 theorem label_injective_at (L : TailLabels h) {s t : Word}
-    (hs : Tree s) (ht : Tree t) (hj : h ≤ s.length) (hlen : s.length = t.length)
+    (hs : SparseNormalization.Tree s) (ht : SparseNormalization.Tree t) (hj : h ≤ s.length) (hlen : s.length = t.length)
     (heq : L.label s = L.label t) : s = t := by
   have hjt : h ≤ t.length := hlen ▸ hj
   have he : L.map s = L.map t := SparseNormalization.map_toLetter_eq.mp heq
@@ -74,22 +74,24 @@ theorem liftLevel_strict (L : TailLabels h) {i j : Nat}
     (hi : h ≤ i) (hij : i < j) : L.liftLevel i < L.liftLevel j := by
   unfold liftLevel
   apply eventLength_strict_of_depth
-  rw [L.label_length (criticalNode i).property (by simpa using hi),
-    L.label_length (criticalNode j).property (by have := hi.trans hij.le; simpa using this),
+  have hti : SparseNormalization.Tree (critical i) := (criticalNode i).property
+  have htj : SparseNormalization.Tree (critical j) := (criticalNode j).property
+  rw [L.label_length hti (by simpa using hi),
+    L.label_length htj (by have := hi.trans hij.le; simpa using this),
     critical_length,critical_length]
   exact L.strict hi hij
 
 theorem liftWord_length (L : TailLabels h) {s : Word}
-    (hs : Tree s) (hj : h ≤ s.length) :
+    (hs : SparseNormalization.Tree s) (hj : h ≤ s.length) :
     (L.liftWord s).length = L.liftLevel s.length := by
   unfold liftWord liftLevel
   rw [List.length_map,liftedNode_length]
+  have hcrit : SparseNormalization.Tree (critical s.length) := (criticalNode s.length).property
   rw [L.label_length hs hj,
-    L.label_length (criticalNode s.length).property (by simpa using hj),
-    critical_length]
+    L.label_length hcrit (by simpa using hj),critical_length]
 
 theorem liftWord_tree (L : TailLabels h) (s : Word) :
-    Tree (L.liftWord s) := by
+    SparseNormalization.Tree (L.liftWord s) := by
   change Sparse.InTree ((L.liftWord s).map toLetter)
   simpa [liftWord,List.map_map,Function.comp_def] using
     liftedNode_inTree (L.label s) (L.label (critical s.length)) (decide (s.length % 3 ≠ 2))
@@ -106,7 +108,7 @@ theorem liftLevel_phase (L : TailLabels h) (j : Nat) :
   by_cases hm : j % 3 = 2 <;> simp [hm,eventLength] <;> omega
 
 theorem liftWord_step (L : TailLabels h) (s : Word) (a : Fin 3)
-    (hs : Tree (s ++ [a])) (hj : h ≤ s.length) :
+    (hs : SparseNormalization.Tree (s ++ [a])) (hj : h ≤ s.length) :
     ∃ p : Word, L.liftWord (s ++ [a]) = L.liftWord s ++ a :: p ∧
       (a ≠ 1 → Binary p) := by
   have hs0 := tree_prefix hs (List.prefix_append s [a])
@@ -116,8 +118,8 @@ theorem liftWord_step (L : TailLabels h) (s : Word) (a : Fin 3)
   let t := L.label (critical s.length)
   let y := L.label (s ++ [a])
   let z := L.label (critical (s ++ [a]).length)
-  have hcrit : Tree (critical s.length) := (criticalNode s.length).property
-  have hcrit' : Tree (critical (s ++ [a]).length) := (criticalNode (s ++ [a]).length).property
+  have hcrit : SparseNormalization.Tree (critical s.length) := (criticalNode s.length).property
+  have hcrit' : SparseNormalization.Tree (critical (s ++ [a]).length) := (criticalNode (s ++ [a]).length).property
   have hx : x.length = t.length := by
     dsimp only [x,t]
     rw [L.label_length hs0 hj,L.label_length hcrit (by simpa using hj),critical_length]
@@ -162,7 +164,7 @@ end TailLabels
 slots. For a binary incoming edge the head is on that same ray. -/
 structure RelativeLabels {h : Nat} (e : FiniteCritical h) extends TailLabels h where
   after : e.level (h-1) < toTailLabels.liftLevel h
-  boundary : ∀ s a (hs : Tree (s ++ [a])), (s ++ [a]).length = h →
+  boundary : ∀ s a (hs : SparseNormalization.Tree (s ++ [a])), (s ++ [a]).length = h →
     ∃ b : Sparse.Word,
       U (toTailLabels.label (s ++ [a])) =
         (e.map (parentNode s a hs)).map toLetter ++ toLetter a :: b ∧
@@ -173,7 +175,7 @@ namespace RelativeLabels
 /-- The sample of the incoming slot can be truncated at the selected
 critical level without losing the retained digit. -/
 theorem boundary_step {e : FiniteCritical h} (L : RelativeLabels e)
-    (s : Word) (a : Fin 3) (hs : Tree (s ++ [a]))
+    (s : Word) (a : Fin 3) (hs : SparseNormalization.Tree (s ++ [a]))
     (hj : (s ++ [a]).length = h) :
     ∃ p : Word, L.toTailLabels.liftWord (s ++ [a]) =
       e.map (parentNode s a hs) ++ a :: p ∧ (a ≠ 1 → Binary p) := by
@@ -251,7 +253,8 @@ theorem levelWord_strict {e : FiniteCritical h} (L : RelativeLabels e)
       have hafter : L.toTailLabels.liftLevel h ≤ L.toTailLabels.liftLevel j := by
         rcases lt_or_eq_of_le (Nat.le_of_not_gt hj) with hlt | heq
         · exact (L.toTailLabels.liftLevel_strict le_rfl hlt).le
-        · rw [heq]
+        · subst j
+          exact le_rfl
       exact hle.trans_lt (L.after.trans_le hafter)
     · simp only [levelWord,if_neg hi,if_neg hj]
       exact L.toTailLabels.liftLevel_strict (by omega) hij
@@ -263,6 +266,7 @@ noncomputable def extendCritical {e : FiniteCritical h} (L : RelativeLabels e)
   map := L.mapWord
   level_strict := by
     intro i j hij
+    change (L.mapWord (criticalNode i)).length < (L.mapWord (criticalNode j)).length
     rw [L.mapWord_length,L.mapWord_length,criticalNode_length,criticalNode_length]
     exact L.levelWord_strict hh hij
   length_map := by
@@ -278,8 +282,8 @@ noncomputable def extendCritical {e : FiniteCritical h} (L : RelativeLabels e)
         e.step s a hs (by simpa using hbefore)
     · by_cases htail : h ≤ s.length
       · have hn : ¬s.length < h := by omega
-        simpa only [mapWord,hc,hp,if_neg hbefore,if_neg hn,parentNode] using
-          L.toTailLabels.liftWord_step s a hs htail
+        simp only [mapWord,hc,hp,if_neg hbefore,if_neg hn]
+        exact L.toTailLabels.liftWord_step s a hs htail
       · have hpar : s.length < h := by omega
         have hj : (s ++ [a]).length = h := by simp; omega
         simpa only [mapWord,hc,hp,if_neg hbefore,if_pos hpar] using
@@ -293,14 +297,15 @@ noncomputable def extendCritical {e : FiniteCritical h} (L : RelativeLabels e)
     intro j
     rw [L.mapWord_length,criticalNode_length]
     by_cases hj : j < h
-    · simpa only [mapWord,criticalNode_length,if_pos hj,levelWord] using e.critical_image j hj
-    · simpa only [mapWord,criticalNode_length,if_neg hj,levelWord] using
-        L.toTailLabels.liftWord_critical j
+    · simpa only [mapWord,criticalNode_length,if_pos hj,levelWord,FiniteCritical.level] using
+        e.critical_image j hj
+    · simp only [mapWord,criticalNode_length,if_neg hj,levelWord]
+      exact L.toTailLabels.liftWord_critical j
   phase := by
     intro j
     rw [L.mapWord_length,criticalNode_length]
     by_cases hj : j < h
-    · simpa only [levelWord,if_pos hj] using e.phase j hj
+    · simpa only [levelWord,if_pos hj,FiniteCritical.level] using e.phase j hj
     · simpa only [levelWord,if_neg hj] using L.toTailLabels.liftLevel_phase j
 
 theorem extends_prefix {e : FiniteCritical h} (L : RelativeLabels e) (hh : 0 < h) :

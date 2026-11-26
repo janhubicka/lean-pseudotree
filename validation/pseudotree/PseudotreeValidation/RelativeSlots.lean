@@ -9,7 +9,7 @@ incoming slots require binary roots. -/
 
 namespace AllThoseBigRamsey.Pseudotree.CriticalCopies
 open RayEmbeddings RayMapModel Sparse.FIFO
-open SparseNormalization (Tree critical critical_length tree_prefix tree_children)
+open SparseNormalization (critical critical_length tree_prefix tree_children)
 open Reservoir (sparseSource)
 
 /-- Completion as an ordinary strong map preserves the finite domain.
@@ -17,9 +17,9 @@ No claim about its values in R outside the domain is made here. -/
 theorem finite_completion_exists {h : Nat} (e : FiniteCritical h) (hh : 0 < h) :
     ∃ f : RayStrongMap, ∀ u : Node, u.val.length < h → f.map u.val = e.map u := by
   classical
-  let F := fun s : Word => Tree s ∧ s.length < h
-  let M := fun s : Word => if hs : Tree s then e.map ⟨s,hs⟩ else []
-  have hroot : Tree [] := by
+  let F := fun s : Word => SparseNormalization.Tree s ∧ s.length < h
+  let M := fun s : Word => if hs : SparseNormalization.Tree s then e.map ⟨s,hs⟩ else []
+  have hroot : SparseNormalization.Tree [] := by
     have hr := (criticalNode 0).property
     have heq : critical 0 = [] := List.length_eq_zero_iff.mp (critical_length 0)
     simpa only [criticalNode,heq] using hr
@@ -77,7 +77,7 @@ theorem slot_length {j : Nat} (e : FiniteCritical (j+1)) (w : Boundary j) :
   rw [List.length_append,List.length_singleton,e.length_map _ (by simp),oldParent_length]
 
 theorem slot_tree {j : Nat} (e : FiniteCritical (j+1))
-    (hj : j % 3 = 2) (w : Boundary j) : Tree (slot e w) := by
+    (hj : j % 3 = 2) (w : Boundary j) : SparseNormalization.Tree (slot e w) := by
   let s := oldParent w
   let a := Reservoir.last w
   let C := criticalNode j
@@ -101,7 +101,7 @@ theorem slot_tree {j : Nat} (e : FiniteCritical (j+1))
     rw [show s.val.length = j from oldParent_length w]
   have hsource := (tree_children j s.val s.property (oldParent_length w) a).mp
     (Reservoir.parent_child_mem w)
-  change Tree (child (e.map s) a)
+  change SparseNormalization.Tree (child (e.map s) a)
   rw [tree_children _ _ (e.maps_tree s hs) hlen a]
   simpa only [hc,hlex,hphase,hj,if_true] using hsource
 
@@ -201,10 +201,10 @@ private theorem append_lt_iff_common (p s t : Word) :
   rw [← Sparse.lexLess_fin_iff (p ++ s) (p ++ t),← Sparse.lexLess_fin_iff s t]
   simp only [List.map_append,Sparse.lexLess_common_prefix]
 
-def boundaryOf {j : Nat} (s : Word) (hs : Tree s) (hl : j+1 ≤ s.length) : Boundary j :=
+def boundaryOf {j : Nat} (s : Word) (hs : SparseNormalization.Tree s) (hl : j+1 ≤ s.length) : Boundary j :=
   ⟨s.take (j+1),tree_prefix hs (List.take_prefix _ _),by simp [Nat.min_eq_left hl]⟩
 
-theorem boundaryOf_append {j : Nat} (s : Word) (a : Fin 3) (hs : Tree (s ++ [a]))
+theorem boundaryOf_append {j : Nat} (s : Word) (a : Fin 3) (hs : SparseNormalization.Tree (s ++ [a]))
     (hl : j+1 ≤ s.length) :
     boundaryOf (s ++ [a]) hs (by simp; omega) =
       boundaryOf s (tree_prefix hs (List.prefix_append s [a])) hl := by
@@ -217,13 +217,13 @@ namespace SlotFamily
 noncomputable def labelsMap {j : Nat} {e : FiniteCritical (j+1)}
     (B : SlotFamily e) (G : SlotMaps j) (s : Word) : Word := by
   classical
-  exact if hs : Tree s ∧ j+1 ≤ s.length then
+  exact if hs : SparseNormalization.Tree s ∧ j+1 ≤ s.length then
     let w := boundaryOf s hs.1 hs.2
     B.root w ++ (G.maps w).map (s.drop (j+1))
   else []
 
 theorem labelsMap_eq {j : Nat} {e : FiniteCritical (j+1)}
-    (B : SlotFamily e) (G : SlotMaps j) {s : Word} (hs : Tree s)
+    (B : SlotFamily e) (G : SlotMaps j) {s : Word} (hs : SparseNormalization.Tree s)
     (hl : j+1 ≤ s.length) :
     B.labelsMap G s =
       B.root (boundaryOf s hs hl) ++ (G.maps (boundaryOf s hs hl)).map (s.drop (j+1)) := by
@@ -231,14 +231,14 @@ theorem labelsMap_eq {j : Nat} {e : FiniteCritical (j+1)}
   simp [labelsMap,hs,hl]
 
 theorem labelsMap_length {j : Nat} {e : FiniteCritical (j+1)}
-    (B : SlotFamily e) (G : SlotMaps j) {s : Word} (hs : Tree s)
+    (B : SlotFamily e) (G : SlotMaps j) {s : Word} (hs : SparseNormalization.Tree s)
     (hl : j+1 ≤ s.length) :
     (B.labelsMap G s).length = B.k + G.level (s.length-(j+1)) := by
   rw [B.labelsMap_eq G hs hl,List.length_append,B.length,
     (G.maps _).length_map,G.levels,List.length_drop]
 
 theorem labelsMap_ordered {j : Nat} {e : FiniteCritical (j+1)}
-    (B : SlotFamily e) (G : SlotMaps j) {s t : Word} (hs : Tree s) (ht : Tree t)
+    (B : SlotFamily e) (G : SlotMaps j) {s t : Word} (hs : SparseNormalization.Tree s) (ht : SparseNormalization.Tree t)
     (hl : j+1 ≤ s.length) (hlen : s.length = t.length) (hst : s < t) :
     B.labelsMap G s < B.labelsMap G t := by
   have hlt : j+1 ≤ t.length := hlen ▸ hl
@@ -263,7 +263,7 @@ theorem labelsMap_ordered {j : Nat} {e : FiniteCritical (j+1)}
 
 theorem labelsMap_step {j : Nat} {e : FiniteCritical (j+1)}
     (B : SlotFamily e) (G : SlotMaps j) (s : Word) (a : Fin 3)
-    (hs : Tree (s ++ [a])) (hl : j+1 ≤ s.length) :
+    (hs : SparseNormalization.Tree (s ++ [a])) (hl : j+1 ≤ s.length) :
     ∃ p : Word, B.labelsMap G (s ++ [a]) = B.labelsMap G s ++ a :: p ∧
       (a ≠ 1 → Binary p) := by
   have hs0 := tree_prefix hs (List.prefix_append s [a])

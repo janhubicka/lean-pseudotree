@@ -8,7 +8,7 @@ hypothesis is imposed. -/
 
 namespace AllThoseBigRamsey.Pseudotree.Reservoir
 open LowerGeometry RayEmbeddings RayMapModel
-open SparseNormalization (Tree critical)
+open SparseNormalization (critical)
 open CriticalCopies (FiniteCritical Node Boundary slot oldParent)
 open scoped FirstOrder
 
@@ -82,8 +82,8 @@ theorem Step.root_supported {targets : Word → Target} {j : Nat}
     (stable : ∀ (u : Level sparseSource j) a, child u.val a ∈ sparseSource.nodes →
       targets (child u.val a) = targets u.val) (u : Level sparseSource j) :
     ∃ z ∈ Set.range (targets u.val), (S.roots u).IsPrefix (fromBlocks z) := by
-  have htree : Tree u.val := u.property.1
-  have hchild : ∃ a : Fin 3, Tree (child u.val a) := by
+  have htree : SparseNormalization.Tree u.val := u.property.1
+  have hchild : ∃ a : Fin 3, SparseNormalization.Tree (child u.val a) := by
     by_cases hc : u.val = critical j
     · by_cases hm : j % 3 = 2
       · exact ⟨1,(SparseNormalization.tree_children j u.val htree u.property.2 1).mpr
@@ -117,14 +117,16 @@ theorem Step.split_supported {targets : Word → Target} {j : Nat}
       (S.roots (criticalAt sparseSource j) ++ [TernaryLetter.zero]).IsPrefix (fromBlocks y) ∧
       (S.roots (criticalAt sparseSource j) ++ [TernaryLetter.two]).IsPrefix (fromBlocks z) := by
   let u := criticalAt sparseSource j
-  have ha0 : Tree (child u.val 0) := by
-    change Tree (child (critical j) 0)
-    rw [SparseNormalization.tree_children j _ (CriticalCopies.criticalNode j).property
+  have ha0 : SparseNormalization.Tree (child u.val 0) := by
+    change SparseNormalization.Tree (child (critical j) 0)
+    have hc : SparseNormalization.Tree (critical j) := (CriticalCopies.criticalNode j).property
+    rw [SparseNormalization.tree_children j (critical j) hc
       (SparseNormalization.critical_length j)]
     simp [hj]
-  have ha2 : Tree (child u.val 2) := by
-    change Tree (child (critical j) 2)
-    rw [SparseNormalization.tree_children j _ (CriticalCopies.criticalNode j).property
+  have ha2 : SparseNormalization.Tree (child u.val 2) := by
+    change SparseNormalization.Tree (child (critical j) 2)
+    have hc : SparseNormalization.Tree (critical j) := (CriticalCopies.criticalNode j).property
+    rw [SparseNormalization.tree_children j (critical j) hc
       (SparseNormalization.critical_length j)]
     simp [hj]
   let u0 := childNode u 0 ha0

@@ -163,6 +163,16 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.Reservoir.Step.root_supported
 #print axioms AllThoseBigRamsey.Pseudotree.Reservoir.Step.split_supported
 
+-- Infinite relative reservoir assembly and the actual A.3(2) endpoint.
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.RelativeTail.assemble
+#print axioms AllThoseBigRamsey.Pseudotree.Reservoir.TailRun.ofInitial
+#print axioms AllThoseBigRamsey.Pseudotree.Reservoir.relative_reservoir
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.refinement_of_support
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.amalgamation_refine_of_support
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.assigned_seeds
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.relative_support_construction
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.amalgamation_refine
+
 -- Check all declarations in the manuscript namespace, with transitive
 -- dependency collection through mathlib and the tree Ramsey libraries.
 run_cmd do

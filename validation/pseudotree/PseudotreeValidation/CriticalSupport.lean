@@ -9,7 +9,7 @@ and the identification with expanded self-copies. -/
 
 namespace AllThoseBigRamsey.Pseudotree.CriticalCopies
 open RayEmbeddings RayMapModel
-open SparseNormalization (Tree Point critical critical_length tree_prefix point_tree)
+open SparseNormalization (Point critical critical_length tree_prefix point_tree)
 open DiaryRecovery (FirstFork firstFork_map_iff map_take firstFork_of_split)
 
 /-- Completion uses exactly the level schedule of the critical map. -/
@@ -94,30 +94,32 @@ theorem range_node_has_point (X : CriticalMap) {v : Word} (hv : v ∈ copyRange 
   refine ⟨X.map s,?_ ,⟨s,rfl⟩,?_⟩
   · rw [← total_agrees X s]
     exact maps_point X hw
-  · simpa only [total_agrees X u,total_agrees X s] using
-      DiaryRecovery.map_prefix (total X) hpre
+  · have h := DiaryRecovery.map_prefix (total X) hpre
+    change (total X).map u.val <+: (total X).map s.val at h
+    simpa only [total_agrees X u,total_agrees X s] using h
 
 /-- At a split level there are two distinct coding descendants of
 the critical node. The retained height is therefore determined by
 coding points alone, with no reference to arbitrary padding. -/
 theorem split_has_fork {j : Nat} (hj : j % 3 ≠ 2) :
     ∃ s t : Word, Point s ∧ Point t ∧ FirstFork s t j := by
-  have h0 : Tree (child (critical j) 0) := by
-    rw [SparseNormalization.tree_children j _ (criticalNode j).property
-      (critical_length j)]
+  have hc : SparseNormalization.Tree (critical j) := (criticalNode j).property
+  have h0 : SparseNormalization.Tree (child (critical j) 0) := by
+    rw [SparseNormalization.tree_children j (critical j) hc (critical_length j)]
     simp [hj]
-  have h2 : Tree (child (critical j) 2) := by
-    rw [SparseNormalization.tree_children j _ (criticalNode j).property
-      (critical_length j)]
+  have h2 : SparseNormalization.Tree (child (critical j) 2) := by
+    rw [SparseNormalization.tree_children j (critical j) hc (critical_length j)]
     simp [hj]
   obtain ⟨s,hs,hsp⟩ := node_has_point ⟨_,h0⟩
   obtain ⟨t,ht,htp⟩ := node_has_point ⟨_,h2⟩
   obtain ⟨u,hu⟩ := hsp
   obtain ⟨v,hv⟩ := htp
   refine ⟨s,t,hs,ht,?_⟩
-  rw [← hu,← hv,← critical_length j]
-  simpa only [child,List.append_assoc,List.singleton_append] using
-    firstFork_of_split (critical j) u v 0 2 (by decide)
+  change child (critical j) 0 ++ u = s at hu
+  change child (critical j) 2 ++ v = t at hv
+  rw [← hu,← hv]
+  have hf := firstFork_of_split (critical j) u v 0 2 (by decide)
+  simpa only [child,List.append_assoc,List.singleton_append,critical_length] using hf
 
 /-- Inclusion on the coding sets already implies inclusion of the
 critical-copy ranges. This proves one direction of the identification
@@ -141,7 +143,8 @@ theorem le_of_coding_inclusion (X Y : CriticalMap)
       have ht' : Point (X.map v) := by rw [← total_agrees X v]; exact maps_point X ht
       have hf' := DiaryRecovery.firstFork_map (total X) hf
       have hf'' : FirstFork (X.map u) (X.map v) (X.level j) := by
-        simpa only [total_agrees X u,total_agrees X v,total_level] using hf'
+        change FirstFork ((total X).map u.val) ((total X).map v.val) (X.level j) at hf'
+        simpa only [total_agrees X u,total_agrees X v] using hf'
       exact fork_length_retained Y (h _ hs' ⟨u,rfl⟩) (h _ ht' ⟨v,rfl⟩) hf''
   intro v hv
   obtain ⟨w,hw,hwX,hpre⟩ := range_node_has_point X hv
