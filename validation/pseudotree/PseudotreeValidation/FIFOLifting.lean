@@ -182,8 +182,15 @@ noncomputable def diaryEvents (D : GeneralizedDiary n) : EventTree where
     have P := diaryEvent_spec D ((diaryHeight_spec D).bounded s hnode)
     have h := (P.children s hnode rfl a).mp hs
     change s = (diaryEvent D s.length).2 at heq
-    simp only [localChild, heq, if_pos rfl] at h
-    cases hk : (diaryEvent D s.length).1 <;> simp_all [PaperKind.special]
+    rw [localChild, if_pos heq] at h
+    change (if decide ((diaryEvent D s.length).1 = .split) then a ≠ 1 else a = 1)
+    cases hk : (diaryEvent D s.length).1 with
+    | split =>
+      have ha : a = 0 ∨ a = 2 := by simpa only [hk, PaperKind.special] using h
+      rcases ha with rfl | rfl <;> decide
+    | leaf => exact False.elim (by simpa only [hk, PaperKind.special] using h)
+    | code => simpa [hk, PaperKind.special] using h
+    | turn => simpa [hk, PaperKind.special] using h
   passing_step := by
     intro s a hs heq
     have hnode := D.shape.prefix_closed s [a] hs
@@ -200,7 +207,7 @@ theorem diary_code_is_critical (D : GeneralizedDiary n) {s : Word} (hs : s ∈ D
   obtain ⟨heq, hk⟩ := (P.coding s hnode rfl).mp hs
   refine ⟨heq, ?_⟩
   change decide ((diaryEvent D s.length).1 = .split) = false
-  cases h : (diaryEvent D s.length).1 <;> simp_all [PaperKind.coded]
+  cases h : (diaryEvent D s.length).1 <;> simp [h, PaperKind.coded] at hk ⊢
 
 /-- Absolute FIFO lift for a literal generalized diary: its image is
 in R and each coding word is mapped to H of the original embedded word. -/
@@ -234,11 +241,12 @@ def sparseEvents : EventTree where
     have hnode := SparseNormalization.tree_prefix hs (List.prefix_append s [a])
     have h := (tree_children s.length s hnode rfl a).mp hs
     change s = critical s.length at heq
+    rw [if_pos heq] at h
+    change (if decide (s.length % 3 ≠ 2) then a ≠ 1 else a = 1)
     by_cases hm : s.length % 3 = 2
-    · simpa [heq, hm] using h
-    · have ha : a = 0 ∨ a = 2 := by simpa [heq, hm] using h
-      simp only [hm, ne_eq, not_false_eq_true, decide_true, if_true]
-      rcases ha with rfl | rfl <;> decide
+    · simpa [hm] using h
+    · have ha : a = 0 ∨ a = 2 := by simpa only [if_neg hm] using h
+      rcases ha with rfl | rfl <;> simp [hm]
   passing_step := by
     intro s a hs heq
     have hnode := SparseNormalization.tree_prefix hs (List.prefix_append s [a])

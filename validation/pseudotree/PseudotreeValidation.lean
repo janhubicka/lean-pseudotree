@@ -44,3 +44,4 @@ import PseudotreeValidation.FIFOIndex
 import PseudotreeValidation.FIFOLifting
 import PseudotreeValidation.GeneralizedRecovery
 import PseudotreeValidation.GeneralizedCanonization
+import PseudotreeValidation.SparseRecurrence

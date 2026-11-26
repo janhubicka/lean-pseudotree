@@ -129,6 +129,11 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.GeneralizedCanonization.finite_fragment
 #print axioms AllThoseBigRamsey.Pseudotree.GeneralizedCanonization.codeSet_IRT
 
+-- Unbounded rational reservoir transitions and recurrence.
+#print axioms AllThoseBigRamsey.Pseudotree.Reservoir.exists_step
+#print axioms AllThoseBigRamsey.Pseudotree.Reservoir.recurrence
+#print axioms AllThoseBigRamsey.Pseudotree.Reservoir.recurrent_code_sets
+
 -- Check all declarations in the manuscript namespace, with transitive
 -- dependency collection through mathlib and the tree Ramsey libraries.
 run_cmd do
