@@ -96,7 +96,7 @@ theorem increasing_substructure_tuple (A : expandedLanguage.Substructure SparseM
   let C := embeddingCodes A.subtype
   obtain ⟨x,hx,hxC⟩ := exists_increasing_tuple (embeddingCodes_points A.subtype)
   have hxA (i : Fin C.card) : x i ∈ A := by
-    have hm : word (x i) ∈ C := by
+    have hm : word (x i) ∈ embeddingCodes A.subtype := by
       rw [← hxC]
       exact Finset.mem_image.mpr ⟨i,Finset.mem_univ _,rfl⟩
     obtain ⟨a,_,he⟩ := Finset.mem_image.mp hm

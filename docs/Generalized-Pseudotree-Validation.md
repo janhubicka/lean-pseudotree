@@ -150,3 +150,21 @@ The 4470-declaration checkpoint on main (479c3ba58f39bf45fa591c18a183f3b99997bf4
 CopySpaceTopology separates the native characteristic-function subspace from the analytic transfer, proves continuity in both directions using the existing finite-coordinate bounds, and packages an actual Homeomorph for the discrete AR^omega topology and literal 2^P subspace topology. It also states the exact inclusion identification. NativeRamsey transfers recurrence to actual functional-reduct self-embeddings and code-set IRT to finite native substructure embeddings, including the empty case, using increasing tuple enumeration and rigidity by height. These are new proof implementations, not yet verified. The parent validation has completed; this commit requests a new exact-head run. No new axioms or sorry declarations introduced. The manuscript PDF is checked manually by the author.
 
 The completed parent run 45870721374 recorded 4638 audited declarations (only standard axioms). Its full build compiled CodingIdentification, AmbientPigeonhole, CodingTopology, RelevantReservoirs and ExpandedCopyLanguage. Thus both concrete A.3(2) and ambient A.4, and the native embedding equivalence and finite-cylinder estimates, have compiled. The remaining failures were the implicit argument interface of ofPublishedAxioms, a dependent branch-prefix length rewrite, and the actual namespace of the diagonal Souslin closure theorem (with a cascading error). All three root causes are corrected. ConcreteEndpointBase independently audits the entire assembled concrete Ramsey-space endpoint and native embedding identification before the full topology/analytic/native-Ramsey build. The previous newly triggered validation is superseded by this correction batch; the next exact-head run is required. No change to theorem statements or proof axioms.
+
+## Nineteenth batch
+
+Exact-head run 45871958136 at ebc4a920ebde792970709c8d60c667eff08d163d
+successfully built ConcreteEndpointBase and audited 4709 declarations.
+In particular the unconditional concrete A.1--A.4 package, concrete_ellentuck,
+and the identification with native expansion self-embeddings all passed,
+using only propext, Classical.choice and Quot.sound. The full build stopped
+on four elaboration errors in CopySpaceTopology (bounded-subtype finiteness,
+the point type in continuity, the discrete cylinder type and dependent
+Sigma equality), and one local-definition rewrite in NativeRamsey.
+This batch addresses those five errors without changing the statement,
+including explicit projection at the fixed approximation level rather than
+rewriting through a dependent Sigma constructor. The final homeomorphism,
+analytic-set transfer and native IRT endpoints still await exact-head
+compilation and the full namespace-wide audit. No new axioms or sorry
+declarations are introduced. The validated main branch remains untouched
+pending that check.

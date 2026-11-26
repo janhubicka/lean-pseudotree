@@ -70,8 +70,8 @@ theorem bounded_points_finite (L : Nat) :
     apply Subtype.ext
     apply word_injective
     exact congrArg (fun u : CriticalCopies.Prefix (L+1) => u.val.val) h
-  letI : Finite {x : SparseModel // (word x).length ≤ L} := Finite.of_injective E hE
-  exact Set.toFinite _
+  change Finite {x : SparseModel // (word x).length ≤ L}
+  exact Finite.of_injective E hE
 
 /-- The reverse finite-cylinder control, expressed in native point
 coordinates rather than arbitrary words. -/
@@ -121,17 +121,28 @@ private theorem continuous_of_local_agreement {A B : Type*}
   exact hx
 
 theorem publishedCode_continuous :
-    Continuous system.publishedCode := continuous_induced_dom
+    Continuous (fun X : CriticalMap => system.publishedCode X) :=
+  continuous_induced_dom
 
 theorem approximation_cylinder_open (X : CriticalMap) (n : Nat) :
-    IsOpen {Y : CriticalMap | system.publishedCode Y n = system.publishedCode X n} :=
-  (isOpen_discrete _).preimage ((continuous_apply n).comp publishedCode_continuous)
+    IsOpen {Y : CriticalMap | system.publishedCode Y n = system.publishedCode X n} := by
+  have hcont : Continuous (fun Y : CriticalMap => system.publishedCode Y n) :=
+    (continuous_apply n).comp publishedCode_continuous
+  change IsOpen ((fun Y : CriticalMap => system.publishedCode Y n) ⁻¹'
+    ({system.publishedCode X n} : Set system.FiniteApprox))
+  exact (isOpen_discrete _).preimage hcont
 
 theorem publishedCode_eq_approx {X Y : CriticalMap} {n : Nat}
     (h : system.publishedCode X n = system.publishedCode Y n) :
     approx n X = approx n Y := by
-  change (⟨n,approx n X⟩ : system.FiniteApprox) = ⟨n,approx n Y⟩ at h
-  simpa only [Sigma.mk.inj_iff,heq_eq_eq,true_and] using h
+  change (Sigma.mk n (approx n X) : Sigma CriticalCopies.Approx) =
+    Sigma.mk n (approx n Y) at h
+  -- Project a dependent pair at the fixed level, avoiding a rewrite
+  -- through the semireducible approximation-system projection.
+  let atLevel (z : Sigma CriticalCopies.Approx) : CriticalCopies.Approx n :=
+    if e : z.1 = n then e ▸ z.2 else approx n X
+  have he := congrArg atLevel h
+  simpa [atLevel] using he
 
 /-- The forward continuity uses just one approximation coordinate
 beyond the length of the queried coding point. -/
