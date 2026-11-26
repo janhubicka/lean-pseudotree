@@ -1,3 +1,5 @@
 import PseudotreeValidation.GeneralizedBase
 import PseudotreeValidation.CriticalDepth
 import PseudotreeValidation.RelativeSlots
+import PseudotreeValidation.SlotReservoirs
+import PseudotreeValidation.RelativeReservoirInit

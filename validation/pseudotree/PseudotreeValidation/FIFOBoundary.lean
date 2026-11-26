@@ -66,7 +66,7 @@ theorem synchronized_slot_labels {I : Type} [Fintype I] (d : Nat)
   refine ⟨k,p,?_,?_⟩
   · intro i
     simp only [p,List.length_append,List.length_replicate]
-    omega
+    exact Nat.add_sub_of_le (hk i)
   · intro i
     obtain ⟨v,hv,hvbin⟩ := U_slot_descendant (ht i) (hb i)
       (List.replicate (k - (t i).length) TernaryLetter.zero)

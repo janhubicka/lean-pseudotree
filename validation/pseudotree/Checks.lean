@@ -151,6 +151,18 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.wholeBlockExtension
 #print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.amalgamation_nonempty
 
+-- Coding-range support and rational reservoirs for relative amalgamation.
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.prefix_mem_of_retained
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.fork_prefix_mem
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.le_iff_coding_inclusion
+#print axioms AllThoseBigRamsey.Pseudotree.Sparse.FIFO.slot_rayCopy
+#print axioms AllThoseBigRamsey.Pseudotree.LowerGeometry.RayCopy.mapped_slot
+
+-- Initialization and the explicit relative reservoir support invariants.
+#print axioms AllThoseBigRamsey.Pseudotree.Reservoir.relativeInitial
+#print axioms AllThoseBigRamsey.Pseudotree.Reservoir.Step.root_supported
+#print axioms AllThoseBigRamsey.Pseudotree.Reservoir.Step.split_supported
+
 -- Check all declarations in the manuscript namespace, with transitive
 -- dependency collection through mathlib and the tree Ramsey libraries.
 run_cmd do

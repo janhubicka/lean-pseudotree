@@ -74,3 +74,9 @@ No dependency revisions or proof axioms have been changed. The new relative
 theorems are not marked verified pending compilation and transitive audit.
 A.3(2), the relative forest pigeonhole step, and the expanded-copy
 identification remain outstanding.
+
+## Eighth batch
+
+Run 45845706438 passed the independent generalized audit (3841 declarations; standard axioms only) and compiled CriticalPullback and CriticalDepth. The only reported failure was the synchronized-slot length calculation in FIFOBoundary, now rewritten explicitly. The independently audited sources have been promoted to main at 69c5ddeab9d8a5a7b44eac92d1af973b1e80275c; unfinished relative modules stay on this branch. CriticalSupport develops retention of genuine fork heights and membership of range prefixes at selected levels, plus the implication from coding-set inclusion to tree-range inclusion. SlotReservoirs constructs an actual rational interval in any live slot and transports it by a ray-preserving map. These are the geometric prerequisites to initialize the relative reservoir continuation in A.3(2), not an assertion that A.3(2) is already verified. New files await exact-head Lean checking.
+
+RelativeReservoirInit constructs a synchronized initial reservoir layer from the incoming slot reservoirs, and proves the explicit prefix and fork support invariants of each subsequent reservoir step. These permit the relative continuation to track selected target heights. The final choice of targets by relevance and the infinite relative assembly remain to be connected to A.3(2).
