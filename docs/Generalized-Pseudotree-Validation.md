@@ -84,3 +84,18 @@ an ambiguous dotted identifier in ReservoirChart. RevisedChainDiaries
 was added separately after this run and is not yet checked.
 The promotion preserves exact audited module blobs; only the
 aggregate audit entry and documentation change. Duplicate CI is skipped.
+
+## Audited countably branching application and finite age checkpoint
+
+Exact-head run 45901118297 (job 140186851626) at fb35337011cb34c20f581dfd0eb863cc08bd73b4
+passed the independent build and transitive audit of 5142 declarations
+with only the standard three logical axioms. This promotion preserves
+the exact audited module blobs. New audited results are the application
+to the defining Fraisse age of all finite meet-trees and the finite
+Ramsey-age theorem for the actual revised expansion. In the subsequent
+full build, ReservoirChart, ChartReservoir and RevisedRecurrence all
+compiled successfully. RevisedChainDiaries reported errors at five
+source locations, and RevisedChainDegrees was consequently not built.
+The compiled recurrence and unchecked chain modules remain in the
+development branch until their respective audits. Redundant main CI
+is skipped for this source-identical promotion.

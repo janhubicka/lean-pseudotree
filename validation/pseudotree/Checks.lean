@@ -210,6 +210,10 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.RevisedDiaryExpansion.copyHomeomorph
 #print axioms AllThoseBigRamsey.Pseudotree.RevisedDiaryExpansion.analytic_copies_ramsey
 
+#print axioms AllThoseBigRamsey.Pseudotree.OmegaFraisse.no_finite_bound
+#print axioms AllThoseBigRamsey.Pseudotree.OmegaFraisse.no_universal_copy_partition
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedDiaryExpansion.finite_age_ramsey
+
 run_cmd do
   let env ← Lean.getEnv
   let allowed : List Lean.Name := [`propext, `Classical.choice, `Quot.sound]
