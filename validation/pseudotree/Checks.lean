@@ -76,13 +76,30 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.chain_degree
 #print axioms AllThoseBigRamsey.Pseudotree.chain_degree_diaries
 
--- Concrete critical-copy approximation system and upstream Ellentuck endpoint.
+-- Generalized selection and labelled projection, without a chain hypothesis.
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.essential_subset_selected
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.binaryGaps
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.rayMap_codes
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.selected_image
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.code_image
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.codes_image
+
+-- The actual exported Abstract Ellentuck Theorem at the inherited pin.
+#print axioms RamseySpace.abstractEllentuck_textbook
+
+-- Generalized diary grammar and its Milliken shape interface.
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.adjacent_next
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedLevel.unique
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedDiary.shape
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.normalized_axioms
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.extraction
+
+-- Critical-copy space: sequencing, finitization, and closedness.
 #print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.system
 #print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.finiteRange_injective
 #print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.finitization
 #print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.closed
 #print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.tychonoffClosed
-#print axioms RamseySpace.abstractEllentuck_textbook
 #print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.ellentuck_of_axioms
 
 -- Check all declarations in the manuscript namespace, with transitive

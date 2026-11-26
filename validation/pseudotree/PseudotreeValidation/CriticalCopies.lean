@@ -58,7 +58,7 @@ noncomputable def onWord (X : CriticalMap) (w : Word) : Word := by
   classical
   simp [onWord, u.property]
 
-noncomputable def partial (X : CriticalMap) : PrefixRayMap Tree where
+noncomputable def partialMap (X : CriticalMap) : PrefixRayMap Tree where
   root_mem := by
     have h := (criticalNode 0).property
     have hz : critical 0 = [] := List.length_eq_zero_iff.mp (critical_length 0)
@@ -66,7 +66,7 @@ noncomputable def partial (X : CriticalMap) : PrefixRayMap Tree where
   prefix_closed := fun s t h => tree_prefix h (List.prefix_append s t)
   map := onWord X
   level := X.level
-  level_strict := X.level_strict
+  level_strict := fun h => X.level_strict h
   length_map := by
     intro s hs
     rw [onWord_agrees X (⟨s, hs⟩ : Node)]
@@ -80,7 +80,7 @@ noncomputable def partial (X : CriticalMap) : PrefixRayMap Tree where
       onWord_agrees X (parentNode s a hs)]
     exact hp
 
-noncomputable def total (X : CriticalMap) : RayStrongMap := (partial X).completion
+noncomputable def total (X : CriticalMap) : RayStrongMap := (partialMap X).completion
 
 theorem total_agrees (X : CriticalMap) (u : Node) : (total X).map u.val = X.map u := by
   rw [total, PrefixRayMap.completion_agrees _ _ u.property]
@@ -94,11 +94,12 @@ theorem map_injective (X : CriticalMap) : Function.Injective X.map := by
 
 theorem map_strictMono (X : CriticalMap) : StrictMono X.map := by
   intro s t h
+  change s.val < t.val at h
   have hh := DiaryNormalization.rayMap_strictMono (total X) h
   simpa only [total_agrees] using hh
 
 /-- Finite source prefixes stop at the manuscript's whole-stage boundaries. -/
-abbrev Prefix (n : Nat) := {u : Node // u.val.val.length < 3 * n}
+abbrev Prefix (n : Nat) := {u : Node // u.val.length < 3 * n}
 
 def restriction (n : Nat) (X : CriticalMap) : Prefix n → Word := fun u => X.map u.val
 
@@ -222,7 +223,8 @@ theorem finiteRange_ncard (a : system.FiniteApprox) :
   rcases a with ⟨n, a⟩
   obtain ⟨X, hX⟩ := a.property
   change (Set.range a.val).ncard = Nat.card (Prefix n)
-  rw [← hX, Set.ncard_range_of_injective]
+  rw [← hX]
+  apply Set.ncard_range_of_injective
   intro u v h
   exact Subtype.ext (map_injective X h)
 
@@ -249,6 +251,7 @@ theorem sourceRange_strict {n m : Nat} (h : n < m) :
 
 theorem prefix_card_strict : StrictMono (fun n => Nat.card (Prefix n)) := by
   intro n m h
+  change Nat.card (Prefix n) < Nat.card (Prefix m)
   rw [← sourceRange_ncard n, ← sourceRange_ncard m]
   exact Set.ncard_lt_ncard (sourceRange_strict h) (Set.finite_range _)
 
@@ -258,12 +261,15 @@ theorem finiteRange_injective : Function.Injective finiteRange := by
   simp only [finiteRange_ncard] at hc
   have hnm : n = m := prefix_card_strict.injective hc
   subst m
+  classical
+  letI : Fintype (Prefix n) := Fintype.ofFinite _
   obtain ⟨X, hX⟩ := a.property
   obtain ⟨Y, hY⟩ := b.property
   let f : Prefix n ↪o Word :=
     OrderEmbedding.ofStrictMono a.val (by rw [← hX]; exact fun _ _ h => map_strictMono X h)
   let g : Prefix n ↪o Word :=
     OrderEmbedding.ofStrictMono b.val (by rw [← hY]; exact fun _ _ h => map_strictMono Y h)
+  change Set.range f = Set.range g at h
   have heq : f = g := OrderEmbedding.eq_of_range_eq h
   have hab : a = b := Subtype.ext (congrArg (fun e : Prefix n ↪o Word => (e : Prefix n → Word)) heq)
   subst b
@@ -321,6 +327,7 @@ theorem closed : system.IsClosedApproximationImage := by
       intro i j hij
       have hi : (criticalNode i).val.length < 3*(j+1) := by simp; omega
       have hj : (criticalNode j).val.length < 3*(j+1) := by simp; omega
+      change (L (criticalNode i)).length < (L (criticalNode j)).length
       rw [agrees (j+1) _ hi, agrees (j+1) _ hj]
       exact (F (j+1)).level_strict hij
     length_map := by
