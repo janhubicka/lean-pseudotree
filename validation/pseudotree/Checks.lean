@@ -76,6 +76,17 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.chain_degree
 #print axioms AllThoseBigRamsey.Pseudotree.chain_degree_diaries
 
+-- Generalized selection and labelled projection, without a chain hypothesis.
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.essential_subset_selected
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.binaryGaps
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.rayMap_codes
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.selected_image
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.code_image
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.codes_image
+
+-- The actual exported Abstract Ellentuck Theorem at the inherited pin.
+#print axioms RamseySpace.abstractEllentuck_textbook
+
 -- Check all declarations in the manuscript namespace, with transitive
 -- dependency collection through mathlib and the tree Ramsey libraries.
 run_cmd do

@@ -35,3 +35,5 @@ import PseudotreeValidation.DiaryRecovery
 import PseudotreeValidation.DegreeAssembly
 import PseudotreeValidation.ChainDegrees
 import AllThoseBigRamsey.Pseudotree.WordLex
+import PseudotreeValidation.GeneralizedNormalization
+import RamseySpace.AbstractEllentuck
