@@ -256,6 +256,16 @@ import Lean
 
 -- Check all declarations in the manuscript namespace, with transitive
 -- dependency collection through mathlib and the tree Ramsey libraries.
+-- Defining Fraisse-age application for Psi_omega.
+#print axioms AllThoseBigRamsey.Pseudotree.finiteBinaryClass_subset_finiteMeetTreeClass
+#print axioms AllThoseBigRamsey.Pseudotree.OmegaFraisse.predecessors
+#print axioms AllThoseBigRamsey.Pseudotree.OmegaFraisse.model_dense
+#print axioms AllThoseBigRamsey.Pseudotree.OmegaFraisse.model_noMinOrder
+#print axioms AllThoseBigRamsey.Pseudotree.OmegaFraisse.model_noMaxOrder
+#print axioms AllThoseBigRamsey.Pseudotree.OmegaFraisse.opposite_branch
+#print axioms AllThoseBigRamsey.Pseudotree.OmegaFraisse.no_finite_bound
+#print axioms AllThoseBigRamsey.Pseudotree.OmegaFraisse.no_universal_copy_partition
+
 run_cmd do
   let env ← Lean.getEnv
   let allowed : List Lean.Name := [`propext, `Classical.choice, `Quot.sound]

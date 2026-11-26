@@ -13,3 +13,4 @@ import PseudotreeValidation.AnalyticCopies
 import PseudotreeValidation.NativeRamsey
 import PseudotreeValidation.CopyPartitionTransfer
 import PseudotreeValidation.GenericAvoidance
+import PseudotreeValidation.OmegaFraisseApplication

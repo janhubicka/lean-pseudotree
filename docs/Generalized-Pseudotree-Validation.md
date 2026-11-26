@@ -234,3 +234,27 @@ f7d8286dfde16b5239ebcb754ffed934d8d45755 without a duplicate build. This commit 
 promotion as an additional parent, preserving the new work in the branch.
 Generic finite-avoidance and countable-model endpoints await compilation.
 No new axioms or admissions.
+
+## Twenty-third batch (source only; previous CI retained)
+
+The manuscript defines Psi_omega as the Fraisse limit of all finite
+meet-trees, not as a particular explicit word model. OmegaFraisseApplication
+specifies this age intrinsically, derives comparable predecessors from
+membership of a finitely generated substructure in the age, and derives
+nonemptiness, no endpoints, density and the second-branch property using
+only the one-, two- and three-point chains and the fork in the age.
+It invokes the existing generic profile and no-universal-copy-partition
+theorems at the actual defining Fraisse-limit interface, without requiring
+the caller to establish those geometric properties. The ambient order
+and meet remain explicitly interpreted, as in the manuscript.
+This is not a new construction or proof of existence of the Fraisse limit
+of the full class. Compilation and the transitive audit are pending.
+
+The literal FIFO queue in the current manuscript has the same schedule
+and passing digits as the existing Lean queue; changing the binary
+in-order relation is not literally a coordinate swap on that fixed queue.
+The coordinate-swap observation identifies the full word models and
+reflected diary shapes, but the concrete revised sparse model and its
+transport require separate verification. Relative/partial markers
+must remain until that is checked. No new proof assumptions or admissions
+are introduced in this batch. It does not interrupt run 45896002915.
