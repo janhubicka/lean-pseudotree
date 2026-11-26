@@ -7,7 +7,9 @@ namespace AllThoseBigRamsey.Pseudotree.CriticalCopies
 /-- The actual A.1--A.4 package on critical copies of R. -/
 noncomputable def ramseySpace : RamseySpace.AbstractRamseySpace system :=
   RamseySpace.AbstractRamseySpace.ofPublishedAxioms finitization
-    amalgamation_nonempty
+    (by
+      intro n a B d hd A hA
+      exact amalgamation_nonempty a B hd hA)
     (by
       intro n a B d hd A hAB hne
       obtain ⟨A',hA',hsub⟩ := amalgamation_refine a B hd hAB hne

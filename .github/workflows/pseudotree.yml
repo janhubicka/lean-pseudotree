@@ -49,18 +49,18 @@ jobs:
               git -C ".lake/packages/$dependency" apply "$patch_path"
             fi
           done
-      - name: Audit compiled relative continuation and native reconstruction
-        id: reconstruction_audit
+      - name: Audit concrete Ellentuck and native embedding identification
+        id: concrete_endpoint_audit
         run: |
           set -euo pipefail
-          lake build PseudotreeValidation.ReconstructionBase
-          lake env lean ReconstructionChecks.lean | tee reconstruction-axioms.txt
-          if grep -q 'sorryAx' reconstruction-axioms.txt; then exit 1; fi
+          lake build PseudotreeValidation.ConcreteEndpointBase
+          lake env lean ConcreteEndpointChecks.lean | tee concrete-endpoint-axioms.txt
+          if grep -q 'sorryAx' concrete-endpoint-axioms.txt; then exit 1; fi
       - uses: actions/upload-artifact@v4
-        if: ${{ always() && steps.reconstruction_audit.outcome == 'success' }}
+        if: ${{ always() && steps.concrete_endpoint_audit.outcome == 'success' }}
         with:
-          name: pseudotree-reconstruction-axioms
-          path: validation/pseudotree/reconstruction-axioms.txt
+          name: pseudotree-concrete-endpoint-axioms
+          path: validation/pseudotree/concrete-endpoint-axioms.txt
       - name: Build the actual model and Ramsey adapters
         if: ${{ !cancelled() }}
         run: lake build PseudotreeValidation

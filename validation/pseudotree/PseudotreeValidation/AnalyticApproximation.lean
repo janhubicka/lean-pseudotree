@@ -73,7 +73,10 @@ theorem operation_approxImageScheme (F : (Nat → Nat) → S.Point)
       have hh := congrArg (List.take k) hprefix
       rwa [take_branchPrefix c (le_max_left k m),take_branchPrefix b (le_max_left k m)] at hh
     have hn : S.approx n X = S.approx n (F c) := by
-      simpa only [length_branchPrefix] using hX
+      change S.approx (branchPrefix b n).length X =
+        S.approx (branchPrefix b n).length (F c) at hX
+      rw [length_branchPrefix] at hX
+      exact hX
     have hm : S.approx m X = S.approx m (F c) := by
       rcases lt_or_eq_of_le (show m ≤ n from le_max_right k m) with hlt | heq
       · exact S.coherent hn m hlt
@@ -94,7 +97,7 @@ theorem prefixContinuous_range_isRamsey
     IsRamsey R (Set.range F) := by
   rw [← operation_approxImageScheme F hF]
   apply (TwoSorted.diagonal_isRamsey_iff R _).mp
-  apply TwoSorted.isRamsey_souslin (TwoSorted.diagonalAbstractRamseySystem R)
+  apply TwoSorted.CombinatorialForcing.isRamsey_souslin (TwoSorted.diagonalAbstractRamseySystem R)
     (fusionComplete_of_isMetricallyClosed R hclosed)
   intro s
   apply (TwoSorted.diagonal_isRamsey_iff R _).mpr
