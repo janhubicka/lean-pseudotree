@@ -1,14 +1,9 @@
 import PseudotreeValidation.AnalyticApproximation
-import PseudotreeValidation.ExpandedCopyLanguage
+import PseudotreeValidation.CopySpaceTopology
 import PseudotreeValidation.ConcreteEllentuck
 import Mathlib.MeasureTheory.Constructions.Polish.Basic
 
-/-! The analytic-set theorem in the literal subspace of 2^P.
-The points here are characteristic functions of ranges of native
-first-order self-embeddings. The reverse finite-cylinder estimate
-makes a continuous Baire-space parametrization prefix-continuous in
-the approximation system. This avoids any appeal to an unformalized
-descriptive-set-theoretic transfer. -/
+/-! Analytic transfer in the native expanded-copy space. -/
 namespace AllThoseBigRamsey.Pseudotree.DiaryExpansion
 open RayEmbeddings FirstOrder
 open scoped FirstOrder
@@ -18,86 +13,6 @@ open RamseySpace.Souslin
 
 local instance boolTopology : TopologicalSpace Bool := ⊥
 local instance boolDiscrete : DiscreteTopology Bool := ⟨rfl⟩
-
-noncomputable def characteristic (e : SparseModel ↪[expandedLanguage] SparseModel) :
-    SparseModel → Bool := by
-  classical
-  exact fun x => decide (x ∈ Set.range e)
-
-theorem characteristic_true (e : SparseModel ↪[expandedLanguage] SparseModel) (x : SparseModel) :
-    characteristic e x = true ↔ x ∈ Set.range e := by
-  classical
-  simp [characteristic]
-
-/-- The actual expanded-copy space with the subspace topology inherited
-from the product of discrete two-point spaces. -/
-abbrev CopySpace := ↥(Set.range characteristic)
-
-noncomputable def toCopy (X : CriticalMap) : CopySpace :=
-  ⟨characteristic (criticalEmbedding X),⟨criticalEmbedding X,rfl⟩⟩
-
-theorem toCopy_true (X : CriticalMap) (x : SparseModel) :
-    (toCopy X).val x = true ↔ word x ∈ codingRange X := by
-  change characteristic (criticalEmbedding X) x = true ↔ _
-  rw [characteristic_true,← range_coding]
-  constructor
-  · intro hx
-    exact ⟨x,hx,rfl⟩
-  · rintro ⟨y,hy,he⟩
-    exact (word_injective he) ▸ hy
-
-theorem toCopy_injective : Function.Injective toCopy := by
-  intro X Y h
-  apply CriticalCopies.codingRange_injective
-  ext w
-  by_cases hp : Point w
-  · let x := ofPoint w hp
-    have he := congrArg (fun c : CopySpace => c.val x) h
-    rw [← show word x = w from word_ofPoint w hp,← toCopy_true,← toCopy_true,he]
-  · exact ⟨fun hw => False.elim (hp hw.1),fun hw => False.elim (hp hw.1)⟩
-
-theorem toCopy_surjective : Function.Surjective toCopy := by
-  rintro ⟨c,⟨e,rfl⟩⟩
-  obtain ⟨X,rfl⟩ := criticalEmbedding_surjective e
-  exact ⟨X,rfl⟩
-
-noncomputable def copyEquiv : CriticalMap ≃ CopySpace :=
-  Equiv.ofBijective toCopy ⟨toCopy_injective,toCopy_surjective⟩
-
-/-- A bounded coding height gives finitely many points of P. -/
-theorem bounded_points_finite (L : Nat) :
-    Set.Finite {x : SparseModel | (word x).length ≤ L} := by
-  let E : {x : SparseModel // (word x).length ≤ L} → CriticalCopies.Prefix (L+1) :=
-    fun x => ⟨⟨word x.val,SparseNormalization.point_tree (word_point x.val)⟩,by
-      have h := x.property
-      change (word x.val).length < 3*(L+1)
-      omega⟩
-  have hE : Function.Injective E := by
-    intro x y h
-    apply Subtype.ext
-    apply word_injective
-    exact congrArg (fun u : CriticalCopies.Prefix (L+1) => u.val.val) h
-  letI : Finite {x : SparseModel // (word x).length ≤ L} := Finite.of_injective E hE
-  exact Set.toFinite _
-
-/-- The reverse finite-cylinder control, expressed in native point
-coordinates rather than arbitrary words. -/
-theorem finite_copy_cylinder (X : CriticalMap) (n : Nat) :
-    ∃ L : Nat, ∀ Y : CriticalMap,
-      (∀ x : SparseModel, (word x).length ≤ L →
-        (toCopy X).val x = (toCopy Y).val x) →
-      approx n X = approx n Y := by
-  obtain ⟨L,hL⟩ := CriticalCopies.finite_cylinder_recovers_approx X n
-  refine ⟨L,fun Y hY => hL Y ?_⟩
-  intro w hw
-  by_cases hp : Point w
-  · let x := ofPoint w hp
-    have hl : (word x).length ≤ L := by
-      rw [show word x = w from word_ofPoint w hp]
-      exact hw
-    have he := hY x hl
-    rw [← show word x = w from word_ofPoint w hp,← toCopy_true,← toCopy_true,he]
-  · exact ⟨fun hw => False.elim (hp hw.1),fun hw => False.elim (hp hw.1)⟩
 
 /-- Equal finite branch prefixes imply equality of each earlier
 coordinate. -/

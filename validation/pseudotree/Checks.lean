@@ -228,6 +228,14 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.prefixContinuous_of_continuous
 #print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.analytic_copies_ramsey
 
+-- Native order/topology identification and first-order Ramsey adapters.
+#print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.copyHomeomorph
+#print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.copyEquiv_inclusion
+#print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.native_recurrence
+#print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.substructure_diary_preserved
+#print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.embeddingCodes_injective
+#print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.native_IRT
+
 -- Check all declarations in the manuscript namespace, with transitive
 -- dependency collection through mathlib and the tree Ramsey libraries.
 run_cmd do
