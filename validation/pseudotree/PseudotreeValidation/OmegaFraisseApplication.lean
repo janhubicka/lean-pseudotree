@@ -83,10 +83,13 @@ theorem predecessors (hM : language.IsFraisseLimit finiteMeetTreeClass M)
   let p : B := ⟨x,FirstOrder.Language.Substructure.subset_closure (by simp)⟩
   let q : B := ⟨y,FirstOrder.Language.Substructure.subset_closure (by simp)⟩
   let r : B := ⟨z,FirstOrder.Language.Substructure.subset_closure (by simp)⟩
-  have hp : p ≤ r := (embedding_le_iff B.subtype p r).mp hx
-  have hq : q ≤ r := (embedding_le_iff B.subtype q r).mp hy
-  exact (ht hp hq).imp (embedding_le_iff B.subtype p q).mpr
-    (embedding_le_iff B.subtype q p).mpr
+  have hp : @LE.le B i.toLE p r :=
+    (@embedding_le_iff B M i _ _ _ hi _ B.subtype p r).mp hx
+  have hq : @LE.le B i.toLE q r :=
+    (@embedding_le_iff B M i _ _ _ hi _ B.subtype q r).mp hy
+  exact (ht hp hq).imp
+    (@embedding_le_iff B M i _ _ _ hi _ B.subtype p q).mpr
+    (@embedding_le_iff B M i _ _ _ hi _ B.subtype q p).mpr
 
 section SmallEmbeddings
 variable {N : Type*} [SemilatticeInf N] [language.Structure N] [MeetsInterpreted N]

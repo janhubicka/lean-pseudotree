@@ -8,3 +8,5 @@ import PseudotreeValidation.NoInfiniteCanonical
 import PseudotreeValidation.AnalyticCopies
 import PseudotreeValidation.CopyPartitionTransfer
 import PseudotreeValidation.GenericAvoidance
+import PseudotreeValidation.RevisedAnalyticCopies
+import PseudotreeValidation.RevisedNativeRamsey

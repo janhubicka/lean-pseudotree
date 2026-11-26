@@ -325,3 +325,27 @@ No new admitted declarations or new proof axioms have been added.
 ## Chart-independent recurrence batch
 
 The independent 4822-declaration audit at 10cbfc073920893973c36a9e8740b6fa3143dd26 passed; GenericAvoidance compiled. The parallel revised-native-expansion and six-error repair batch at e2c321f161b88315b73ac874e27495eb17d72f1f has been retained unchanged. LowerSplit factors the existing ray splitting proof through the prefix-antichain property; the original sparse_split remains a specialization. ReservoirChart discharges revised common-prefix, split and turn geometry by reflection, without reflecting the actual FIFO tree. ChartReservoir is the common generalization of the audited transitions and recurrence, reusing the exact source, frontier indices and ordered-child proof. The previously checked orientation-specific implementation is retained while the generalized version is checked; the duplicated orientation-independent proof body is temporary migration scaffolding. RevisedRecurrence proves recurrence of all normalized finite code sets and implements the native recurrence endpoint in the revised expansion. These new proofs await compilation and audit; the already checked A.1--A.4 on critical maps do not need to be duplicated, because their approximation system and tree geometry are unchanged. No new axioms or admissions. This source-only batch uses [skip ci] to preserve the in-flight run 45897989735. Manuscript PDF verification remains manual.
+
+## Revised endpoint audit and finite age compactness
+
+Exact-head run 45897989735 (job 140176540455) at
+e2c321f161b88315b73ac874e27495eb17d72f1f passed the independent audit
+of 4832 declarations, including generic finite-set avoidance and the
+countable noncanonization endpoints. All seven revised geometry/model/
+native expansion adapters compiled in the subsequent full build.
+The only failing module was OmegaFraisseApplication: three occurrences
+of the inferred subtype LE were inconsistent with the semilattice
+witness supplied by age membership. The repair explicitly uses that
+witness's LE and both semilattice instances in embedding_le_iff.
+The independent audit is extended to the already compiled revised
+endpoints. The separate recurrence batch at 305f063f930ca3863ddedfda239f32241371fa9f
+is retained.
+
+RevisedAgeRamsey implements the remaining finite Ramsey-age corollary
+by compactness of the space of colourings, with finite discrete
+codomain. Native IRT covers it by open sets indexed by actual B
+embeddings. A finite subcover and finite meet hull give a finite
+witness C, in the literal revised expanded language. This works even
+when the expansion has infinitely many symbols, and includes the
+empty substructures. The new proof and chart recurrence await CI.
+No new admissions or mathematical axioms.

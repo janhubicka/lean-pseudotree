@@ -203,6 +203,13 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.no_universal_partition_of_countable
 #print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.no_universal_copy_partition_of_countable
 
+-- Independently compiled revised-model endpoints.
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedConvention.RevisedSparseModel.isFraisseLimit
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedDiaryExpansion.embeddingEquiv
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedDiaryExpansion.native_IRT
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedDiaryExpansion.copyHomeomorph
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedDiaryExpansion.analytic_copies_ramsey
+
 run_cmd do
   let env ← Lean.getEnv
   let allowed : List Lean.Name := [`propext, `Classical.choice, `Quot.sound]

@@ -295,6 +295,10 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.RevisedDiaryExpansion.copyHomeomorph
 #print axioms AllThoseBigRamsey.Pseudotree.RevisedDiaryExpansion.analytic_copies_ramsey
 
+-- Finite age corollary of revised native IRT.
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedDiaryExpansion.finite_superstructure
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedDiaryExpansion.finite_age_ramsey
+
 run_cmd do
   let env ← Lean.getEnv
   let allowed : List Lean.Name := [`propext, `Classical.choice, `Quot.sound]
