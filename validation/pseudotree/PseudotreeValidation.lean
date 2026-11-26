@@ -1,1 +1,1 @@
-import PseudotreeValidation.CriticalGeometryBase
+import PseudotreeValidation.CriticalExtensionBase

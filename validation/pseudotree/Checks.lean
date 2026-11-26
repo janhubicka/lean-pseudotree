@@ -1,4 +1,4 @@
-import PseudotreeValidation.CriticalGeometryBase
+import PseudotreeValidation.CriticalExtensionBase
 import Lean
 
 -- The two substantive tree Ramsey inputs are imported with proofs.
@@ -145,6 +145,16 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.amalgamation_refine_of_support
 #print axioms AllThoseBigRamsey.Pseudotree.Sparse.FIFO.slot_rayCopy
 #print axioms AllThoseBigRamsey.Pseudotree.RayMilliken.restricted_milliken_relative
+
+-- Independently compiled whole-block extension and finite-shape interfaces.
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.wholeBlockExtension
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.amalgamation_nonempty
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.next_block_milliken
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.slotMapsOfStrong
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.suffixLift
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.code_restriction
+#print axioms AllThoseBigRamsey.Pseudotree.CodingRelations.labelled_of_closed
+#print axioms AllThoseBigRamsey.Pseudotree.CodingRelations.closed_image_iff
 
 -- Check all declarations in the manuscript namespace, with transitive
 -- dependency collection through mathlib and the tree Ramsey libraries.
