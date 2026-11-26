@@ -12,3 +12,4 @@ import PseudotreeValidation.ExpandedCopyLanguage
 import PseudotreeValidation.AnalyticCopies
 import PseudotreeValidation.NativeRamsey
 import PseudotreeValidation.CopyPartitionTransfer
+import PseudotreeValidation.GenericAvoidance

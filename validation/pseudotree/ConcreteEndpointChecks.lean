@@ -188,6 +188,14 @@ import Lean
 
 -- Check all declarations in the manuscript namespace, with transitive
 -- dependency collection through mathlib and the tree Ramsey libraries.
+-- Further independently compiled endpoints, before the final adapters.
+#print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.copyHomeomorph
+#print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.native_IRT
+#print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.native_recurrence
+#print axioms RamseySpace.prefixContinuous_range_isRamsey
+#print axioms AllThoseBigRamsey.Pseudotree.Profiles.System.anchored_oscillations
+#print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.ternary_no_universal_partition
+
 run_cmd do
   let env ← Lean.getEnv
   let allowed : List Lean.Name := [`propext, `Classical.choice, `Quot.sound]

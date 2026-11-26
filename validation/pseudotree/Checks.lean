@@ -247,6 +247,13 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.transfer_obstruction
 #print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.ternary_no_universal_copy_partition
 
+-- Countable branching: finite-set avoidance from homogeneity.
+#print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.withBot_extensionPair
+#print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.embed_withBot_at
+#print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.finite_set_avoidance
+#print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.no_universal_partition_of_countable
+#print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.no_universal_copy_partition_of_countable
+
 -- Check all declarations in the manuscript namespace, with transitive
 -- dependency collection through mathlib and the tree Ramsey libraries.
 run_cmd do

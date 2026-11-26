@@ -56,8 +56,13 @@ theorem representative_copy (C : Copy A M) :
   Subtype.ext (representative_range C)
 
 theorem copy_range_eq (e g : A ↪[language] M) :
-    copyOf e = copyOf g ↔ Set.range e = Set.range g :=
-  ⟨fun h => congrArg Subtype.val h,Subtype.ext⟩
+    copyOf e = copyOf g ↔ Set.range e = Set.range g := by
+  constructor
+  · intro h
+    exact congrArg (fun C : Copy A M => C.val) h
+  · intro h
+    apply Subtype.ext
+    exact h
 
 /-- The fibre coordinate relative to the fixed representative of the image. -/
 noncomputable def tag (e : A ↪[language] M) : A ↪[language] A :=

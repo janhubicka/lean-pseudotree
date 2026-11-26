@@ -68,9 +68,9 @@ theorem prefixContinuous_of_continuous (f : (Nat → Nat) → CopySpace)
     exact h.symm
   exact (hL _ hcoord).symm
 
+set_option backward.isDefEq.respectTransparency false in
 /-- Every analytic subset of the actual expanded-copy space is
 completely Ramsey for the transported whole-block approximations. -/
-set_option backward.isDefEq.respectTransparency false in
 theorem analytic_copies_ramsey (A : Set CopySpace)
     (hA : MeasureTheory.AnalyticSet A) :
     RamseySpace.IsRamseyOnBasicNeighborhoods (S := system) (toCopy ⁻¹' A) := by
@@ -94,7 +94,8 @@ theorem analytic_copies_ramsey (A : Set CopySpace)
       · rintro ⟨b,rfl⟩
         exact ⟨b,(copyEquiv.apply_symm_apply (f b)).symm⟩
     rw [hEq]
+    intro n a B d hd
     exact RamseySpace.prefixContinuous_range_isRamsey CriticalCopies.ramseySpace
-      CriticalCopies.closed F (prefixContinuous_of_continuous f hf)
+      CriticalCopies.closed F (prefixContinuous_of_continuous f hf) (n := n) a B (d := d) hd
 
 end AllThoseBigRamsey.Pseudotree.DiaryExpansion

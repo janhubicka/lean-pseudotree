@@ -189,3 +189,28 @@ from 71808dcb328bd454e1173600dd21e8b468ee740d) are incorporated in this
 branch in one batch to avoid duplicate CI dependency builds. The final
 analytic, native Ramsey and noncanonization endpoints await the combined
 full build and transitive audit. No new assumptions or admissions.
+
+## Twenty-first batch
+
+Run 45892677344 at a349109f87f35a94fa46da6f11fd9b607115b2e7
+again passed the 4709-declaration concrete audit, and compiled
+AnchoredOscillation, NoInfiniteCanonical, CopySpaceTopology, NativeRamsey
+and AnalyticApproximation. Only two modules failed: CopyPartitionTransfer
+(one elaboration of a subtype extensionality argument), and AnalyticCopies
+(doc-comment placement and implicit Ramsey quantifier application).
+These three errors are addressed directly. The next independent audit
+includes all the previously compiled endpoints and explicitly checks
+the transitive dependencies of the abstract analytic-image theorem.
+
+GenericAvoidance implements the remaining structural finite-set avoidance
+argument for countable ultrahomogeneous meet-trees with no endpoints:
+adjoin a formal bottom, embed every finite substructure by replacing bottom
+with a common strict lower bound, and use the existing mathlib extension-pair
+construction to embed the enlarged countable tree with prescribed bottom.
+The resulting self-embedding avoids the finite forbidden set above a chosen
+point not below any forbidden point. Both embedding and literal-copy
+noncanonization endpoints are stated without a finite-avoidance hypothesis.
+These new implementations await compilation and audit; no new assumptions
+except the explicit usual structural hypothesis of no minimal points.
+A separate concrete Fraisse identification of the countably branching
+pseudotree remains outside the verified model scope.
