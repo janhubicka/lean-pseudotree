@@ -14,7 +14,7 @@ open Reservoir (sparseSource)
 namespace ConeSuffix
 
 /-- Every descendant of a retained root has the same literal prefix. -/
-theorem prefix {f : RayStrongMap} {w : Word} (hw : w.IsPrefix (f.map w)) (z : Word) :
+theorem descendant_prefix {f : RayStrongMap} {w : Word} (hw : w.IsPrefix (f.map w)) (z : Word) :
     w.IsPrefix (f.map (w ++ z)) :=
   hw.trans (DiaryRecovery.map_prefix f (List.prefix_append w z))
 
@@ -24,7 +24,7 @@ def value (f : RayStrongMap) (w z : Word) : Word :=
 theorem append_value {f : RayStrongMap} {w : Word}
     (hw : w.IsPrefix (f.map w)) (z : Word) :
     w ++ value f w z = f.map (w ++ z) := by
-  have he := List.prefix_iff_eq_take.mp (prefix hw z)
+  have he := List.prefix_iff_eq_take.mp (descendant_prefix hw z)
   calc
     w ++ value f w z = (f.map (w++z)).take w.length ++ value f w z :=
       congrArg (fun p => p ++ value f w z) he
@@ -97,6 +97,8 @@ def slotMapsOfStrong {n : Nat} (hn : 0 < n) (f : RayStrongMap)
     have h := f.level_strict (Nat.add_lt_add_left hij ((3*n-1)+1))
     have hlo := fixesBlock_level f hn hf
     have hlt := f.level_strict (show 3*n-1 < (3*n-1)+1+i by omega)
+    change f.level ((3*n-1)+1+i)-((3*n-1)+1) <
+      f.level ((3*n-1)+1+j)-((3*n-1)+1)
     omega
   levels := by
     intro w i

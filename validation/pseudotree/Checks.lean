@@ -204,6 +204,13 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.codingRange_agrees_short
 #print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.finite_cylinder_recovers_approx
 
+-- Finite meet-closed diary relations suffice for the full coding relations.
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.code_restriction
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.labelled_of_superset
+#print axioms AllThoseBigRamsey.Pseudotree.CodingRelations.hull_closed
+#print axioms AllThoseBigRamsey.Pseudotree.CodingRelations.labelled_of_closed
+#print axioms AllThoseBigRamsey.Pseudotree.CodingRelations.closed_image_iff
+
 -- Check all declarations in the manuscript namespace, with transitive
 -- dependency collection through mathlib and the tree Ramsey libraries.
 run_cmd do

@@ -166,9 +166,11 @@ theorem fork_supported (R : TailRun targets h) (stable : StableAfter targets h)
   have hc := R.value_at k (criticalAt sparseSource (h+k))
   change R.value (CriticalCopies.criticalNode (h+k)) =
     ((R.step k).roots (criticalAt sparseSource (h+k))).map toFin at hc
-  refine ⟨y,hy,z,hz,?_,?_⟩ <;> rw [hc] <;>
-    simpa only [List.map_map,Function.comp_def,toLetter_toFin,List.map_id_fun',id_eq] using
-      (by first | exact h0 | exact h2)
+  refine ⟨y,hy,z,hz,?_,?_⟩
+  · rw [hc]
+    simpa only [List.map_map,Function.comp_def,toLetter_toFin,List.map_id_fun',id_eq] using h0
+  · rw [hc]
+    simpa only [List.map_map,Function.comp_def,toLetter_toFin,List.map_id_fun',id_eq] using h2
 
 end TailRun
 
@@ -217,8 +219,7 @@ theorem relative_reservoir {j : Nat} (e : FiniteCritical (j+1))
       rw [hb'] at hc
       have hslot' : CriticalCopies.slot e w =
           e.map (CriticalCopies.parentNode s a hs) ++ [a] := by
-        simp only [w,CriticalCopies.slot,CriticalCopies.oldParent,parent_childNode,last_childNode]
-        rfl
+        exact CriticalCopies.slot_childNode e u a hs
       refine ⟨(b++c).map toFin,?_,?_⟩
       · change R.value ⟨w.val,w.property.1⟩ =
           e.map (CriticalCopies.parentNode s a hs) ++ a :: (b++c).map toFin

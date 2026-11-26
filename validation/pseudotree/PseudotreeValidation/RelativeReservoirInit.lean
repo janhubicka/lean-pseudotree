@@ -84,13 +84,13 @@ theorem Step.root_supported {targets : Word → Target} {j : Nat}
     ∃ z ∈ Set.range (targets u.val), (S.roots u).IsPrefix (fromBlocks z) := by
   have htree : SparseNormalization.Tree u.val := u.property.1
   have hchild : ∃ a : Fin 3, SparseNormalization.Tree (child u.val a) := by
-    by_cases hc : u.val = critical j
+    by_cases hc : u.val = SparseNormalization.critical j
     · by_cases hm : j % 3 = 2
       · exact ⟨1,(SparseNormalization.tree_children j u.val htree u.property.2 1).mpr
           (by simp [hc,hm])⟩
       · exact ⟨0,(SparseNormalization.tree_children j u.val htree u.property.2 0).mpr
           (by simp [hc,hm])⟩
-    · by_cases hl : u.val < critical j
+    · by_cases hl : u.val < SparseNormalization.critical j
       · exact ⟨0,(SparseNormalization.tree_children j u.val htree u.property.2 0).mpr
           (by simp [hc,hl])⟩
       · exact ⟨2,(SparseNormalization.tree_children j u.val htree u.property.2 2).mpr
@@ -113,20 +113,20 @@ theorem Step.split_supported {targets : Word → Target} {j : Nat}
     {P : Layer sparseSource targets j} (S : Step P)
     (stable : ∀ (u : Level sparseSource j) a, child u.val a ∈ sparseSource.nodes →
       targets (child u.val a) = targets u.val) (hj : j % 3 ≠ 2) :
-    ∃ y ∈ Set.range (targets (critical j)), ∃ z ∈ Set.range (targets (critical j)),
+    ∃ y ∈ Set.range (targets (SparseNormalization.critical j)), ∃ z ∈ Set.range (targets (SparseNormalization.critical j)),
       (S.roots (criticalAt sparseSource j) ++ [TernaryLetter.zero]).IsPrefix (fromBlocks y) ∧
       (S.roots (criticalAt sparseSource j) ++ [TernaryLetter.two]).IsPrefix (fromBlocks z) := by
   let u := criticalAt sparseSource j
   have ha0 : SparseNormalization.Tree (child u.val 0) := by
-    change SparseNormalization.Tree (child (critical j) 0)
-    have hc : SparseNormalization.Tree (critical j) := (CriticalCopies.criticalNode j).property
-    rw [SparseNormalization.tree_children j (critical j) hc
+    change SparseNormalization.Tree (child (SparseNormalization.critical j) 0)
+    have hc : SparseNormalization.Tree (SparseNormalization.critical j) := (CriticalCopies.criticalNode j).property
+    rw [SparseNormalization.tree_children j (SparseNormalization.critical j) hc
       (SparseNormalization.critical_length j)]
     simp [hj]
   have ha2 : SparseNormalization.Tree (child u.val 2) := by
-    change SparseNormalization.Tree (child (critical j) 2)
-    have hc : SparseNormalization.Tree (critical j) := (CriticalCopies.criticalNode j).property
-    rw [SparseNormalization.tree_children j (critical j) hc
+    change SparseNormalization.Tree (child (SparseNormalization.critical j) 2)
+    have hc : SparseNormalization.Tree (SparseNormalization.critical j) := (CriticalCopies.criticalNode j).property
+    rw [SparseNormalization.tree_children j (SparseNormalization.critical j) hc
       (SparseNormalization.critical_length j)]
     simp [hj]
   let u0 := childNode u 0 ha0
@@ -141,10 +141,18 @@ theorem Step.split_supported {targets : Word → Target} {j : Nat}
   · obtain ⟨b,hb,_⟩ := S.edge u 0 ha0
     have hp := S.next.common_prefix u0 0
     rw [hb] at hp
-    exact (List.prefix_append _ _).trans (by simpa only [List.append_assoc,List.singleton_append] using hp)
+    have hh : (S.roots (criticalAt sparseSource j) ++ [TernaryLetter.zero] ++ b).IsPrefix
+        (fromBlocks (S.next.copies u0 0)) := by
+      change (S.roots u ++ [.zero] ++ b).IsPrefix _
+      simpa only [List.append_assoc,List.singleton_append] using hp
+    exact (List.prefix_append _ _).trans hh
   · obtain ⟨b,hb,_⟩ := S.edge u 2 ha2
     have hp := S.next.common_prefix u2 0
     rw [hb] at hp
-    exact (List.prefix_append _ _).trans (by simpa only [List.append_assoc,List.singleton_append] using hp)
+    have hh : (S.roots (criticalAt sparseSource j) ++ [TernaryLetter.two] ++ b).IsPrefix
+        (fromBlocks (S.next.copies u2 0)) := by
+      change (S.roots u ++ [.two] ++ b).IsPrefix _
+      simpa only [List.append_assoc,List.singleton_append] using hp
+    exact (List.prefix_append _ _).trans hh
 
 end AllThoseBigRamsey.Pseudotree.Reservoir

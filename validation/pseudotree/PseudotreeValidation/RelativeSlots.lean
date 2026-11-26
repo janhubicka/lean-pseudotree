@@ -71,6 +71,21 @@ def oldParent {j : Nat} (w : Boundary j) : Node :=
 def slot {j : Nat} (e : FiniteCritical (j+1)) (w : Boundary j) : Word :=
   e.map (oldParent w) ++ [Reservoir.last w]
 
+/-- The dependent parent coercion is best handled once, at the
+subtype level. Both the relative reservoir and FIFO proofs use this. -/
+theorem oldParent_childNode {j : Nat} (u : Reservoir.Level sparseSource j) (a : Fin 3)
+    (hs : child u.val a ∈ sparseSource.nodes) :
+    oldParent (Reservoir.childNode u a hs) = (⟨u.val,u.property.1⟩ : Node) := by
+  apply Subtype.ext
+  exact congrArg (fun v : Reservoir.Level sparseSource j => v.val)
+    (Reservoir.parent_childNode u a hs)
+
+theorem slot_childNode {j : Nat} (e : FiniteCritical (j+1))
+    (u : Reservoir.Level sparseSource j) (a : Fin 3)
+    (hs : child u.val a ∈ sparseSource.nodes) :
+    slot e (Reservoir.childNode u a hs) = e.map ⟨u.val,u.property.1⟩ ++ [a] := by
+  rw [slot,oldParent_childNode,Reservoir.last_childNode]
+
 theorem slot_length {j : Nat} (e : FiniteCritical (j+1)) (w : Boundary j) :
     (slot e w).length = e.level j + 1 := by
   unfold slot

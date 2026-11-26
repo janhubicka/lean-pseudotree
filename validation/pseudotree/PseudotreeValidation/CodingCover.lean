@@ -58,7 +58,7 @@ theorem exists_cover (h : Nat) : ∃ C : Finset Word, CodingCover C h := by
   have hmem (u : Prefix (h+1)) : W u ∈ C :=
     Finset.mem_image.mpr ⟨u,Finset.mem_univ _,rfl⟩
   have desc (u : Node) (hu : u.val.length < 3*(h+1)) :
-      ∃ w ∈ C, u.val.IsPrefix w := ⟨W ⟨u,hu⟩,hmem _,hp _⟩
+      ∃ w ∈ C, u.val.IsPrefix w := ⟨W ⟨u,hu⟩,hmem ⟨u,hu⟩,hp ⟨u,hu⟩⟩
   refine ⟨C,?_,?_,?_,?_,?_⟩
   · intro w hw
     obtain ⟨u,_,rfl⟩ := Finset.mem_image.mp hw
@@ -112,7 +112,8 @@ theorem schedule_initial {L : Finset Nat} (hne : L.Nonempty) {h : Nat}
     induction i with
     | zero => omega
     | succ i ih =>
-      have ht := hstrict (Nat.lt_succ_self i)
+      have ht : schedule L i < schedule L (i+1) := hstrict (Nat.lt_succ_self i)
+      change i+1 ≤ schedule L (i+1)
       omega
   have hr (i : Nat) (hi : i < h) : rank L i ≤ i := by
     have hh := hge (rank L i)

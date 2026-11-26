@@ -7,3 +7,4 @@ import PseudotreeValidation.RelevantReservoirs
 import PseudotreeValidation.SlotSuffixMaps
 import PseudotreeValidation.ConcreteEllentuck
 import PseudotreeValidation.CodingTopology
+import PseudotreeValidation.DiaryRestriction
