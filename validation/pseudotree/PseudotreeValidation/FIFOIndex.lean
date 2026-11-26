@@ -364,7 +364,7 @@ theorem passingNode_prefix_descendant {x t : Word} (h : x.length = t.length)
   rw [passingNode_eq_head_take h split]
   exact (List.take_prefix _ _).trans (U_prefix_descendant _ _)
 
-private theorem equal_length_split {x t : Word} (hlen : x.length = t.length)
+theorem equal_length_split {x t : Word} (hlen : x.length = t.length)
     (hne : x ≠ t) :
     ∃ p a b s v, x = p ++ a :: s ∧ t = p ++ b :: v ∧ a ≠ b := by
   induction x generalizing t with

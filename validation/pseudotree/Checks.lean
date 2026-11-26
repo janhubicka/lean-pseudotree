@@ -143,6 +143,14 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.depth_top
 #print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.strict_prefix_leFin
 
+-- Whole-block extension and relative FIFO geometry.
+#print axioms AllThoseBigRamsey.Pseudotree.Sparse.FIFO.synchronized_slot_labels
+#print axioms AllThoseBigRamsey.Pseudotree.Sparse.FIFO.slot_label_lex
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.RelativeLabels.extendCritical
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.SlotFamily.relative_lift
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.wholeBlockExtension
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.amalgamation_nonempty
+
 -- Check all declarations in the manuscript namespace, with transitive
 -- dependency collection through mathlib and the tree Ramsey libraries.
 run_cmd do

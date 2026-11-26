@@ -63,6 +63,7 @@ theorem depth_top (X Y : CriticalMap) {n d : Nat} (hn : 0 < n)
       have hz' : Y.map z.val = X.map u.val := hz
       have hle : z.val.val.length ≤ j := by
         apply Y.level_strict.le_iff_le.mp
+        change Y.level z.val.val.length ≤ Y.level j
         rw [level_eq_length Y z.val, hz', hl]
         exact image_length_le_top X hn u
       exact ⟨⟨z.val,by have := hle; omega⟩,hz'⟩

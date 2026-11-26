@@ -148,6 +148,7 @@ theorem pullNode_length_map (X Y : CriticalMap) (u v : Node)
     (hlen : u.val.length = v.val.length) :
     (pullNode X Y u).val.length = (pullNode X Y v).val.length := by
   apply Y.level_strict.injective
+  change Y.level (pullNode X Y u).val.length = Y.level (pullNode X Y v).val.length
   rw [level_eq_length, level_eq_length, pullNode_spec X Y u hu, pullNode_spec X Y v hv]
   rw [X.length_map u, X.length_map v, hlen]
 
@@ -156,6 +157,7 @@ theorem pullNode_length_strict (X Y : CriticalMap) (u v : Node)
     (hlt : u.val.length < v.val.length) :
     (pullNode X Y u).val.length < (pullNode X Y v).val.length := by
   apply Y.level_strict.lt_iff_lt.mp
+  change Y.level (pullNode X Y u).val.length < Y.level (pullNode X Y v).val.length
   rw [level_eq_length, level_eq_length, pullNode_spec X Y u hu, pullNode_spec X Y v hv]
   rw [X.length_map u, X.length_map v]
   exact X.level_strict hlt

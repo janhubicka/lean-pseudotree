@@ -48,3 +48,29 @@ Run 45839462556 successfully compiled FIFOIndex, FIFOEdges, GeneralizedProjectio
 CriticalPullback develops binary edge reflection, exact composition, finite pullback (without assuming infinite extendibility), and infinite factorization. A.3(1) is reduced to the explicit WholeBlockExtension obligation. The existing exact-tail lemma is exported without changing its proof. CriticalDepth proves the final coding level characterization of depth and the strict A.2(3) variant in the manuscript. No new axioms or sorry are introduced. All new declarations await compilation and transitive audit; whole-block extension and relative A.3(2)/A.4 remain outstanding.
 
 Run 45842568797 successfully compiled FIFOLifting and ReservoirTransitions in addition to the earlier modules. It failed on two elaboration errors in the endpoint modules: membership in the root set and the identity-map expression in labelled recovery. Both are repaired by explicit change statements in the follow-up. The full axiom audit was not reached.
+
+## Seventh batch
+
+Run 45843713728 compiled all of the generalized grammar, recovery, absolute
+FIFO lifting, recurrence and finite-fragment canonization / code-set IRT
+modules. It failed on two missing definitional unfoldings in the pullback
+length equations. Both are repaired, with the analogous depth proof made
+explicit.
+
+The new relative FIFO development has three components:
+
+- FIFOBoundary identifies label cones for live queue slots using the actual
+  FIFO child schedule, and pads finitely many labels to a common depth.
+- RelativeFIFO assembles the local FIFO formula above a prescribed finite
+  critical map, including the incoming binary-edge root condition.
+- RelativeSlots supplies those hypotheses using the actual frontier and
+  synchronized strong suffix maps. The wholeBlockExtension and
+  amalgamation_nonempty endpoints are unconditional, awaiting Lean checking.
+
+The CI job now audits the generalized base independently before compiling
+the relative-space modules. The same runner and dependency build are reused;
+this avoids losing an entire axiom audit because a later module fails.
+No dependency revisions or proof axioms have been changed. The new relative
+theorems are not marked verified pending compilation and transitive audit.
+A.3(2), the relative forest pigeonhole step, and the expanded-copy
+identification remain outstanding.

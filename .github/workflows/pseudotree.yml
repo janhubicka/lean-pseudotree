@@ -49,6 +49,18 @@ jobs:
               git -C ".lake/packages/$dependency" apply "$patch_path"
             fi
           done
+      - name: Build and audit generalized diary canonization and recurrence
+        id: generalized_audit
+        run: |
+          set -euo pipefail
+          lake build PseudotreeValidation.GeneralizedBase
+          lake env lean GeneralizedChecks.lean | tee generalized-axioms.txt
+          if grep -q 'sorryAx' generalized-axioms.txt; then exit 1; fi
+      - uses: actions/upload-artifact@v4
+        if: ${{ always() && steps.generalized_audit.outcome == 'success' }}
+        with:
+          name: generalized-pseudotree-axioms
+          path: validation/pseudotree/generalized-axioms.txt
       - name: Build the actual model and Ramsey adapters
         run: lake build PseudotreeValidation
       - name: Audit all pseudotree proof dependencies
