@@ -214,6 +214,11 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.OmegaFraisse.no_universal_copy_partition
 #print axioms AllThoseBigRamsey.Pseudotree.RevisedDiaryExpansion.finite_age_ramsey
 
+-- Independently compiled chart-independent and revised recurrence.
+#print axioms AllThoseBigRamsey.Pseudotree.ChartReservoir.recurrence
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedConvention.revised_recurrent_code_sets
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedDiaryExpansion.native_recurrence
+
 run_cmd do
   let env ← Lean.getEnv
   let allowed : List Lean.Name := [`propext, `Classical.choice, `Quot.sound]

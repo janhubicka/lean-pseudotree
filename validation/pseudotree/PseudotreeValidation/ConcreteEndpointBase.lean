@@ -12,3 +12,4 @@ import PseudotreeValidation.RevisedAnalyticCopies
 import PseudotreeValidation.RevisedNativeRamsey
 import PseudotreeValidation.OmegaFraisseApplication
 import PseudotreeValidation.RevisedAgeRamsey
+import PseudotreeValidation.RevisedRecurrence

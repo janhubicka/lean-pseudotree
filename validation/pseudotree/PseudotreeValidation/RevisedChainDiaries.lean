@@ -67,31 +67,34 @@ theorem reflect_lt_iff {s t : Word} (hlen : s.length = t.length) :
 
 theorem reflect_special (kind : PaperKind) (a : Fin 3) :
     kind.special (flipDigit a) ↔ kind.special a := by
-  cases kind <;> fin_cases a <;> decide
+  cases kind <;> fin_cases a <;> unfold PaperKind.special <;> decide
 
 theorem reflect_local {w c : Word} (hlen : w.length = c.length) (kind : PaperKind) (a : Fin 3) :
     localChild (reflectWord c) kind.special (reflectWord w) (flipDigit a) ↔
       localChild c kind.special w a := by
   by_cases he : w = c
   · subst c
-    simpa only [localChild,if_pos rfl] using reflect_special kind a
+    simpa [localChild] using reflect_special kind a
   · have hne : reflectWord w ≠ reflectWord c := fun h => he (reflectWord_injective h)
-    rw [localChild,if_neg hne,localChild,if_neg he,reflect_lt_iff hlen]
-    rcases lt_or_gt_of_ne he with h | h
-    · have hn : ¬c < w := not_lt_of_gt h
-      simp only [h,hn,if_true,if_false]
-      constructor
-      · intro h
-        simpa only [flipDigit_twice,flip_two] using congrArg flipDigit h
-      · rintro rfl
-        rfl
-    · have hn : ¬w < c := not_lt_of_gt h
-      simp only [h,hn,if_true,if_false]
+    have hzero : flipDigit a = 0 ↔ a = 2 := by
       constructor
       · intro h
         simpa only [flipDigit_twice,flip_zero] using congrArg flipDigit h
       · rintro rfl
         rfl
+    have htwo : flipDigit a = 2 ↔ a = 0 := by
+      constructor
+      · intro h
+        simpa only [flipDigit_twice,flip_two] using congrArg flipDigit h
+      · rintro rfl
+        rfl
+    rcases lt_or_gt_of_ne he with h | h
+    · have hr : ¬reflectWord w < reflectWord c := fun H =>
+        (not_lt_of_gt h) ((reflect_lt_iff hlen).mp H)
+      simp [localChild,hne,he,h,hr,htwo]
+    · have hr : reflectWord w < reflectWord c := (reflect_lt_iff hlen).mpr h
+      have hn : ¬w < c := not_lt_of_gt h
+      simp [localChild,hne,he,hn,hr,hzero]
 
 def reflectSet (C : Finset Word) : Finset Word := C.image reflectWord
 
@@ -144,7 +147,7 @@ theorem reflect_axioms {N C : Finset Word} {h : Nat} (T : GeneralizedTreeAxioms 
   prefix_closed := by
     intro w hw j hj
     rw [mem_reflectSet,reflect_take]
-    exact T.prefix_closed _ ((mem_reflectSet _ _).mp hw) (by simpa using hj)
+    exact T.prefix_closed _ ((mem_reflectSet _ _).mp hw) j (by simpa using hj)
   code_subset := by intro w hw; exact (mem_reflectSet _ _).mpr (T.code_subset ((mem_reflectSet _ _).mp hw))
   level := by
     intro j hj
@@ -278,7 +281,9 @@ theorem separated_incomparable (p q u v : Word) (hlen : p.length = q.length)
     · intro he
       have hh := (model_le_iff _ _).mp he
       have hn := (below_distinct (toLetter b) (toLetter a) _ _ hne.symm).mp hh
-      have hb : b = 0 := by simpa only [toFin_toLetter] using congrArg toFin hn.1
+      have he' := congrArg toFin hn.1
+      change toFin (toLetter b) = (0 : Fin 3) at he'
+      have hb : b = 0 := by simpa only [toFin_toLetter] using he'
       omega
   induction p generalizing q with
   | nil =>

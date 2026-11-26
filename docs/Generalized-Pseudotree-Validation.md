@@ -387,3 +387,29 @@ chain diary, and each class is unavoidable. No abstract
 isomorphism is used to identify the two literal queues. This
 proof and the revised rightmost characterization and recurrence
 remain to be compiled. No new axioms or admitted declarations.
+
+## Compiled recurrence and literal copy partition
+
+Run 45901118297 (job 140186851626) at fb35337011cb34c20f581dfd0eb863cc08bd73b4
+passed the independent audit of 5142 declarations, including the
+countable Fraisse application and revised finite Ramsey-age theorem.
+Those exact sources are now on main at 9890506e49cc431e30c63c584531aa1fd001e453.
+ReservoirChart, ChartReservoir and RevisedRecurrence compiled.
+The only failing source was RevisedChainDiaries, with errors at five
+locations: decidability of PaperKind.special, two dependent-if
+simplifications, the explicit prefix-length argument, and a numeral
+coercion. All five are repaired in this batch. The exact chain
+degree assembly remains downstream of that module. The independent
+audit now includes the already compiled revised recurrence.
+
+RevisedCopyCanonization implements the manuscript's minimal
+unavoidable diary partition on literal copies of arbitrary nonempty
+finite functional A. It proves range independence of the coding
+sets, recurrence of every realized label, simultaneous finite
+fragment canonization inside an arbitrary prescribed reduct copy,
+impossibility of a proper unavoidable refinement, and a finite
+colouring witnessing sharpness. It works for nonrigid A as well.
+The endpoint uses realized labels (rather than a separate proof
+that every abstract diary of type A is realized). The new proofs
+and exact chain assembly await compilation and cumulative audit.
+No admissions or new axioms are introduced.

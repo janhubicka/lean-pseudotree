@@ -313,6 +313,12 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.RevisedChainDegrees.canonical
 #print axioms AllThoseBigRamsey.Pseudotree.RevisedChainDegrees.exact_degree
 
+-- Native finite-fragment, minimal unavoidability and sharpness.
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedCopyCanonization.unavoidable
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedCopyCanonization.finite_fragment
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedCopyCanonization.no_proper_unavoidable_refinement
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedCopyCanonization.sharpness
+
 run_cmd do
   let env ← Lean.getEnv
   let allowed : List Lean.Name := [`propext, `Classical.choice, `Quot.sound]

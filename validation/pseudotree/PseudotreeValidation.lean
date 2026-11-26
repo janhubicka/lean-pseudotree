@@ -21,3 +21,4 @@ import PseudotreeValidation.RevisedRecurrence
 import PseudotreeValidation.RevisedAgeRamsey
 import PseudotreeValidation.RevisedChainDiaries
 import PseudotreeValidation.RevisedChainDegrees
+import PseudotreeValidation.RevisedCopyCanonization
