@@ -4,3 +4,4 @@ import PseudotreeValidation.RelativeSlots
 import PseudotreeValidation.SlotReservoirs
 import PseudotreeValidation.RelativeReservoirInit
 import PseudotreeValidation.RelevantReservoirs
+import PseudotreeValidation.SlotSuffixMaps

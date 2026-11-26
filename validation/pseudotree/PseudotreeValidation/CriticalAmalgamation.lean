@@ -168,6 +168,7 @@ theorem amalgamation_refine_of_support (hconstruct : RelativeSupportConstruction
     let X := pull X0 Y hX0Y
     have hX : compose Y X = X0 := compose_pull X0 Y hX0Y
     have hd' : finitization.HasDepth (approx n X0) Y d := by
+      change finitization.HasDepth (system.approx n X0) Y d
       rw [hX0.2]
       exact hd
     obtain ⟨hdpos,hdepth⟩ := depth_top X0 Y hnpos hd'

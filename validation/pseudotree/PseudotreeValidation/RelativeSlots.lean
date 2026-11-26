@@ -75,6 +75,7 @@ theorem slot_length {j : Nat} (e : FiniteCritical (j+1)) (w : Boundary j) :
     (slot e w).length = e.level j + 1 := by
   unfold slot
   rw [List.length_append,List.length_singleton,e.length_map _ (by simp),oldParent_length]
+  rfl
 
 theorem slot_tree {j : Nat} (e : FiniteCritical (j+1))
     (hj : j % 3 = 2) (w : Boundary j) : SparseNormalization.Tree (slot e w) := by
@@ -130,7 +131,6 @@ theorem slot_ordered {j : Nat} (e : FiniteCritical (j+1)) (u v : Boundary j)
       simp only [q,slot,oldParent,Reservoir.parent_childNode,Reservoir.last_childNode,
         List.map_append,List.map_cons,List.map_nil,roots]
     rw [he]
-    exact List.prefix_rfl
   exact (Sparse.lexLess_fin_iff (slot e u) (slot e v)).mp
     (Reservoir.ordered_children roots (e.level j) hlen hord q hp u v huv)
 
@@ -148,15 +148,18 @@ theorem slotFamily_exists {j : Nat} (e : FiniteCritical (j+1))
     (hj : j % 3 = 2) : Nonempty (SlotFamily e) := by
   classical
   let d := (e.level j + 1)/3
-  have hphase := (e.phase j (by omega)).mpr hj
+  have hphase : e.level j % 3 = 2 := (e.phase j (by omega)).mpr hj
   have hlength : e.level j + 1 = 3*d := by dsimp [d]; omega
   obtain ⟨k,p,hp,hU⟩ := synchronized_slot_labels d
     (fun w : Boundary j => (slot e w).map toLetter)
     (slot_tree e hj)
     (by intro w; rw [List.length_map,slot_length,hlength])
-  refine ⟨{ k := k, root := fun w => (p w).map toFin,
-    length := fun w => by simp only [List.length_map,hp],
-    ordered := ?_, head := ?_ }⟩
+  refine ⟨{
+    k := k
+    root := fun w => (p w).map toFin
+    length := fun w => by simp only [List.length_map,hp]
+    ordered := ?_
+    head := ?_ }⟩
   · intro u v huv
     have hslots : slot e u < slot e v := slot_ordered e u v huv
     have hne : (slot e u).map toLetter ≠ (slot e v).map toLetter :=
@@ -328,6 +331,7 @@ noncomputable def relativeLabels {j : Nat} {e : FiniteCritical (j+1)}
         (decide ((j+1)%3 ≠ 2))
     change 3 * labelStage ((B.labelsMap G (critical (j+1))).map toLetter) =
       e.level j + 1 + b.length at hl
+    rw [show j+1-1 = j by omega]
     unfold eventLength
     split <;> omega
   boundary := by
@@ -337,15 +341,20 @@ noncomputable def relativeLabels {j : Nat} {e : FiniteCritical (j+1)}
       ⟨s,tree_prefix hs (List.prefix_append s [a]),hlen⟩
     let w := Reservoir.childNode u a hs
     obtain ⟨b,hb,hbbin⟩ := B.head_on_boundary G w
+    have hpar : Reservoir.parent w = u := Reservoir.parent_childNode u a hs
+    have hlast : Reservoir.last w = a := Reservoir.last_childNode u a hs
     have hslot : slot e w = e.map (parentNode s a hs) ++ [a] := by
-      simp only [w,slot,oldParent,Reservoir.parent_childNode,Reservoir.last_childNode]
+      unfold slot oldParent
+      rw [hpar,hlast]
       rfl
-    rw [hslot,List.map_append,List.map_cons,List.map_nil,List.singleton_append] at hb
+    rw [hslot,List.map_append,List.map_cons,List.map_nil] at hb
     refine ⟨b,?_,?_⟩
-    · exact hb
+    · change U ((B.labelsMap G (s ++ [a])).map toLetter) =
+        (e.map (parentNode s a hs)).map toLetter ++ toLetter a :: b
+      simpa only [List.append_assoc,List.singleton_append] using hb
     · intro ha
       apply hbbin
-      simpa only [w,Reservoir.last_childNode] using ha
+      rwa [hlast]
 
 /-- Relative lifting at a fixed whole-block boundary, with any
 synchronized family of maps satisfying the incoming root condition. -/

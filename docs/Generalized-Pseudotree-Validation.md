@@ -92,3 +92,9 @@ New development:
 - RelevantReservoirs: construct the actual target assignments and rational seeds, derive relative support from the reservoir witnesses, and discharge the premise in the A.3(2) endpoint.
 
 These new modules are proof implementations, pending compilation and transitive audit. The stable generalized base remains independently checked; no new axioms or sorry are introduced. The new A.3(2) endpoint is not yet a checked theorem. A.4 and full identification with expanded self-copies remain outstanding.
+
+## Tenth batch
+
+Run 45859052726 again passed the 3841-declaration generalized audit. CriticalPullback, CriticalDepth, FIFOBoundary, RelativeFIFO, and CriticalSupport now compile; the full branch build stopped on elaboration errors in RelativeTail, RelativeSlots, CriticalAmalgamation, and SlotReservoirs. This batch repairs the reported errors without changing the intended mathematical statements.
+
+For A.4, the new RelativeMilliken development starts the existing fibre fusion at the top of a prescribed initial embedding and stops the height induction at the prescribed initial subshape. It uses the already checked mixed boundary product and fibre theorem. NextBlockMilliken instantiates the relative theorem on actual finite whole-block prefixes of R, with the old block fixed; the n=0 case uses ordinary restricted Milliken. SlotSuffixMaps extracts synchronized strong maps from the actual boundary slots of a map fixing the old block and assembles such a family back into a total ray map. These are concrete implementations of the finite-gadget forest input, not yet a proof of the final A.4 statement. The relative lift comparison and extension to all ambient slots remain. The new modules and repairs await exact-head checking.

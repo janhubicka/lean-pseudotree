@@ -173,6 +173,15 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.relative_support_construction
 #print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.amalgamation_refine
 
+-- Fixed-prefix Milliken and the sparse next-block forest representation.
+#print axioms AllThoseBigRamsey.Pseudotree.RayMilliken.all_fibres_fusion_above
+#print axioms AllThoseBigRamsey.Pseudotree.RayMilliken.restricted_milliken_relative
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.blockShape
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.next_block_milliken
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.slotMapsOfStrong
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.suffixLift
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.suffixLift_fixesBlock
+
 -- Check all declarations in the manuscript namespace, with transitive
 -- dependency collection through mathlib and the tree Ramsey libraries.
 run_cmd do

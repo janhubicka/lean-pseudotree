@@ -63,7 +63,8 @@ theorem binary_cylinder_convex {w b c : Sparse.Word} {z : TernaryModel}
   have hends (v : List Bool) : toBlocks (w ++ v.map binaryLetter) =
       RayTree.onRay stem ⟨a.word ++ v⟩ := by
     apply wordEquiv.symm.injective
-    change fromBlocks (toBlocks (w ++ v.map binaryLetter)) = _
+    change fromBlocks (toBlocks (w ++ v.map binaryLetter)) =
+      fromBlocks (RayTree.onRay stem ⟨a.word ++ v⟩)
     rw [fromBlocks_toBlocks,hw,fromBlocks_onRay]
     simp only [List.map_append,List.append_assoc]
   rw [hends bs] at hlo
@@ -84,7 +85,7 @@ theorem binary_cylinder_convex {w b c : Sparse.Word} {z : TernaryModel}
   have hhi' : binaryLE v.word (a.word ++ cs) = true := hhi
   obtain ⟨tail,htail⟩ := binary_prefix_of_between a.word bs cs v.word hlo' hhi'
   refine ⟨tail.map binaryLetter,binary_letters_noOne tail,?_⟩
-  rw [← hz,fromBlocks_onRay,htail,List.map_append,← List.append_assoc,← hw]
+  rw [← hz,fromBlocks_onRay,← htail,List.map_append,← List.append_assoc,← hw]
 
 namespace Sparse.FIFO
 

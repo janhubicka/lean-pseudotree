@@ -34,14 +34,14 @@ def schedule {e : FiniteCritical h} (T : RelativeTail e) (j : Nat) : Nat :=
 theorem joined_length {e : FiniteCritical h} (T : RelativeTail e) (u : Node) :
     (T.joined u).length = T.schedule u.val.length := by
   by_cases hu : u.val.length < h
-  · simpa only [joined,schedule,if_pos hu] using e.length_map u hu
+  · simpa only [joined,schedule,if_pos hu,FiniteCritical.level] using e.length_map u hu
   · simpa only [joined,schedule,if_neg hu] using T.length_map u (by omega)
 
 theorem schedule_strict {e : FiniteCritical h} (T : RelativeTail e) (hh : 0 < h) :
     StrictMono T.schedule := by
   intro i j hij
   by_cases hj : j < h
-  · simpa only [schedule,if_pos (hij.trans hj),if_pos hj] using e.level_strict hij hj
+  · simpa only [schedule,if_pos (hij.trans hj),if_pos hj,FiniteCritical.level] using e.level_strict hij hj
   · by_cases hi : i < h
     · simp only [schedule,if_pos hi,if_neg hj]
       have hlo : e.level i ≤ e.level (h-1) := by
