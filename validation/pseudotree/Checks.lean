@@ -1,4 +1,4 @@
-import PseudotreeValidation.CriticalExtensionBase
+import PseudotreeValidation.LocalPigeonholeBase
 import Lean
 
 -- The two substantive tree Ramsey inputs are imported with proofs.
@@ -155,6 +155,16 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.code_restriction
 #print axioms AllThoseBigRamsey.Pseudotree.CodingRelations.labelled_of_closed
 #print axioms AllThoseBigRamsey.Pseudotree.CodingRelations.closed_image_iff
+
+-- Checked local A.4 and finite reconstruction witnesses.
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.CodingCover.exists_cover
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.CodingCover.schedule_eq
+#print axioms AllThoseBigRamsey.Pseudotree.Reservoir.relativeInitial
+#print axioms AllThoseBigRamsey.Pseudotree.Reservoir.Step.root_supported
+#print axioms AllThoseBigRamsey.Pseudotree.Reservoir.Step.split_supported
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.SlotTransport.lift_comp
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.relative_next_colour
+#print axioms AllThoseBigRamsey.Pseudotree.CriticalCopies.absolute_next_colour
 
 -- Check all declarations in the manuscript namespace, with transitive
 -- dependency collection through mathlib and the tree Ramsey libraries.

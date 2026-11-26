@@ -1,1 +1,1 @@
-import PseudotreeValidation.CriticalExtensionBase
+import PseudotreeValidation.LocalPigeonholeBase
