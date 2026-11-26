@@ -236,6 +236,17 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.embeddingCodes_injective
 #print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.native_IRT
 
+-- Anchored oscillation and the exact copy-level obstruction.
+#print axioms AllThoseBigRamsey.Pseudotree.FiniteOscillation.two_family_tail
+#print axioms AllThoseBigRamsey.Pseudotree.Profiles.System.anchored_oscillations
+#print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.prescribe_bits
+#print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.no_universal_partition
+#print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.ternary_no_universal_partition
+#print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.factorThrough_comp
+#print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.tag_rep_comp
+#print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.transfer_obstruction
+#print axioms AllThoseBigRamsey.Pseudotree.NoInfiniteCanonical.ternary_no_universal_copy_partition
+
 -- Check all declarations in the manuscript namespace, with transitive
 -- dependency collection through mathlib and the tree Ramsey libraries.
 run_cmd do

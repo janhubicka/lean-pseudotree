@@ -168,3 +168,24 @@ analytic-set transfer and native IRT endpoints still await exact-head
 compilation and the full namespace-wide audit. No new axioms or sorry
 declarations are introduced. The validated main branch remains untouched
 pending that check.
+
+## Twentieth batch
+
+Exact-head run 45887624247 at 13f370540c512a3efc7a6e23382e9fd33912027f
+again audited 4709 declarations using only the standard axioms.
+CopySpaceTopology, NativeRamsey and AnalyticApproximation all compiled.
+AnalyticCopies failed on duplicate local instance names, recovery of
+one branch coordinate, and two rewrites through the semireducible
+system.Point projection. This batch repairs these five errors with
+distinct local instance names, explicit list-coordinate recovery and
+typed maps into and out of the actual approximation system.
+
+The independent anchored branch run 45888156631 at
+dd0e53135f290151edb0700d24ddac1e2a6c978a compiled AnchoredOscillation.
+NoInfiniteCanonical reported only two coercion/rewrite errors in
+anchored_embeddings; explicit inequalities in the ambient carrier
+repair them. The anchored and copy-partition-transfer sources (the latter
+from 71808dcb328bd454e1173600dd21e8b468ee740d) are incorporated in this
+branch in one batch to avoid duplicate CI dependency builds. The final
+analytic, native Ramsey and noncanonization endpoints await the combined
+full build and transitive audit. No new assumptions or admissions.

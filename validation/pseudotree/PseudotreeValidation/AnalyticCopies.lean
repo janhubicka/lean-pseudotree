@@ -11,8 +11,8 @@ open CriticalCopies (CriticalMap system approx codingRange)
 open SparseNormalization (Point)
 open RamseySpace.Souslin
 
-local instance boolTopology : TopologicalSpace Bool := ⊥
-local instance boolDiscrete : DiscreteTopology Bool := ⟨rfl⟩
+local instance analyticBoolTopology : TopologicalSpace Bool := ⊥
+local instance analyticBoolDiscrete : DiscreteTopology Bool := ⟨rfl⟩
 
 /-- Equal finite branch prefixes imply equality of each earlier
 coordinate. -/
@@ -20,8 +20,13 @@ theorem branchPrefix_coord {b c : Nat → Nat} {k i : Nat}
     (h : branchPrefix c k = branchPrefix b k) (hi : i < k) : c i = b i := by
   have ht := congrArg (List.take (i+1)) h
   rw [take_branchPrefix c hi,take_branchPrefix b hi] at ht
-  have he := congrArg List.getLast? ht
-  simpa only [branchPrefix_succ,List.getLast?_concat,Option.some.injEq] using he
+  have he := congrArg (fun l : List Nat => l[i]?) ht
+  simp only [branchPrefix_succ,List.concat_eq_append] at he
+  rw [List.getElem?_append_right (show (branchPrefix c i).length ≤ i by simp),
+    List.getElem?_append_right (show (branchPrefix b i).length ≤ i by simp)] at he
+  simp only [length_branchPrefix,Nat.sub_self] at he
+  change some (c i) = some (b i) at he
+  exact Option.some.inj he
 
 /-- Continuity into the literal product subspace implies the local
 prefix continuity required by the Souslin-image lemma. -/
@@ -65,16 +70,19 @@ theorem prefixContinuous_of_continuous (f : (Nat → Nat) → CopySpace)
 
 /-- Every analytic subset of the actual expanded-copy space is
 completely Ramsey for the transported whole-block approximations. -/
+set_option backward.isDefEq.respectTransparency false in
 theorem analytic_copies_ramsey (A : Set CopySpace)
     (hA : MeasureTheory.AnalyticSet A) :
     RamseySpace.IsRamseyOnBasicNeighborhoods (S := system) (toCopy ⁻¹' A) := by
+  let T : system.Point → CopySpace := fun X => toCopy X
+  change RamseySpace.IsRamseyOnBasicNeighborhoods (S := system) (T ⁻¹' A)
   rw [MeasureTheory.AnalyticSet] at hA
   apply (RamseySpace.isRamsey_iff_onBasicNeighborhoods CriticalCopies.ramseySpace _).mp
   rcases hA with rfl | ⟨f,hf,rfl⟩
   · rw [Set.preimage_empty]
     exact RamseySpace.isRamsey_empty CriticalCopies.ramseySpace
-  · let F := copyEquiv.symm ∘ f
-    have hEq : toCopy ⁻¹' Set.range f = Set.range F := by
+  · let F : (Nat → Nat) → system.Point := fun b => copyEquiv.symm (f b)
+    have hEq : T ⁻¹' Set.range f = Set.range F := by
       ext X
       constructor
       · rintro ⟨b,hb⟩
