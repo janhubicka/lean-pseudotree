@@ -67,7 +67,7 @@ theorem PreservesCoding.unique_extension {f : Word → Word} (H : PreservesCodin
 def codingRange (X : CriticalMap) : Set Word := {w | Point w ∧ w ∈ copyRange X}
 
 theorem mem_codingRange_iff (X : CriticalMap) (w : Word) :
-    w ∈ codingRange X ↔ ∃ v (hv : Point v), X.map ⟨v,point_tree hv⟩ = w := by
+    w ∈ codingRange X ↔ ∃ v : Word, ∃ hv : Point v, X.map ⟨v,point_tree hv⟩ = w := by
   constructor
   · rintro ⟨hp,⟨u,rfl⟩⟩
     exact ⟨u.val,point_reflect X u hp,rfl⟩

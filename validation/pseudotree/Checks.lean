@@ -220,6 +220,14 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.embeddingEquiv
 #print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.range_le_iff
 
+-- Analytic transfer by the checked diagonal Souslin-closure theorem.
+#print axioms RamseySpace.operation_approxImageScheme
+#print axioms RamseySpace.prefixContinuous_range_isRamsey
+#print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.copyEquiv
+#print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.finite_copy_cylinder
+#print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.prefixContinuous_of_continuous
+#print axioms AllThoseBigRamsey.Pseudotree.DiaryExpansion.analytic_copies_ramsey
+
 -- Check all declarations in the manuscript namespace, with transitive
 -- dependency collection through mathlib and the tree Ramsey libraries.
 run_cmd do

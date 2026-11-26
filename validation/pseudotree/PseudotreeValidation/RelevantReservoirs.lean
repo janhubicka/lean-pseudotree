@@ -56,7 +56,7 @@ theorem targetCopy_mem (X : CriticalMap) {z : TernaryModel}
     change RayMapModel.embedding (total X) (toBlocks ((wordOf y).map toLetter)) =
       DiaryChains.model ((total X).map w)
     rw [RayMapModel.embedding_apply_word]
-    simp [RayMapModel.act,DiaryChains.model,w,List.map_map,Function.comp_def]
+    simp [RayMapModel.act,DiaryChains.model,w,wordOf,List.map_map,Function.comp_def]
   change Point (wordOf (RayMapModel.embedding (total X) y)) ∧
     wordOf (RayMapModel.embedding (total X) y) ∈ copyRange X
   rw [hmodel,wordOf_model]
@@ -89,11 +89,12 @@ theorem assigned_stable (X : CriticalMap) {n d : Nat} (hd : 0 < d)
   intro j hj u a _
   have hu : 3*d ≤ u.val.length := u.property.2.symm ▸ hj
   have he := relevant_append_iff hd htop hu a
+  change assigned X n (u.val ++ [a]) = assigned X n u.val
   by_cases hr : Relevant X n u.val
   · have hr' : Relevant X n (u.val ++ [a]) := he.mpr hr
-    simp only [assigned,child,if_pos hr,if_pos hr']
+    simp only [assigned,if_pos hr,if_pos hr']
   · have hr' : ¬Relevant X n (u.val ++ [a]) := fun h => hr (he.mp h)
-    simp only [assigned,child,if_neg hr,if_neg hr']
+    simp only [assigned,if_neg hr,if_neg hr']
 
 theorem slot_identity {j : Nat} (w : Boundary j) :
     slot (restrictCritical identity (j+1)) w = w.val :=
@@ -230,9 +231,11 @@ theorem relative_support_construction : RelativeSupportConstruction := by
       · obtain ⟨y,hy,z',hz',h0,h2⟩ := hfork i (by simpa [i] using hu') hm
         rw [assigned,if_pos hc] at hy hz'
         have h0' : (Z.map v ++ [0]).IsPrefix (wordOf y) := by
-          simpa [v,wordOf,List.map_append,List.map_map,Function.comp_def] using h0.map toFin
+          have hzero : toFin TernaryLetter.zero = (0 : Fin 3) := rfl
+          simpa [v,wordOf,List.map_append,List.map_map,Function.comp_def,hzero] using h0.map toFin
         have h2' : (Z.map v ++ [2]).IsPrefix (wordOf z') := by
-          simpa [v,wordOf,List.map_append,List.map_map,Function.comp_def] using h2.map toFin
+          have htwo : toFin TernaryLetter.two = (2 : Fin 3) := rfl
+          simpa [v,wordOf,List.map_append,List.map_map,Function.comp_def,htwo] using h2.map toFin
         exact fork_prefix_mem X (targetCopy_mem X hy).2 (targetCopy_mem X hz').2
           h0' h2' (by decide)
     obtain ⟨k,hk⟩ := mem_length_retained X hcritical_mem
