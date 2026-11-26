@@ -275,6 +275,16 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.RevisedConvention.RevisedSparseModel.isFraisseLimit
 #print axioms AllThoseBigRamsey.Pseudotree.RevisedConvention.RevisedSparseModel.selfEmbedding_range
 
+-- Revised native expansion and copy-space endpoints.
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedCodingRelations.conjugate_reflect
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedCodingRelations.map_meet
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedCodingRelations.labelled_of_named_diaries
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedDiaryExpansion.criticalEmbedding
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedDiaryExpansion.embeddingEquiv
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedDiaryExpansion.native_IRT
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedDiaryExpansion.copyHomeomorph
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedDiaryExpansion.analytic_copies_ramsey
+
 run_cmd do
   let env ← Lean.getEnv
   let allowed : List Lean.Name := [`propext, `Classical.choice, `Quot.sound]

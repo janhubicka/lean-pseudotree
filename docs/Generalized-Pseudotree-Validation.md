@@ -285,3 +285,21 @@ substructure. The proof is now explicitly changed to singleton set
 membership. This batch triggers one CI run for that repair together
 with OmegaFraisseApplication and the revised sparse model. No
 admissions or new mathematical axioms.
+
+## Revised native diary expansion batch
+
+The raw finite diary grammar, normalized code-set Ramsey theorem,
+critical-copy reconstruction, approximation system and Ellentuck
+axioms depend only on the literal tree and its FIFO queue. They are
+reused unchanged. RevisedCodingRelations proves conjugation of a
+ray-preserving strong map by digit reflection, and supplies the revised
+meet operation, finite meet hull, closure reflection and named-diary
+restriction bridge. RevisedDiaryExpansion interprets the literal
+meet-closed diary language on the revised sparse model. The native
+embedding equivalence, finite IRT, metric homeomorphism and analytic
+copy-set theorem are then adapted from the checked native interfaces.
+The old proofs are not modified. No additional Ramsey assumptions are
+introduced. Recurrence in arbitrary revised reduct copies, the exact
+rightmost-chain diary characterization, and the finite age Ramsey
+corollary remain separate tasks. All revised adapters await the compiler
+and axiom audit. This source-only batch preserves run 45897025781.
