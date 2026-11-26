@@ -99,3 +99,16 @@ source locations, and RevisedChainDegrees was consequently not built.
 The compiled recurrence and unchecked chain modules remain in the
 development branch until their respective audits. Redundant main CI
 is skipped for this source-identical promotion.
+
+## Audited revised recurrence checkpoint
+
+Run 45902825240 (job 140192444532) at d1468d3c52b06441405b56c75fbc5ccbbdf9c463
+passed the independent transitive audit of 5336 declarations, with
+only propext, Classical.choice and Quot.sound. The new audited
+endpoint is revised native recurrence, obtained from the chart
+generalization of the reservoir construction. Its exact audited
+sources are promoted. RevisedChainDiaries and RevisedCopyCanonization
+compiled in the subsequent full build but remain outside this audit.
+The only failed module, RevisedChainDegrees, reported a missing
+membership witness and missing import, with consequent errors.
+No duplicate CI for the source-identical promotion.
