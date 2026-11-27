@@ -1,0 +1,16 @@
+import AllThoseBigRamsey.BooleanAlgebra.Boundary
+import AllThoseBigRamsey.BooleanAlgebra.Frontier
+import AllThoseBigRamsey.BooleanAlgebra.SignRuns
+
+#print axioms AllThoseBigRamsey.BooleanAlgebra.coarsenEvent_comp
+#print axioms AllThoseBigRamsey.BooleanAlgebra.coarsenWord_comp
+#print axioms AllThoseBigRamsey.BooleanAlgebra.boundaryFrom_coarsen
+#print axioms AllThoseBigRamsey.BooleanAlgebra.Frontier.split_coarsen
+#print axioms AllThoseBigRamsey.BooleanAlgebra.Frontier.terminal_coarsen
+#print axioms AllThoseBigRamsey.BooleanAlgebra.Frontier.cut_coarsen
+#print axioms AllThoseBigRamsey.BooleanAlgebra.SignRuns.reflected_pair_runs
+#print axioms AllThoseBigRamsey.BooleanAlgebra.SignRuns.append_runs_lower
+#print axioms AllThoseBigRamsey.BooleanAlgebra.SignRuns.reflected_blocks_runs
+#print axioms AllThoseBigRamsey.BooleanAlgebra.SignRuns.flatten_runs_lower
+#print axioms AllThoseBigRamsey.BooleanAlgebra.SignRuns.middle_runs_le
+#print axioms AllThoseBigRamsey.BooleanAlgebra.SignRuns.remove_block_growth

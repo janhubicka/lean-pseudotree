@@ -24,3 +24,8 @@ bijection and local generalized BRS, with only standard logical axioms.
 See [the current statement map](docs/Pseudotree-Manuscript-Validation.md)
 and [the cumulative audit ledger](docs/Generalized-Pseudotree-Validation.md)
 for statement-level scope and exact-head build results.
+
+## Boolean algebra companion
+
+The same repository now also contains the initial finite interface for the Boolean algebra companion: boundary-event coarsening, support/germ types, and signed-word identities. See [Boolean algebra validation](docs/Boolean-Algebra-Validation.md) for the 42 proved finite lemmas, build commands, and the exact limits of what is formalized. The unrestricted recurrent Boolean diary theorem is not claimed.
+

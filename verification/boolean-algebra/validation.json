@@ -1,0 +1,31 @@
+{
+  "date": "2026-11-27",
+  "base_commit": "ffc482318cbbcadacec07ccc0c6ba5dd7cdf7e20",
+  "paper_commit": "a2c9611648b389cf57490fc44ad505419ab62371",
+  "compiler": "Lean 4.35.0-rc3",
+  "root_build": {
+    "command": "lake build",
+    "exit_code": 0,
+    "jobs": 31
+  },
+  "boolean_checks": {
+    "command": "lake env lean BooleanAlgebraChecks.lean",
+    "exit_code": 0,
+    "principal_axiom_checks": 12,
+    "axioms": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "boolean_umbrella": {
+    "command": "lake env lean AllThoseBigRamsey/BooleanAlgebra.lean",
+    "exit_code": 0
+  },
+  "theorem_counts": {
+    "Boundary": 6,
+    "Frontier": 7,
+    "SignRuns": 29,
+    "total": 42
+  },
+  "scope": "Finite boundary events, support/germ states, and signed-word identities only; infinite interval and Ramsey results remain English proofs."
+}
