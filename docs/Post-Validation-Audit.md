@@ -68,3 +68,23 @@ relative coding witness likewise reduces the original encode projection
 explicitly, to avoid a further elaboration-only regression.
 No proof statement was weakened. The full audit must pass before the
 new main checkpoint is promoted.
+
+## Independent dependency-patch integrity check
+
+At the exact pinned upstream commits in the current lockfile, the
+original and patched SHA-256 hashes and the common hash of the
+non-import lines agree with all three entries of
+`validation/pseudotree/import-patches/source-integrity.json`.
+We independently fetched the pinned source files, applied the recorded
+unified-diff hunks in memory, and compared the bytes with the import
+lines removed. All three comparisons passed: Milliken/AmbientTree.lean,
+Milliken/GeneralTree/HeterogeneousWedgeOrder.lean, RamseySpace/Basic.lean.
+This confirms the patch files change imports only, not statements,
+proofs, definitions or compiler settings.
+
+The optional reproducibility script `scripts/check_import_patches.py`
+checks those same conditions against the actual local patched Lake
+checkout, including the commit revisions and the set of modified
+tracked files. It does not itself build Lean, and its execution against
+a real local Lake checkout remains to be performed. The running full CI
+uses the same dependency pins and the unchanged patch files.

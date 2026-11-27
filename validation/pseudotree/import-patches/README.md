@@ -31,6 +31,7 @@ git -C .lake/packages/milliken apply --check ../../../import-patches/milliken.pa
 git -C .lake/packages/milliken apply ../../../import-patches/milliken.patch
 git -C .lake/packages/ramsey-space-todorcevic apply --check ../../../import-patches/ramsey-space.patch
 git -C .lake/packages/ramsey-space-todorcevic apply ../../../import-patches/ramsey-space.patch
+python3 scripts/check_import_patches.py
 LEAN_NUM_THREADS=2 lake build PseudotreeValidation
 ```
 
@@ -43,3 +44,7 @@ visible import-only diff.
 The narrower imports change only the dependency graph. Coverage is determined
 by the actual local theorem statements and their checked proof dependencies;
 see the package README and audit for the final endpoints and their scope.
+
+The optional integrity checker verifies the exact checkout revisions, the
+recorded hashes before and after patching, equality of non-import lines,
+and absence of other tracked-file changes in the two patched dependencies.
