@@ -1,4 +1,1 @@
-✔ [29/32] Built AllThoseBigRamsey.BooleanAlgebra.DevlinTransfer (589ms)
-✔ [30/32] Built AllThoseBigRamsey.BooleanAlgebra (389ms)
-✔ [31/32] Built AllThoseBigRamsey (367ms)
-Build completed successfully (32 jobs).
+Build completed successfully (33 jobs).

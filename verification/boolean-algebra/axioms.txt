@@ -14,3 +14,12 @@
 'AllThoseBigRamsey.BooleanAlgebra.DevlinTransfer.homogeneous_comp' does not depend on any axioms
 'AllThoseBigRamsey.BooleanAlgebra.DevlinTransfer.finite_family' depends on axioms: [propext, Quot.sound]
 'AllThoseBigRamsey.BooleanAlgebra.DevlinTransfer.finite_family_factorization' depends on axioms: [propext, Quot.sound]
+'AllThoseBigRamsey.BooleanAlgebra.BlockSchemes.triangular_product_expansion' depends on axioms: [propext, Quot.sound]
+'AllThoseBigRamsey.BooleanAlgebra.BlockSchemes.triangular_product_of_uniform' depends on axioms: [propext, Quot.sound]
+'AllThoseBigRamsey.BooleanAlgebra.BlockSchemes.triangular_product_scalar_iff' depends on axioms: [propext, Quot.sound]
+'AllThoseBigRamsey.BooleanAlgebra.BlockSchemes.character_flatMap' depends on axioms: [propext]
+'AllThoseBigRamsey.BooleanAlgebra.BlockSchemes.combination_flatMap' depends on axioms: [propext, Quot.sound]
+'AllThoseBigRamsey.BooleanAlgebra.BlockSchemes.uniformProfiles_comp' depends on axioms: [propext, Quot.sound]
+'AllThoseBigRamsey.BooleanAlgebra.BlockSchemes.baseProfiles_comp' depends on axioms: [propext, Quot.sound]
+'AllThoseBigRamsey.BooleanAlgebra.BlockSchemes.condensed_base_products' depends on axioms: [propext, Quot.sound]
+'AllThoseBigRamsey.BooleanAlgebra.BlockSchemes.condensed_triangular' depends on axioms: [propext, Quot.sound]

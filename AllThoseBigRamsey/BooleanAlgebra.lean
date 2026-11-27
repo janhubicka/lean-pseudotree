@@ -2,3 +2,4 @@ import AllThoseBigRamsey.BooleanAlgebra.Boundary
 import AllThoseBigRamsey.BooleanAlgebra.Frontier
 import AllThoseBigRamsey.BooleanAlgebra.SignRuns
 import AllThoseBigRamsey.BooleanAlgebra.DevlinTransfer
+import AllThoseBigRamsey.BooleanAlgebra.BlockSchemes

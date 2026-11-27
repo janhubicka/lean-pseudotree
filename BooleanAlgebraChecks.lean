@@ -2,6 +2,7 @@ import AllThoseBigRamsey.BooleanAlgebra.Boundary
 import AllThoseBigRamsey.BooleanAlgebra.Frontier
 import AllThoseBigRamsey.BooleanAlgebra.SignRuns
 import AllThoseBigRamsey.BooleanAlgebra.DevlinTransfer
+import AllThoseBigRamsey.BooleanAlgebra.BlockSchemes
 
 #print axioms AllThoseBigRamsey.BooleanAlgebra.coarsenEvent_comp
 #print axioms AllThoseBigRamsey.BooleanAlgebra.coarsenWord_comp
@@ -19,3 +20,12 @@ import AllThoseBigRamsey.BooleanAlgebra.DevlinTransfer
 #print axioms AllThoseBigRamsey.BooleanAlgebra.DevlinTransfer.homogeneous_comp
 #print axioms AllThoseBigRamsey.BooleanAlgebra.DevlinTransfer.finite_family
 #print axioms AllThoseBigRamsey.BooleanAlgebra.DevlinTransfer.finite_family_factorization
+#print axioms AllThoseBigRamsey.BooleanAlgebra.BlockSchemes.triangular_product_expansion
+#print axioms AllThoseBigRamsey.BooleanAlgebra.BlockSchemes.triangular_product_of_uniform
+#print axioms AllThoseBigRamsey.BooleanAlgebra.BlockSchemes.triangular_product_scalar_iff
+#print axioms AllThoseBigRamsey.BooleanAlgebra.BlockSchemes.character_flatMap
+#print axioms AllThoseBigRamsey.BooleanAlgebra.BlockSchemes.combination_flatMap
+#print axioms AllThoseBigRamsey.BooleanAlgebra.BlockSchemes.uniformProfiles_comp
+#print axioms AllThoseBigRamsey.BooleanAlgebra.BlockSchemes.baseProfiles_comp
+#print axioms AllThoseBigRamsey.BooleanAlgebra.BlockSchemes.condensed_base_products
+#print axioms AllThoseBigRamsey.BooleanAlgebra.BlockSchemes.condensed_triangular

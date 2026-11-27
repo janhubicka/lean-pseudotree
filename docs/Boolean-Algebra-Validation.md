@@ -4,7 +4,7 @@ This development accompanies [boolean-algebra.tex](https://github.com/janhubicka
 
 ## Scope
 
-The four modules contain **46 proved theorems** over Lean/Std:
+The five modules contain **61 proved theorems** over Lean/Std:
 
 | Module | Theorems | Mathematical content |
 | --- | ---: | --- |
@@ -12,6 +12,7 @@ The four modules contain **46 proved theorems** over Lean/Std:
 | Frontier | 7 | Finite support/germ states, preservation of valid states, splits and terminal cells under coarsening |
 | SignRuns | 29 | Signed-word concatenation, reversal, sign change, reflected blocks, and run-count lower bounds |
 | DevlinTransfer | 4 | Abstract equivariant transport of IRT, preservation under composition, finite iteration, and a finite palette factorization |
+| BlockSchemes | 15 | Triangular Boolean block products, the scalar-product criterion under coefficient uniqueness, and composition of incidence and base-character profiles |
 
 A frontier support is represented as a finite list and interpreted through membership. Order and repeated labels in that list are semantically irrelevant. Validity of states and legality of splits are explicit predicates; these files do not assume every abstract infinite path represents a clopen element.
 
@@ -24,9 +25,12 @@ A frontier support is represented as a finite list and interpreted through membe
 - The native endpoint Ramsey theorem: DevlinTransfer.transfer_irt proves the abstract transport once the source Ramsey theorem, occurrence equivalence, and equivariance are supplied. The concrete Boolean correspondence remains an English proof.
 - Finite-family upper bounds: DevlinTransfer.finite_family and finite_family_factorization prove iteration under a common composition action and factorization through the chosen type index.
 
+- The Boolean block presentation: BlockSchemes.triangular_product_expansion computes the coefficients of a product of two block sums. The scalar-product converse explicitly assumes coefficient uniqueness; independent bases supply it.
+- Block substitutions: BlockSchemes.uniformProfiles_comp and baseProfiles_comp prove compatibility under composition. condensed_base_products and condensed_triangular prove the resulting actual Boolean multiplication identities.
+
 Namespace prefixes are AllThoseBigRamsey.BooleanAlgebra. Boundary declarations are directly in that namespace.
 
-These are finite semantic and word-algebra checks together with an abstract Ramsey transfer. **Not yet formalized:** the interval representation, finite interval realization, high-endpoint selection, modular residue theorem, atomless partition fusion, Devlin's theorem, the concrete interval/endpoint occurrence equivalence and embedding correspondence, the infinite reflected embedding, and the requested recurrent diary Ramsey theorem. The source IRT, occurrence equivalence, and action laws in DevlinTransfer are explicit hypotheses, not new axioms or claimed formalizations of those results.
+These are finite semantic, word-algebra, and block-product checks together with an abstract Ramsey transfer. BlockSchemes uses actual Boolean characteristic functions with XOR addition and conjunction multiplication; its finite list identities do not assume an infinite Ramsey principle. **Not yet formalized:** the interval representation, finite interval realization, high-endpoint selection, modular residue theorem, atomless partition fusion, cofinal Boolean block embeddings and fair splitting, Hindman/Milliken--Taylor, Devlin's theorem, the concrete interval/endpoint occurrence equivalence and embedding correspondence, the infinite reflected embedding, and the requested recurrent diary Ramsey theorem. The source IRT, occurrence equivalence, and action laws in DevlinTransfer are explicit hypotheses, not new axioms or claimed formalizations of those results.
 
 In particular no checked theorem asserts that the proposed raw endpoint records are recurrent. The manuscript proves that exact signed-run types are avoidable.
 
@@ -39,7 +43,7 @@ From this repository:
     lake build
     lake env lean BooleanAlgebraChecks.lean
 
-The sixteen principal declarations audited in BooleanAlgebraChecks.lean depend only on propext and, where needed, Quot.sound. The two basic transport lemmas are axiom-free. There are no sorry, admit, or new mathematical axioms. The recorded output is in verification/boolean-algebra/axioms.txt.
+The twenty-five principal declarations audited in BooleanAlgebraChecks.lean depend only on propext and, where needed, Quot.sound. The two basic transport lemmas are axiom-free. There are no sorry, admit, or new mathematical axioms. The recorded output is in verification/boolean-algebra/axioms.txt.
 
 The local root build includes the existing root pseudotree modules and the Boolean imports. The build and principal-axiom results for this checkpoint are recorded in verification/boolean-algebra/validation.json.
 
@@ -49,7 +53,7 @@ The Boolean modules are imported by AllThoseBigRamsey.BooleanAlgebra and by the 
 
 The manuscript now proves a native IRT theorem for a coherent Devlin endpoint expansion, with full coverage of its finite occurrences. Its exact endpoint types are avoidable in arbitrary bare Boolean copies.
 
-The unrestricted construction must use actual compatible finite Boolean partitions, with explicit splitting of every nonzero element and finite supports for every chosen element. Coarsening endpoint types requires additional Boolean embeddings: any two distinct fine types remain unavoidable if outputs are restricted to interval-generated copies.
+The manuscript now supplies cofinal block embeddings over frozen finite prefixes, exact tail-reservoir coverage, and a local Hindman theorem for splitting diagrams. These are English proofs. The unrestricted Ramsey construction must additionally preserve colour decisions through both child reservoirs and retain fairness and full occurrence coverage. Every two-atom copy is a block image of the first split, so all block maps cannot be taken as the diary-preserving monoid. Coarsening endpoint types requires additional Boolean embeddings: any two distinct fine types remain unavoidable if outputs are restricted to interval-generated copies.
 
 The upper target remains one-type canonization for unavoidable normalized types, hence finite-family canonization. No simultaneous canonization of a countably infinite family is claimed.
 

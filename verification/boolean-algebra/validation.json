@@ -1,18 +1,18 @@
 {
   "date": "2026-11-27",
-  "base_commit": "12392752df02ef52843b168a997e566c62b630d2",
-  "paper_commit": "ef67685951b847189b2da57ef2fd5812a220f1da",
-  "paper_source_sha256": "f9454df199add5fcfda4bdfe49ccfb232aa862a8f33dfe5e2a484bbae6f8e77c",
+  "base_commit": "dd7384c6acb67a109952c2cf221054ac9f361aeb",
+  "paper_commit": "9a785d9215886afc2f8c5f7812dec74c9c74e1d0",
+  "paper_source_sha256": "11c26ac72e91a254d1e32eac95a8499f7d82b5397df56720fb7dbc8a5f3bd453",
   "compiler": "Lean 4.35.0-rc3",
   "root_build": {
     "command": "lake build",
     "exit_code": 0,
-    "jobs": 32
+    "jobs": 33
   },
   "boolean_checks": {
     "command": "lake env lean BooleanAlgebraChecks.lean",
     "exit_code": 0,
-    "principal_axiom_checks": 16,
+    "principal_axiom_checks": 25,
     "axioms": [
       "propext",
       "Quot.sound"
@@ -27,8 +27,17 @@
     "Frontier": 7,
     "SignRuns": 29,
     "DevlinTransfer": 4,
-    "total": 46
+    "total": 61,
+    "BlockSchemes": 15
   },
-  "new_module_sha256": "284454755f6ea7027881ac43d9201d87f6bbeae8df76500714c4389a052b0c70",
-  "scope": "Finite boundary events, support/germ states, signed-word identities, and abstract equivariant IRT transport with finite-family iteration. The source IRT, concrete occurrence equivalence, and action laws are explicit hypotheses. Infinite interval, modular-profile, and concrete Devlin correspondence results remain English proofs."
+  "new_module_sha256": "bb5802b79819ef16b03c29bcb20599e2bbc9eb3d11f0c4d0dd871c431fd03628",
+  "scope": "Finite boundary events, support/germ states, signed-word identities, actual Boolean characteristic-function block products, the scalar-product criterion under coefficient uniqueness, composition of incidence/base-character profiles, and abstract equivariant IRT transport with finite-family iteration. The source IRT, concrete occurrence equivalence, and action laws are explicit hypotheses. Block cofinality, fair splitting, the signed-word evaluation on the concrete interval algebra, Hindman/Milliken--Taylor, recurrent modular profiles, and concrete Devlin correspondence remain English proofs. No unrestricted typed Boolean Ramsey theorem is asserted.",
+  "new_module": "AllThoseBigRamsey/BooleanAlgebra/BlockSchemes.lean",
+  "paper_pdf_validation": {
+    "pages": 25,
+    "pdflatex_passes": 2,
+    "undefined_references": false,
+    "overfull_boxes": false,
+    "visual_review": "All pages rendered; new theorem, signed-word, persistent-window, and F2 upper-bound pages checked in detail."
+  }
 }
