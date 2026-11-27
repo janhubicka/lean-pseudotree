@@ -26,3 +26,5 @@ import PseudotreeValidation.RevisedDiaryRealization
 import PseudotreeValidation.RevisedExpansionClassification
 import PseudotreeValidation.RevisedChainCopyDegree
 import PseudotreeValidation.RevisedLocalBRS
+import PseudotreeValidation.RevisedWordLex
+import PseudotreeValidation.GeneralizedSubsetNormalization

@@ -482,3 +482,12 @@ compare actual literal-copy palette bounds with the embedding bounds
 canonization on a fixed expansion fiber inside any prescribed reduct
 copy. Both await compilation. The latter uses no additional Ramsey
 assumptions, only the audited finite-fragment result and classification.
+
+RevisedWordLex states the lexicographic and separator-prefix clauses
+directly in the literal revised order. GeneralizedSubsetNormalization
+extends the checked sparse normalization statement to subsets of any
+abstract generalized diary: lift that whole diary using the checked
+FIFO construction, normalize the subset image, and use naturality.
+These are direct manuscript-facing adapters, not new mathematical
+assumptions; compilation and audit are pending. This commit triggers
+one consolidated run of the repairs and adapters.

@@ -335,6 +335,12 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.RevisedExpansionClassification.expansion_unavoidable
 #print axioms AllThoseBigRamsey.Pseudotree.RevisedExpansionClassification.local_embedding_canonization
 
+-- Revised word clauses and normalization inside arbitrary finite diaries.
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedConvention.revisedWordBelow_prefix_incomparable_lex
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedConvention.revisedWordBelow_one_prefix
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.subset_diary_axioms
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.normalize_subset
+
 run_cmd do
   let env ← Lean.getEnv
   let allowed : List Lean.Name := [`propext, `Classical.choice, `Quot.sound]
