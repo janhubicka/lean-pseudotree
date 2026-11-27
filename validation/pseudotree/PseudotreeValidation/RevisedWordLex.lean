@@ -34,6 +34,7 @@ theorem revisedWordBelow_one_prefix (p tail v : Sparse.Word)
     simpa [mirror_append,mirror_cons,mirrorLetter] using hm
   have hp := Sparse.wordBelow_one_prefix _ _ _ h'
   apply (mirror_prefix_iff _ _).mp
-  simpa [mirror_append,mirror_singleton,mirrorLetter] using hp
+  rw [mirror_append,mirror_singleton]
+  exact hp
 
 end AllThoseBigRamsey.Pseudotree.RevisedConvention

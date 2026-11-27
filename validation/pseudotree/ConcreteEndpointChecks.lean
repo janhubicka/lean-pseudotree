@@ -234,6 +234,11 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.RevisedDiaryRealization.diary_labels_iff
 #print axioms AllThoseBigRamsey.Pseudotree.RevisedDiaryRealization.infinite_nonchain_diaries
 
+-- The last independently compiled manuscript-facing adapters.
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedChainDegrees.exact_copy_degree
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.subset_diary_axioms
+#print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.normalize_subset
+
 run_cmd do
   let env ← Lean.getEnv
   let allowed : List Lean.Name := [`propext, `Classical.choice, `Quot.sound]

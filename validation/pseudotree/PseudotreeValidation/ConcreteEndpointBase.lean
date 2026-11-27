@@ -17,3 +17,5 @@ import PseudotreeValidation.RevisedChainDiaries
 import PseudotreeValidation.RevisedCopyCanonization
 import PseudotreeValidation.RevisedChainDegrees
 import PseudotreeValidation.RevisedDiaryRealization
+import PseudotreeValidation.RevisedChainCopyDegree
+import PseudotreeValidation.GeneralizedSubsetNormalization

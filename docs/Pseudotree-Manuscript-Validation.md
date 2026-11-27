@@ -15,7 +15,7 @@ in `janhubicka/pseudotree`.
   and `Quot.sound`.
 - Manuscript: [3cf339c55b74](https://github.com/janhubicka/pseudotree/commit/3cf339c55b746ca95359d837bb9c6da0e2be909d).
 - Pending consolidated build: [45983941867](https://github.com/janhubicka/lean-pseudotree/actions/runs/45983941867)
-  at `58307f5464e4164deec7afbf7a1e39bdf1bbc08d`. The Lean/Std core build has passed.
+  at `58307f5464e4164deec7afbf7a1e39bdf1bbc08d`. The core and independent audit passed; two final adapters compiled. The remaining two source locations were repaired in the following validation batch.
 
 ## Statement map
 
@@ -39,8 +39,8 @@ and “pending” is not a checked declaration.
 | Restricted Milliken | Audited | `V/RayMilliken.lean`: `RayMilliken.restricted_milliken` |
 | Rightmost chain diaries and exact count | Audited | `V/RevisedChainDiaries.lean`: `rightmost_rule`, `turn_after_noncontinuation`, `diaryEquiv`, `chainDiary_card`; `S/DiaryCounts.lean`: `diaryCount_first_five` |
 | Actual revised FIFO sparse model | Audited | `V/RevisedSparseGeometry.lean`: `revised_sparse_meet_closed`; `V/RevisedSparseModel.lean`: `RevisedSparseModel.isFraisseLimit`, `selfEmbedding_range` |
-| Generalized normalization, extraction and invariance | Audited on the sparse set; arbitrary-diary-subset adapter pending | `V/GeneralizedNormalization.lean`: `selected_image`, `code_image`; `V/GeneralizedDiaryGrammar.lean`: `normalize`, `extraction`; `V/GeneralizedRecovery.lean`: `image_recovery`, `labelled_image_recovery` |
-| Exact revised chain BRD | Audited for functional embeddings; chain-copy adapter pending | `V/RevisedChainDegrees.lean`: `exact_degree`, `realized`, `unavoidable`, `canonical`; chains are rigid |
+| Generalized normalization, extraction and invariance | Audited on the sparse set; arbitrary-diary-subset adapter compiled; audit pending | `V/GeneralizedNormalization.lean`: `selected_image`, `code_image`; `V/GeneralizedDiaryGrammar.lean`: `normalize`, `extraction`; `V/GeneralizedRecovery.lean`: `image_recovery`, `labelled_image_recovery` |
+| Exact revised chain BRD | Audited for functional embeddings; chain-copy adapter compiled; audit pending | `V/RevisedChainDegrees.lean`: `exact_degree`, `realized`, `unavoidable`, `canonical`; chains are rigid |
 | FIFO lifting | Audited for finite diaries and the actual infinite sparse tree | `V/FIFOLifting.lean`: `diary_lift`, `liftCritical` |
 | Revised recurrence | Audited | `V/RevisedRecurrence.lean`: `RevisedDiaryExpansion.native_recurrence` |
 | Native IRT and finite Ramsey age | Audited | `V/RevisedNativeRamsey.lean`: `native_IRT`; `V/RevisedAgeRamsey.lean`: `finite_age_ramsey` |

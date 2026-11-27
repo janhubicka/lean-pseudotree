@@ -69,7 +69,9 @@ theorem induced_eq_iff (e g : A ↪[language] P) :
       @FirstOrder.Language.Structure.RelMap expandedLanguage A S n r x) h
     exact Iff.of_eq h'
   · intro h
-    have hr : (induced e).RelMap = (induced g).RelMap := by
+    have hr :
+        @FirstOrder.Language.Structure.RelMap expandedLanguage A (induced e) =
+        @FirstOrder.Language.Structure.RelMap expandedLanguage A (induced g) := by
       funext n r x
       exact propext (h n r x)
     unfold induced at hr ⊢

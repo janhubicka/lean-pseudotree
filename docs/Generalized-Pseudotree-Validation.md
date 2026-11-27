@@ -491,3 +491,19 @@ FIFO construction, normalize the subset image, and use naturality.
 These are direct manuscript-facing adapters, not new mathematical
 assumptions; compilation and audit are pending. This commit triggers
 one consolidated run of the repairs and adapters.
+
+## Final compiler repairs (2026-11-27)
+
+Exact-head run [45983941867](https://github.com/janhubicka/lean-pseudotree/actions/runs/45983941867)
+(job 140454619748) at 58307f5464e4164deec7afbf7a1e39bdf1bbc08d passed
+the independent 5439-declaration transitive audit. The core job audited
+1312 declarations. The full build compiled RevisedChainCopyDegree and
+GeneralizedSubsetNormalization. The remaining source errors were at
+two locations: RevisedExpansionClassification's equality of relation
+projections needs its implicit arity binder retained (explicit @);
+RevisedWordLex's reflected singleton needed direct rewriting instead
+of broad simplification (which expanded the singleton to a cons with
+a reflected empty tail). Both are repaired. The next independent audit
+includes the two successfully compiled adapter modules. The local BRS
+module remains downstream of the classification. No proof obligations
+were weakened, and no new axioms or admissions were introduced.
