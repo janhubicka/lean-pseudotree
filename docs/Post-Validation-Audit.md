@@ -54,3 +54,17 @@ simp-only equality. These are repaired by importing ReservoirGeometry
 and making chainWords an abbreviation of the common definition.
 The next full build checks the downstream relative amalgamation
 and all final endpoints. No mathematical statements have changed.
+
+## Second cleanup build
+
+Run [45989033533](https://github.com/janhubicka/lean-pseudotree/actions/runs/45989033533)
+at 9e5a59c9c85657bca5b059c1ea51e39c0a1371f6 passed the core build. The common chainWords definition
+and the revised exact chain and literal-copy degree modules compiled;
+FIFOBoundary and the relative FIFO and slot modules also compiled.
+Only two errors in RelativeReservoirInit were reported, both requiring
+explicit reduction of ReservoirChart.original.decode to fromBlocks.
+Both simp calls now include ReservoirChart.original. The downstream
+relative coding witness likewise reduces the original encode projection
+explicitly, to avoid a further elaboration-only regression.
+No proof statement was weakened. The full audit must pass before the
+new main checkpoint is promoted.

@@ -162,7 +162,7 @@ theorem coding_supported (R : TailRun targets h) (u : Node) (hu : h ≤ u.val.le
   change DiaryChains.model (R.value ⟨v.val,v.property.1⟩) ∈ Set.range (targets v.val)
   rw [R.value_at k v]
   change toBlocks ((((R.step k).roots v).map toFin).map toLetter) ∈ Set.range (targets v.val)
-  simpa only [List.map_map,Function.comp_def,toLetter_toFin,List.map_id_fun',id_eq] using
+  simpa only [ReservoirChart.original,List.map_map,Function.comp_def,toLetter_toFin,List.map_id_fun',id_eq] using
     (R.step k).coding v hp
 
 theorem fork_supported (R : TailRun targets h) (stable : StableAfter targets h)
