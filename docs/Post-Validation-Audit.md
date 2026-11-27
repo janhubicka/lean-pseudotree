@@ -38,3 +38,19 @@ checks still run. No new admissions. A smaller declaration count after
 removing historical duplicate proofs is expected, not a loss of validated
 main endpoints. Release validation markers remain pinned to the green
 baseline until this cleanup itself is checked.
+
+## First cleanup build
+
+Run [45987683076](https://github.com/janhubicka/lean-pseudotree/actions/runs/45987683076)
+at 11154adf26b800d73977345756eb8260f23a064b:
+the core audit passed, and ReservoirGeometry, ReservoirSource,
+ReservoirChart, ChartReservoir, ReservoirTransitions, SparseRecurrence,
+RevisedRecurrence, RevisedCopyCanonization, RevisedExpansionClassification
+and RevisedLocalBRS all compiled. The full build reported two underlying
+regressions: FIFOBoundary still imported removed LowerStep, blocking
+the relative construction; and the simplified chain unavoidability
+proof used the duplicated chainWords and words definitions with a
+simp-only equality. These are repaired by importing ReservoirGeometry
+and making chainWords an abbreviation of the common definition.
+The next full build checks the downstream relative amalgamation
+and all final endpoints. No mathematical statements have changed.

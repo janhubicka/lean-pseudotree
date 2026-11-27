@@ -1,5 +1,5 @@
 import PseudotreeValidation.FIFOEdges
-import PseudotreeValidation.LowerStep
+import PseudotreeValidation.ReservoirGeometry
 
 /-! A live queue slot admits a label cone, and finitely many such cones
 can be synchronized at one label length. The proof uses the existing

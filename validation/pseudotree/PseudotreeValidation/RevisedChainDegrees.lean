@@ -21,11 +21,11 @@ open scoped FirstOrder
 
 variable {n : Nat}
 
-def chainWords (e : Fin n ↪[language] RevisedSparseModel) : Finset Word :=
-  Finset.univ.image (word ∘ e)
+abbrev chainWords (e : Fin n ↪[language] RevisedSparseModel) : Finset Word :=
+  RevisedCopyCanonization.words e
 
 theorem words_card (e : Fin n ↪[language] RevisedSparseModel) : (chainWords e).card = n := by
-  unfold chainWords
+  unfold chainWords RevisedCopyCanonization.words
   rw [Finset.card_image_of_injective _ (word_injective.comp e.injective)]
   simp
 
@@ -208,7 +208,8 @@ theorem unavoidable (hn : 0 < n) (f : RevisedSparseModel ↪[language] RevisedSp
   obtain ⟨e,he⟩ := RevisedCopyCanonization.unavoidable f (NoInfiniteCanonical.copyOf e₀)
   refine ⟨e,type_eq_of_codes ?_⟩
   rw [typeOf_codes,← he₀,typeOf_codes]
-  simpa only [RevisedCopyCanonization.diary_copyOf] using he
+  rw [RevisedCopyCanonization.diary_copyOf,RevisedCopyCanonization.diary_copyOf] at he
+  exact he
 
 /-- The complete finite family of literal chain diaries canonizes every
 finite colouring of chains, with the actual normalized type labels. -/
