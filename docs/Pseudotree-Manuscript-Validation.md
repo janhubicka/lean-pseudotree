@@ -9,16 +9,18 @@ in `janhubicka/pseudotree`.
 
 ## Completed validation checkpoint
 
-- Lean: [fce8813d6341](https://github.com/janhubicka/lean-pseudotree/commit/fce8813d6341f029520e697eefed1d3e451205f2)
-- Full exact-head CI: [45985075218](https://github.com/janhubicka/lean-pseudotree/actions/runs/45985075218),
-  job 140458485649; both full builds succeeded (9,312 jobs).
-- Independent endpoint audit: 5,446 declarations.
-- Final cumulative audit: **5,498 declarations**, only `propext`,
+- Cleaned Lean proof checkpoint: [09b7edf67a46](https://github.com/janhubicka/lean-pseudotree/commit/09b7edf67a466e97f52a4d946d17bb86e88c9fca).
+- Full exact-head CI: [45991877707](https://github.com/janhubicka/lean-pseudotree/actions/runs/45991877707),
+  job 140481444702; both builds succeeded (9,304 jobs).
+- Independent endpoint audit: 5,113 declarations.
+- Final cumulative audit: **5,165 declarations**, only `propext`,
   `Classical.choice`, and `Quot.sound`.
-- Lean/Std core: [45985075053](https://github.com/janhubicka/lean-pseudotree/actions/runs/45985075053),
-  success (the preceding equivalent core audit checked 1,312 declarations).
-- Manuscript pin: [32ff5e7e1f09](https://github.com/janhubicka/pseudotree/commit/32ff5e7e1f09323aa6bdc9f2c10cbca83fe04963).
-- No pending compiler errors or admissions in the audited aggregate.
+- Lean/Std core: [45991877606](https://github.com/janhubicka/lean-pseudotree/actions/runs/45991877606), success.
+- Manuscript pin: [fe3ed30e12db](https://github.com/janhubicka/pseudotree/commit/fe3ed30e12dbee44ac093cc04a045a3abfe3d7a3).
+- The original 5,498-declaration checkpoint remains in Git history.
+  The [post-validation audit](Post-Validation-Audit.md) documents the
+  removed duplicate proofs and successful refactor. No pending compiler
+  errors or unexpected axioms at the pinned checkpoint.
 
 ## Statement map
 

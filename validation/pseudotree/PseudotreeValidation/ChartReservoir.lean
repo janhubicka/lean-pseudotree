@@ -1,14 +1,13 @@
 import PseudotreeValidation.ReservoirChart
-import PseudotreeValidation.SparseRecurrence
+import PseudotreeValidation.ReservoirSource
+import PseudotreeValidation.GeneralizedNormalization
 
 /-! The reservoir transitions in arbitrary literal word coordinates.
 This is the common generalization of the existing checked transitions:
 the only geometric inputs that vary are supplied by ReservoirChart.
 Source, frontier indices, ordered-child bookkeeping and the actual
-sparse queue remain shared with the original development. The older
-checked module is retained unchanged at its verified checkpoint until
-this generalization has passed Lean; it can then be replaced by
-specialization to ReservoirChart.original. -/
+sparse queue are shared. The original-coordinate relative construction
+uses the specialization in ReservoirTransitions. -/
 
 namespace AllThoseBigRamsey.Pseudotree.ChartReservoir
 open LowerGeometry

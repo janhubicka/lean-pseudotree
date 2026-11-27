@@ -52,11 +52,6 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.SparseModel.selfEmbedding_range
 #print axioms AllThoseBigRamsey.Pseudotree.SparseNormalization.normalized_axioms
 #print axioms AllThoseBigRamsey.Pseudotree.SparseNormalization.extraction
-#print axioms AllThoseBigRamsey.Pseudotree.SparseExtraction.sparse_copy_representation
-#print axioms AllThoseBigRamsey.Pseudotree.LowerRealization.sparse_chain_realization
-#print axioms AllThoseBigRamsey.Pseudotree.DiaryRecovery.codes_source
-#print axioms AllThoseBigRamsey.Pseudotree.DiaryRecovery.image_recovery
-#print axioms AllThoseBigRamsey.Pseudotree.DiaryRecovery.embeddedChain_unique
 
 -- The incomparable-pair argument and transfer to every finite such structure.
 #print axioms AllThoseBigRamsey.Pseudotree.Incomparables.every_oscillation
@@ -72,9 +67,6 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.RepoBridge.bound_iff
 #print axioms AllThoseBigRamsey.Pseudotree.RepoBridge.incomparable_degree_infinite
 #print axioms AllThoseBigRamsey.Pseudotree.RepoBridge.singleton_degree
-#print axioms AllThoseBigRamsey.Pseudotree.chain_upper_bound
-#print axioms AllThoseBigRamsey.Pseudotree.chain_degree
-#print axioms AllThoseBigRamsey.Pseudotree.chain_degree_diaries
 
 -- Generalized selection and labelled projection, without a chain hypothesis.
 #print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.essential_subset_selected

@@ -2,7 +2,7 @@
 
 Companion to the pseudotree manuscript in `janhubicka/pseudotree`.
 
-This repository contains the complete existing pseudotree formalization migrated from `janhubicka/lean-all-those-big-Ramsey-degrees` at commit `44585ec2fb84d6cd2cbc1a4ec35a378dc9f5f26c`. Existing module paths and declaration names are preserved. The small shared `AllThoseBigRamsey/Relational.lean` module is copied unchanged to make the project independent; its original stays in the source repository. The `all_those_big_ramsey` Lake package name is retained for compatibility with the nested package's lockfile.
+This repository contains the complete existing pseudotree formalization migrated from `janhubicka/lean-all-those-big-Ramsey-degrees` at commit `44585ec2fb84d6cd2cbc1a4ec35a378dc9f5f26c`. The maintained main results retain their declaration names; superseded intermediate proof assemblies are removed in the post-validation refactor. The small shared `AllThoseBigRamsey/Relational.lean` module is copied unchanged to make the project independent; its original stays in the source repository. The `all_those_big_ramsey` Lake package name is retained for compatibility with the nested package's lockfile.
 
 ## Build and audit
 
@@ -16,14 +16,14 @@ The revised development now covers the literal unchanged FIFO queue,
 exact chain degrees, generalized diary realization, recurrent native
 expansion, IRT, finite Ramsey age, non-precompactness, minimal unavoidable
 copy partition, the concrete Ellentuck theorem and the native analytic
-copy-space theorem. The final cumulative audit checked **5,498 pseudotree declarations**
-at [fce8813d6341](https://github.com/janhubicka/lean-pseudotree/commit/fce8813d6341f029520e697eefed1d3e451205f2),
+copy-space theorem. The consolidated proof development passed the cumulative audit of **5,165 pseudotree declarations**
+at [09b7edf67a46](https://github.com/janhubicka/lean-pseudotree/commit/09b7edf67a466e97f52a4d946d17bb86e88c9fca),
 including exact literal-copy chain degrees, the induced-expansion
 bijection and local generalized BRS, with only standard logical axioms.
-[Full CI passed](https://github.com/janhubicka/lean-pseudotree/actions/runs/45985075218).
+[Full CI passed](https://github.com/janhubicka/lean-pseudotree/actions/runs/45991877707).
 See [the current statement map](docs/Pseudotree-Manuscript-Validation.md)
 and [the cumulative audit ledger](docs/Generalized-Pseudotree-Validation.md)
-for statement-level scope and exact-head build results.
+for statement-level scope and exact-head build results. See also the [post-validation audit and refactor](docs/Post-Validation-Audit.md).
 
 ## Boolean algebra companion
 

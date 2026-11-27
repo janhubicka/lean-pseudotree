@@ -3,7 +3,7 @@ import PseudotreeValidation.RevisedChainDiaries
 import PseudotreeValidation.RevisedRecurrence
 import PseudotreeValidation.ExpandedCopyLanguage
 import PseudotreeValidation.RevisedExpandedCopyLanguage
-import PseudotreeValidation.DegreeAssembly
+import PseudotreeValidation.RevisedCopyCanonization
 
 /-! Exact revised chain degrees from the already proved generalized diary
 canonization and recurrence. This avoids a second chain-specific
@@ -21,11 +21,11 @@ open scoped FirstOrder
 
 variable {n : Nat}
 
-def chainWords (e : Fin n ↪[language] RevisedSparseModel) : Finset Word :=
-  Finset.univ.image (word ∘ e)
+abbrev chainWords (e : Fin n ↪[language] RevisedSparseModel) : Finset Word :=
+  RevisedCopyCanonization.words e
 
 theorem words_card (e : Fin n ↪[language] RevisedSparseModel) : (chainWords e).card = n := by
-  unfold chainWords
+  unfold chainWords RevisedCopyCanonization.words
   rw [Finset.card_image_of_injective _ (word_injective.comp e.injective)]
   simp
 
@@ -188,21 +188,12 @@ theorem realized (hn : 0 < n) (D : ChainDiary n) :
   rw [typeOf_codes,he]
   exact hNorm
 
-/-- Forget only the expansion relations, preserving the actual
-revised functional reduct. -/
-noncomputable def reductCritical (X : CriticalCopies.CriticalMap) :
-    RevisedSparseModel ↪[language] RevisedSparseModel :=
-  embeddingOfInfMap (RevisedDiaryExpansion.criticalPointMap X)
-    (RevisedDiaryExpansion.criticalEmbedding X).injective
-    (RevisedDiaryExpansion.criticalPointMap_inf X)
+/-- Forget the expansion relations using the common native copy interface. -/
+noncomputable abbrev reductCritical := RevisedCopyCanonization.reductCritical
 
 theorem words_comp (X : CriticalCopies.CriticalMap) (e : Fin n ↪[language] RevisedSparseModel) :
-    chainWords ((reductCritical X).comp e) = (chainWords e).image (CriticalCopies.total X).map := by
-  unfold chainWords
-  rw [Finset.image_image]
-  apply Finset.image_congr
-  intro a _
-  exact RevisedDiaryExpansion.criticalPointMap_word X (e a)
+    chainWords ((reductCritical X).comp e) = (chainWords e).image (CriticalCopies.total X).map :=
+  RevisedCopyCanonization.words_comp X e
 
 theorem type_preserved (hn : 0 < n) (X : CriticalCopies.CriticalMap)
     (e : Fin n ↪[language] RevisedSparseModel) :
@@ -214,13 +205,11 @@ theorem type_preserved (hn : 0 < n) (X : CriticalCopies.CriticalMap)
 theorem unavoidable (hn : 0 < n) (f : RevisedSparseModel ↪[language] RevisedSparseModel)
     (D : ChainDiary n) : ∃ e : Fin n ↪[language] RevisedSparseModel, typeOf hn (f.comp e) = D := by
   obtain ⟨e₀,he₀⟩ := realized hn D
-  obtain ⟨g,hg⟩ := RevisedDiaryExpansion.native_recurrence f
-  obtain ⟨X,rfl⟩ := RevisedDiaryExpansion.criticalEmbedding_surjective g
-  have hsub : Set.range ((reductCritical X).comp e₀) ⊆ Set.range f := by
-    rintro _ ⟨a,rfl⟩
-    exact hg ⟨e₀ a,rfl⟩
-  obtain ⟨e,he⟩ := DegreeAssembly.factor_embedding f ((reductCritical X).comp e₀) hsub
-  exact ⟨e,by rw [he,type_preserved hn X e₀,he₀]⟩
+  obtain ⟨e,he⟩ := RevisedCopyCanonization.unavoidable f (NoInfiniteCanonical.copyOf e₀)
+  refine ⟨e,type_eq_of_codes ?_⟩
+  rw [typeOf_codes,← he₀,typeOf_codes]
+  rw [RevisedCopyCanonization.diary_copyOf,RevisedCopyCanonization.diary_copyOf] at he
+  exact he
 
 /-- The complete finite family of literal chain diaries canonizes every
 finite colouring of chains, with the actual normalized type labels. -/

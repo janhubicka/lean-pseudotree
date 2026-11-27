@@ -532,3 +532,16 @@ errors or new axioms in the full aggregate.
 
 This documentation-only commit leaves the audited Lean files,
 toolchain, dependency pins and workflow unchanged.
+
+## Post-validation consolidation
+
+The exact audited replacement `09b7edf67a466e97f52a4d946d17bb86e88c9fca` passed full CI
+[45991877707](https://github.com/janhubicka/lean-pseudotree/actions/runs/45991877707):
+5,113 independent endpoint declarations and 5,165 cumulative
+declarations, only standard logical axioms. The former 5,498
+declaration total included superseded chain-only and duplicated
+reservoir proof assemblies. See [Post-Validation-Audit.md](Post-Validation-Audit.md)
+for the cleanup history, independent import-patch integrity check,
+and remaining scope qualifications. The manuscript pins the new
+verified source at `fe3ed30e12dbee44ac093cc04a045a3abfe3d7a3`. Concurrent Boolean-algebra
+companion additions are preserved in the merge to main.
