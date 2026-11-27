@@ -1,31 +1,34 @@
 {
   "date": "2026-11-27",
-  "base_commit": "ffc482318cbbcadacec07ccc0c6ba5dd7cdf7e20",
-  "paper_commit": "a2c9611648b389cf57490fc44ad505419ab62371",
+  "base_commit": "12392752df02ef52843b168a997e566c62b630d2",
+  "paper_commit": "ef67685951b847189b2da57ef2fd5812a220f1da",
+  "paper_source_sha256": "f9454df199add5fcfda4bdfe49ccfb232aa862a8f33dfe5e2a484bbae6f8e77c",
   "compiler": "Lean 4.35.0-rc3",
   "root_build": {
     "command": "lake build",
     "exit_code": 0,
-    "jobs": 31
+    "jobs": 32
   },
   "boolean_checks": {
     "command": "lake env lean BooleanAlgebraChecks.lean",
     "exit_code": 0,
-    "principal_axiom_checks": 12,
+    "principal_axiom_checks": 16,
     "axioms": [
       "propext",
       "Quot.sound"
+    ],
+    "axiom_free": [
+      "DevlinTransfer.transfer_irt",
+      "DevlinTransfer.homogeneous_comp"
     ]
-  },
-  "boolean_umbrella": {
-    "command": "lake env lean AllThoseBigRamsey/BooleanAlgebra.lean",
-    "exit_code": 0
   },
   "theorem_counts": {
     "Boundary": 6,
     "Frontier": 7,
     "SignRuns": 29,
-    "total": 42
+    "DevlinTransfer": 4,
+    "total": 46
   },
-  "scope": "Finite boundary events, support/germ states, and signed-word identities only; infinite interval and Ramsey results remain English proofs."
+  "new_module_sha256": "284454755f6ea7027881ac43d9201d87f6bbeae8df76500714c4389a052b0c70",
+  "scope": "Finite boundary events, support/germ states, signed-word identities, and abstract equivariant IRT transport with finite-family iteration. The source IRT, concrete occurrence equivalence, and action laws are explicit hypotheses. Infinite interval, modular-profile, and concrete Devlin correspondence results remain English proofs."
 }

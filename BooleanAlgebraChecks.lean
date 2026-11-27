@@ -1,6 +1,7 @@
 import AllThoseBigRamsey.BooleanAlgebra.Boundary
 import AllThoseBigRamsey.BooleanAlgebra.Frontier
 import AllThoseBigRamsey.BooleanAlgebra.SignRuns
+import AllThoseBigRamsey.BooleanAlgebra.DevlinTransfer
 
 #print axioms AllThoseBigRamsey.BooleanAlgebra.coarsenEvent_comp
 #print axioms AllThoseBigRamsey.BooleanAlgebra.coarsenWord_comp
@@ -14,3 +15,7 @@ import AllThoseBigRamsey.BooleanAlgebra.SignRuns
 #print axioms AllThoseBigRamsey.BooleanAlgebra.SignRuns.flatten_runs_lower
 #print axioms AllThoseBigRamsey.BooleanAlgebra.SignRuns.middle_runs_le
 #print axioms AllThoseBigRamsey.BooleanAlgebra.SignRuns.remove_block_growth
+#print axioms AllThoseBigRamsey.BooleanAlgebra.DevlinTransfer.transfer_irt
+#print axioms AllThoseBigRamsey.BooleanAlgebra.DevlinTransfer.homogeneous_comp
+#print axioms AllThoseBigRamsey.BooleanAlgebra.DevlinTransfer.finite_family
+#print axioms AllThoseBigRamsey.BooleanAlgebra.DevlinTransfer.finite_family_factorization

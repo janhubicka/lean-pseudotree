@@ -10,3 +10,7 @@
 'AllThoseBigRamsey.BooleanAlgebra.SignRuns.flatten_runs_lower' depends on axioms: [propext, Quot.sound]
 'AllThoseBigRamsey.BooleanAlgebra.SignRuns.middle_runs_le' depends on axioms: [propext, Quot.sound]
 'AllThoseBigRamsey.BooleanAlgebra.SignRuns.remove_block_growth' depends on axioms: [propext, Quot.sound]
+'AllThoseBigRamsey.BooleanAlgebra.DevlinTransfer.transfer_irt' does not depend on any axioms
+'AllThoseBigRamsey.BooleanAlgebra.DevlinTransfer.homogeneous_comp' does not depend on any axioms
+'AllThoseBigRamsey.BooleanAlgebra.DevlinTransfer.finite_family' depends on axioms: [propext, Quot.sound]
+'AllThoseBigRamsey.BooleanAlgebra.DevlinTransfer.finite_family_factorization' depends on axioms: [propext, Quot.sound]

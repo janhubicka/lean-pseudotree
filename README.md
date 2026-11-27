@@ -27,5 +27,5 @@ for statement-level scope and exact-head build results. See also the [post-valid
 
 ## Boolean algebra companion
 
-The same repository now also contains the initial finite interface for the Boolean algebra companion: boundary-event coarsening, support/germ types, and signed-word identities. See [Boolean algebra validation](docs/Boolean-Algebra-Validation.md) for the 42 proved finite lemmas, build commands, and the exact limits of what is formalized. The unrestricted recurrent Boolean diary theorem is not claimed.
+The same repository contains the Boolean algebra companion's finite interface and abstract Ramsey transfer: boundary-event coarsening, support/germ types, signed-word identities, equivariant IRT transport, and finite-family canonization. See [Boolean algebra validation](docs/Boolean-Algebra-Validation.md) for the 46 proved theorems, build commands, and the exact limits of what is formalized. The concrete Devlin endpoint correspondence remains an English proof, and the unrestricted recurrent Boolean diary theorem is not claimed.
 
