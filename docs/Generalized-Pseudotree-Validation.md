@@ -125,3 +125,19 @@ RevisedChainDegrees compiled in the subsequent full build. The only
 failure was a reversed palette equality in RevisedDiaryRealization.
 The latter and the exact normalized degree assembly await the next
 cumulative audit. Redundant main CI is skipped.
+
+## Audited exact revised degrees and abstract diary realization
+
+Exact-head run 45921125425 (job 140251844386) at ec8cff90e6ea471e6101b6c37e43e9818a20d3f4
+passed the independent build and transitive audit of 5439 declarations
+with only propext, Classical.choice and Quot.sound. This promotion
+preserves the exact audited module blobs. The new audited endpoints
+are the matching finite chain bounds in the actual revised sparse
+model, prescribed labeled realization and converse normalization,
+the identification of realized copy labels with abstract diaries,
+and infinitely many realized labels for every finite nonchain.
+The full build reported only errors in RevisedExpansionClassification:
+a missing noncomputable annotation and unqualified relation
+projection. Those repairs remain in the development branch until
+verified. No duplicate CI is requested for the source-identical
+promotion.
