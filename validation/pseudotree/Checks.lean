@@ -330,6 +330,11 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.RevisedExpansionClassification.realizeExpansion_bijective
 #print axioms AllThoseBigRamsey.Pseudotree.RevisedExpansionClassification.expansionEquiv
 
+-- Direct manuscript-facing copy and labeled embedding interfaces.
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedChainDegrees.exact_copy_degree
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedExpansionClassification.expansion_unavoidable
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedExpansionClassification.local_embedding_canonization
+
 run_cmd do
   let env ← Lean.getEnv
   let allowed : List Lean.Name := [`propext, `Classical.choice, `Quot.sound]

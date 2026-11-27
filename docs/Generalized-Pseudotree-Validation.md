@@ -475,3 +475,10 @@ The classification module reported missing noncomputable on
 the label definition and unqualified FirstOrder.Language.Structure.RelMap.
 Both underlying errors are repaired. The next run checks the repaired
 full induced-expansion classification. No new axioms or admissions.
+
+The statement-level adapters RevisedChainCopyDegree and RevisedLocalBRS
+compare actual literal-copy palette bounds with the embedding bounds
+(using rigidity of chains), and derive labeled unavoidability and
+canonization on a fixed expansion fiber inside any prescribed reduct
+copy. Both await compilation. The latter uses no additional Ramsey
+assumptions, only the audited finite-fragment result and classification.
