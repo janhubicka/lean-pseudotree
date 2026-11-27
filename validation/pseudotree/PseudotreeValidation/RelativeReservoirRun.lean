@@ -148,7 +148,7 @@ theorem prefix_supported (R : TailRun targets h) (stable : StableAfter targets h
       ((R.value u).map toLetter).IsPrefix (fromBlocks z) := by
   let k := u.val.length-h
   let v : Level sparseSource (h+k) := ⟨u.val,u.property,by dsimp [k]; omega⟩
-  obtain ⟨z,hz,hpre⟩ := (R.step k).root_supported
+  obtain ⟨z,hz,hpre⟩ := Step.root_supported (R.step k)
     (stable (h+k) (by omega)) v
   refine ⟨z,hz,?_⟩
   change ((R.value ⟨v.val,v.property.1⟩).map toLetter).IsPrefix (fromBlocks z)
@@ -171,7 +171,7 @@ theorem fork_supported (R : TailRun targets h) (stable : StableAfter targets h)
       ((R.value (CriticalCopies.criticalNode i)).map toLetter ++ [TernaryLetter.zero]).IsPrefix (fromBlocks y) ∧
       ((R.value (CriticalCopies.criticalNode i)).map toLetter ++ [TernaryLetter.two]).IsPrefix (fromBlocks z) := by
   obtain ⟨k,rfl⟩ := Nat.exists_eq_add_of_le hi
-  obtain ⟨y,hy,z,hz,h0,h2⟩ := (R.step k).split_supported
+  obtain ⟨y,hy,z,hz,h0,h2⟩ := Step.split_supported (R.step k)
     (stable (h+k) (by omega)) hsplit
   have hc := R.value_at k (criticalAt sparseSource (h+k))
   change R.value (CriticalCopies.criticalNode (h+k)) =

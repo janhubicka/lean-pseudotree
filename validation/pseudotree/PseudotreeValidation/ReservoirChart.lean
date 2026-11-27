@@ -1,5 +1,5 @@
 import PseudotreeValidation.RevisedSparseModel
-import PseudotreeValidation.SlotReservoirs
+import PseudotreeValidation.ReservoirGeometry
 
 /-! The only order-sensitive input to the reservoir construction is
 the chart from the ambient meet-tree to literal words. A chart fixes

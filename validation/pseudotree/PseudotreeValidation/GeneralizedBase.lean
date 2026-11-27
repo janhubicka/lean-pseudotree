@@ -28,12 +28,7 @@ import PseudotreeValidation.LowerSplit
 import PseudotreeValidation.SparseChainGeometry
 import PseudotreeValidation.SparseLex
 import PseudotreeValidation.RepoBridge
-import PseudotreeValidation.LowerRealization
 import PseudotreeValidation.DiaryRecoveryMaximum
-import PseudotreeValidation.SparseExtraction
-import PseudotreeValidation.DiaryRecovery
-import PseudotreeValidation.DegreeAssembly
-import PseudotreeValidation.ChainDegrees
 import AllThoseBigRamsey.Pseudotree.WordLex
 import PseudotreeValidation.GeneralizedNormalization
 import RamseySpace.AbstractEllentuck
