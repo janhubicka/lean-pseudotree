@@ -227,6 +227,13 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.RevisedCopyCanonization.no_proper_unavoidable_refinement
 #print axioms AllThoseBigRamsey.Pseudotree.RevisedCopyCanonization.sharpness
 
+-- Exact revised degree and abstract labeled realization.
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedChainDegrees.exact_degree
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedDiaryRealization.realize_pair
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedDiaryRealization.normalized_pair
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedDiaryRealization.diary_labels_iff
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedDiaryRealization.infinite_nonchain_diaries
+
 run_cmd do
   let env ← Lean.getEnv
   let allowed : List Lean.Name := [`propext, `Classical.choice, `Quot.sound]

@@ -23,3 +23,4 @@ import PseudotreeValidation.RevisedChainDiaries
 import PseudotreeValidation.RevisedChainDegrees
 import PseudotreeValidation.RevisedCopyCanonization
 import PseudotreeValidation.RevisedDiaryRealization
+import PseudotreeValidation.RevisedExpansionClassification

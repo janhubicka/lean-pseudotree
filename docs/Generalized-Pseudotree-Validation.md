@@ -441,3 +441,25 @@ and the repaired exact degree theorem await CI. Identification
 of equality of the entire induced expanded relational structure
 with equality of the labeled pair remains a separate packaging
 step. No new admissions or mathematical axioms.
+
+## Final labeled expansion classification batch
+
+Run 45908856042 (job 140212066348) at 189d10e5cea245d1ece626f046311ad2c59c9037
+audited 5403 declarations using only the standard axioms, including
+the revised chain-diary count and native minimal unavoidable copy
+partition. Those exact audited blobs are now on main at fd3a32fbf1e649253583280df4e756652644facd.
+RevisedChainDegrees compiled. The sole error in RevisedDiaryRealization
+was an equality in the wrong direction in a Finset.mem_image witness;
+it is repaired. The independent audit now includes both modules.
+
+RevisedExpansionClassification implements the induced expanded
+first-order structure on the fixed finite reduct. Equality of the
+full named diary relation and the coding-height order determines
+every normalized label. Conversely the restriction identity and
+ray-map recovery show that the full set of labeled normalized
+words determines the interpretation of every relation, including
+on non-meet-closed tuples. Realization and normalization then
+provide an explicit equivalence between independently specified
+labeled diary pairs and actual induced expanded structures on A.
+The proof is drafted, awaiting compilation and cumulative audit.
+No new mathematical axioms or explicit admissions.

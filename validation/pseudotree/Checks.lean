@@ -325,6 +325,11 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.RevisedDiaryRealization.diary_labels_iff
 #print axioms AllThoseBigRamsey.Pseudotree.RevisedDiaryRealization.infinite_nonchain_diaries
 
+-- Actual induced expanded structures and labeled-diagram bijection.
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedExpansionClassification.induced_eq_iff_labels
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedExpansionClassification.realizeExpansion_bijective
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedExpansionClassification.expansionEquiv
+
 run_cmd do
   let env ← Lean.getEnv
   let allowed : List Lean.Name := [`propext, `Classical.choice, `Quot.sound]

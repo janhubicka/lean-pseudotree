@@ -172,7 +172,7 @@ theorem infinite_nonchain_diaries [SemilatticeInf A] [MeetsInterpreted A]
       have hc := (hcanon i.val i.property).choose_spec e rfl
       change χ' (copyOf (g.comp e)) = c i at hc
       rw [hχ] at hc
-      exact Finset.mem_image.mpr ⟨i,Finset.mem_attach _ _,hc⟩
+      exact Finset.mem_image.mpr ⟨i,Finset.mem_attach _ _,hc.symm⟩
     exact (not_lt_of_ge hcard) (hlarge g palette hcover)
 
 end AllThoseBigRamsey.Pseudotree.RevisedDiaryRealization
