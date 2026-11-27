@@ -10,4 +10,14 @@ This repository contains the complete existing pseudotree formalization migrated
 - Full model, exact chain big Ramsey degrees, and infinite-degree theorem for nonchains: follow the [mathlib/Milliken build instructions](validation/pseudotree/README.md).
 - [Manuscript statement map](docs/Pseudotree-Manuscript-Validation.md) and [mathematical audit](docs/Pseudotree-Audit.md).
 
-The historical verification logs and hashes under `validation/pseudotree/verification/` describe the original validation checkpoint, not a fresh run in this repository. The imported proofs are unchanged; new CI runs check the migrated package. The audited generalized development includes the concrete Ellentuck theorem, native expanded-copy homeomorphism, native IRT and recurrence, and the native analytic-set theorem and the binary copy-level noncanonization theorem. The literal revised orientation's sparse Fraisse model, native IRT, homeomorphism and analytic Ramsey theorem have also passed the independent audit. See [generalized validation checkpoints](docs/Generalized-Pseudotree-Validation.md) for exact coverage and outstanding adapters.
+The historical verification logs and hashes under
+`validation/pseudotree/verification/` describe older checkpoints.
+The revised development now covers the literal unchanged FIFO queue,
+exact chain degrees, generalized diary realization, recurrent native
+expansion, IRT, finite Ramsey age, non-precompactness, minimal unavoidable
+copy partition, the concrete Ellentuck theorem and the native analytic
+copy-space theorem. The last independent audit checked 5,439 pseudotree
+declarations at [43dcece03adb](https://github.com/janhubicka/lean-pseudotree/commit/43dcece03adbdb21a8f1a1832b04fe2cfb978a7a).
+See [the current statement map](docs/Pseudotree-Manuscript-Validation.md)
+and [the cumulative audit ledger](docs/Generalized-Pseudotree-Validation.md)
+for remaining statement-level obligations and exact-head build results.

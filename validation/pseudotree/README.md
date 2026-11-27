@@ -12,7 +12,22 @@ The final degree statements use the parent repository's existing
 `IsBigRamseyDegree` definition, via a proved equivalence with the relational
 language that records both order and the graph of meet.
 
-## Exact chain-degree endpoint
+## Current revised convention
+
+The revised literal order and fixed FIFO queue are validated separately
+from the original chain-only proof below. See
+[the current statement map](../../docs/Pseudotree-Manuscript-Validation.md)
+for the exact audited revised endpoints and pending adapters.
+The current audited degree theorem is
+`RevisedChainDegrees.exact_degree`, with
+`RevisedChainDiaries.chainDiary_card` identifying the bound with the
+number of rightmost generalized chain diaries. The revised native IRT,
+recurrence, finite Ramsey-age and analytic copy-space endpoints are also
+audited. The countably branching result derives its structural
+hypotheses from the defining Fraïssé age (`OmegaFraisse`); it does not
+construct an independent concrete model.
+
+## Original chain-degree endpoint (historical API)
 
 The following theorem is compiled without an extraction, realization,
 canonization, or uniqueness hypothesis:
@@ -35,7 +50,7 @@ five values are proved by `diaryCount_first_five`:
 | --- | ---: | ---: | ---: | ---: | ---: |
 | Exact degree | 1 | 7 | 157 | 7,927 | 727,741 |
 
-## Main proved interfaces
+## Original proved interfaces (retained for compatibility)
 
 The main endpoints are:
 
