@@ -1,3 +1,4 @@
+import AllThoseBigRamsey.BooleanAlgebra.SignedSupport
 import AllThoseBigRamsey.BooleanAlgebra.Boundary
 import AllThoseBigRamsey.BooleanAlgebra.Frontier
 import AllThoseBigRamsey.BooleanAlgebra.SignRuns
@@ -29,3 +30,11 @@ import AllThoseBigRamsey.BooleanAlgebra.BlockSchemes
 #print axioms AllThoseBigRamsey.BooleanAlgebra.BlockSchemes.baseProfiles_comp
 #print axioms AllThoseBigRamsey.BooleanAlgebra.BlockSchemes.condensed_base_products
 #print axioms AllThoseBigRamsey.BooleanAlgebra.BlockSchemes.condensed_triangular
+#print axioms AllThoseBigRamsey.BooleanAlgebra.SignedSupport.wordFrom_flip
+#print axioms AllThoseBigRamsey.BooleanAlgebra.SignedSupport.wordFrom_uniform
+#print axioms AllThoseBigRamsey.BooleanAlgebra.SignedSupport.wordFrom_append
+#print axioms AllThoseBigRamsey.BooleanAlgebra.SignedSupport.word_append
+#print axioms AllThoseBigRamsey.BooleanAlgebra.SignedSupport.evaluatedBlocks_eq_zip
+#print axioms AllThoseBigRamsey.BooleanAlgebra.SignedSupport.wordFrom_block_substitution
+#print axioms AllThoseBigRamsey.BooleanAlgebra.SignedSupport.word_block_substitution
+#print axioms AllThoseBigRamsey.BooleanAlgebra.SignedSupport.word_of_antichain

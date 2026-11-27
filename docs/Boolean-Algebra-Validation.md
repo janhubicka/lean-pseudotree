@@ -4,7 +4,7 @@ This development accompanies [boolean-algebra.tex](https://github.com/janhubicka
 
 ## Scope
 
-The five modules contain **61 proved theorems** over Lean/Std:
+The six modules contain **71 proved theorems** over Lean/Std:
 
 | Module | Theorems | Mathematical content |
 | --- | ---: | --- |
@@ -13,6 +13,7 @@ The five modules contain **61 proved theorems** over Lean/Std:
 | SignRuns | 29 | Signed-word concatenation, reversal, sign change, reflected blocks, and run-count lower bounds |
 | DevlinTransfer | 4 | Abstract equivariant transport of IRT, preservation under composition, finite iteration, and a finite palette factorization |
 | BlockSchemes | 15 | Triangular Boolean block products, the scalar-product criterion under coefficient uniqueness, and composition of incidence and base-character profiles |
+| SignedSupport | 10 | Signed coefficient words with old offsets, concatenation, exact ordered block substitution, and positive antichain words |
 
 A frontier support is represented as a finite list and interpreted through membership. Order and repeated labels in that list are semantically irrelevant. Validity of states and legality of splits are explicit predicates; these files do not assume every abstract infinite path represents a clopen element.
 
@@ -28,9 +29,12 @@ A frontier support is represented as a finite list and interpreted through membe
 - The Boolean block presentation: BlockSchemes.triangular_product_expansion computes the coefficients of a product of two block sums. The scalar-product converse explicitly assumes coefficient uniqueness; independent bases supply it.
 - Block substitutions: BlockSchemes.uniformProfiles_comp and baseProfiles_comp prove compatibility under composition. condensed_base_products and condensed_triangular prove the resulting actual Boolean multiplication identities.
 
+- Signed-support evaluation: SignedSupport.wordFrom_block_substitution proves the full image-word calculation under explicit incidence profiles and offset compatibility. word_block_substitution gives its pure-support form, and evaluatedBlocks_eq_zip identifies the recursion with literal signed concatenation.
+- Antichain cuts: SignedSupport.word_of_antichain proves that the finite support word is entirely positive. This does not assert cofinality of antichain substitutions; the manuscript proves that monoid is not cofinal.
+
 Namespace prefixes are AllThoseBigRamsey.BooleanAlgebra. Boundary declarations are directly in that namespace.
 
-These are finite semantic, word-algebra, and block-product checks together with an abstract Ramsey transfer. BlockSchemes uses actual Boolean characteristic functions with XOR addition and conjunction multiplication; its finite list identities do not assume an infinite Ramsey principle. **Not yet formalized:** the interval representation, finite interval realization, high-endpoint selection, modular residue theorem, atomless partition fusion, cofinal Boolean block embeddings and fair splitting, Hindman/Milliken--Taylor, Devlin's theorem, the concrete interval/endpoint occurrence equivalence and embedding correspondence, the infinite reflected embedding, and the requested recurrent diary Ramsey theorem. The source IRT, occurrence equivalence, and action laws in DevlinTransfer are explicit hypotheses, not new axioms or claimed formalizations of those results.
+These are finite semantic, word-algebra, and block-product checks together with an abstract Ramsey transfer. BlockSchemes uses actual Boolean characteristic functions with XOR addition and conjunction multiplication; its finite list identities do not assume an infinite Ramsey principle. **Not yet formalized:** the interval representation, finite interval realization, high-endpoint selection, modular residue theorem, atomless partition fusion, cofinal Boolean block embeddings, canonical support forests, local algebraic modular recurrence, uniform/graded modular monoids, global prime-valuation rigidity, finite-age unavoidability versus recurrence, fair splitting, Hindman/Milliken--Taylor, Devlin's theorem, the concrete interval/endpoint occurrence equivalence and embedding correspondence, the infinite reflected embedding, and the requested recurrent diary Ramsey theorem. The source IRT, occurrence equivalence, and action laws in DevlinTransfer are explicit hypotheses, not new axioms or claimed formalizations of those results.
 
 In particular no checked theorem asserts that the proposed raw endpoint records are recurrent. The manuscript proves that exact signed-run types are avoidable.
 
@@ -43,7 +47,7 @@ From this repository:
     lake build
     lake env lean BooleanAlgebraChecks.lean
 
-The twenty-five principal declarations audited in BooleanAlgebraChecks.lean depend only on propext and, where needed, Quot.sound. The two basic transport lemmas are axiom-free. There are no sorry, admit, or new mathematical axioms. The recorded output is in verification/boolean-algebra/axioms.txt.
+The thirty-three principal declarations audited in BooleanAlgebraChecks.lean depend only on propext and, where needed, Quot.sound. The two basic transport lemmas are axiom-free. There are no sorry, admit, or new mathematical axioms. The recorded output is in verification/boolean-algebra/axioms.txt.
 
 The local root build includes the existing root pseudotree modules and the Boolean imports. The build and principal-axiom results for this checkpoint are recorded in verification/boolean-algebra/validation.json.
 
@@ -61,3 +65,11 @@ The upper target remains one-type canonization for unavoidable normalized types,
 
 This initial formalization was produced with ChatGPT and locally checked by Lean. The finite theorem scope above is separate from the independent mathematical audit of the English draft.
 
+
+## Intrinsic oscillation checkpoint
+
+The complete finite support-forest representation and its quotient contraction law are proved in English. The coordinate word uses an exhaustive triangular basis and is not identified with the rational-endpoint word.
+
+The manuscript proves that any Boolean self-embedding which never decreases the valuation of the support run count at one fixed prime must preserve the exact run count and reduced signed word. The proof uses actual source/image tail selection and finite nested-chain probes. It is not yet formalized in Lean. Likewise the cofinal uniform/graded modular monoids and the counterexample separating finite-age unavoidability from recurrence are English results.
+
+The new Lean theorem supplies the exact finite substitution identity used by these arguments. Its hypotheses are incidence compatibility, an increasing source support, and matching old offsets. Nonempty disjoint ordered block supports and the correspondence to actual Boolean basis coordinates are supplied by the mathematical application. No Ramsey, recurrence, atomlessness, or valuation-rigidity axiom has been introduced.

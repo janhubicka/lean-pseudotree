@@ -1,1 +1,4 @@
-Build completed successfully (33 jobs).
+✔ [31/34] Built AllThoseBigRamsey.BooleanAlgebra.SignedSupport (1.0s)
+✔ [32/34] Built AllThoseBigRamsey.BooleanAlgebra (308ms)
+✔ [33/34] Built AllThoseBigRamsey (340ms)
+Build completed successfully (34 jobs).

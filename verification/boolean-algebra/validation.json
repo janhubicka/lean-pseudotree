@@ -1,18 +1,18 @@
 {
   "date": "2026-11-27",
-  "base_commit": "dd7384c6acb67a109952c2cf221054ac9f361aeb",
-  "paper_commit": "9a785d9215886afc2f8c5f7812dec74c9c74e1d0",
-  "paper_source_sha256": "11c26ac72e91a254d1e32eac95a8499f7d82b5397df56720fb7dbc8a5f3bd453",
+  "base_commit": "23487f3e75d631160a4c640c986dde506075f600",
+  "paper_commit": "147c85051bb2f8ad740bec00b571e5ec3c708461",
+  "paper_source_sha256": "292b3858d1c29dd3d167cbf0fc4e528592a2ecc7bd582ef342954c74e96b78a3",
   "compiler": "Lean 4.35.0-rc3",
   "root_build": {
     "command": "lake build",
     "exit_code": 0,
-    "jobs": 33
+    "jobs": 34
   },
   "boolean_checks": {
     "command": "lake env lean BooleanAlgebraChecks.lean",
     "exit_code": 0,
-    "principal_axiom_checks": 25,
+    "principal_axiom_checks": 33,
     "axioms": [
       "propext",
       "Quot.sound"
@@ -27,17 +27,18 @@
     "Frontier": 7,
     "SignRuns": 29,
     "DevlinTransfer": 4,
-    "total": 61,
-    "BlockSchemes": 15
+    "BlockSchemes": 15,
+    "SignedSupport": 10,
+    "total": 71
   },
-  "new_module_sha256": "bb5802b79819ef16b03c29bcb20599e2bbc9eb3d11f0c4d0dd871c431fd03628",
-  "scope": "Finite boundary events, support/germ states, signed-word identities, actual Boolean characteristic-function block products, the scalar-product criterion under coefficient uniqueness, composition of incidence/base-character profiles, and abstract equivariant IRT transport with finite-family iteration. The source IRT, concrete occurrence equivalence, and action laws are explicit hypotheses. Block cofinality, fair splitting, the signed-word evaluation on the concrete interval algebra, Hindman/Milliken--Taylor, recurrent modular profiles, and concrete Devlin correspondence remain English proofs. No unrestricted typed Boolean Ramsey theorem is asserted.",
-  "new_module": "AllThoseBigRamsey/BooleanAlgebra/BlockSchemes.lean",
+  "new_module_sha256": "f82a929f5b0750988cef99bd6f72ed20f69da77a168af83be76ff56b671a3e64",
+  "scope": "Finite boundary events, support/germ states, signed-word identities, Boolean characteristic-function block products, composition of incidence/base-character profiles, exact signed-support evaluation and block substitution, positive antichain words, and abstract equivariant IRT transport with finite-family iteration. The source IRT, concrete occurrence equivalence, and action laws are explicit hypotheses. Canonical support forests, local intrinsic modular recurrence, uniform and graded cofinal modular monoids, global prime-valuation rigidity, finite-age unavoidability without recurrence, fair splitting, Hindman/Milliken--Taylor, interval realization, recurrent endpoint profiles, and concrete Devlin correspondence remain English proofs. No unrestricted typed Boolean Ramsey theorem is asserted.",
+  "new_module": "AllThoseBigRamsey/BooleanAlgebra/SignedSupport.lean",
   "paper_pdf_validation": {
-    "pages": 25,
+    "pages": 34,
     "pdflatex_passes": 2,
     "undefined_references": false,
     "overfull_boxes": false,
-    "visual_review": "All pages rendered; new theorem, signed-word, persistent-window, and F2 upper-bound pages checked in detail."
+    "visual_review": "All 34 pages rendered and reviewed in contact sheets; new local modular recurrence, support-forest representation, and global valuation-rigidity pages inspected in detail."
   }
 }
