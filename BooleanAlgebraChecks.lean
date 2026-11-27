@@ -52,3 +52,5 @@ import AllThoseBigRamsey.BooleanAlgebra.BlockSchemes
 #print axioms AllThoseBigRamsey.BooleanAlgebra.PaletteCoverage.flatten_length_le
 #print axioms AllThoseBigRamsey.BooleanAlgebra.PaletteCoverage.palette_cover_bound
 #print axioms AllThoseBigRamsey.BooleanAlgebra.PaletteCoverage.completed_occurrences_palette_bound
+#print axioms AllThoseBigRamsey.BooleanAlgebra.PaletteCoverage.shifted_palette_cover_bound
+#print axioms AllThoseBigRamsey.BooleanAlgebra.PaletteCoverage.completed_occurrences_shifted_palette_bound

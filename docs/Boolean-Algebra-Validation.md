@@ -4,7 +4,7 @@ This development accompanies [boolean-algebra.tex](https://github.com/janhubicka
 
 ## Scope
 
-The eight modules contain **82 public proved theorems**, with **13 private supporting lemmas**, over Lean/Std. The table counts public declarations:
+The eight modules contain **84 public proved theorems**, with **13 private supporting lemmas**, over Lean/Std. The table counts public declarations:
 
 | Module | Theorems | Mathematical content |
 | --- | ---: | --- |
@@ -15,7 +15,7 @@ The eight modules contain **82 public proved theorems**, with **13 private suppo
 | BlockSchemes | 15 | Triangular Boolean block products, the scalar-product criterion under coefficient uniqueness, and composition of incidence and base-character profiles |
 | SignedSupport | 10 | Signed coefficient words with old offsets, concatenation, exact ordered block substitution, and positive antichain words |
 | CompensatedWords | 8 | Actual head/probe sign words, optional-weight cancellation, every possible terminal seam count, and a whole interval of compensated values |
-| PaletteCoverage | 3 | Finite palette cardinality bound and transport through explicit recurrent-witness completion |
+| PaletteCoverage | 5 | Finite and shifted palette bounds, and transport through explicit recurrent-witness completion |
 
 A frontier support is represented as a finite list and interpreted through membership. Order and repeated labels in that list are semantically irrelevant. Validity of states and legality of splits are explicit predicates; these files do not assume every abstract infinite path represents a clopen element.
 
@@ -36,7 +36,7 @@ A frontier support is represented as a finite list and interpreted through membe
 
 Namespace prefixes are AllThoseBigRamsey.BooleanAlgebra. Boundary declarations are directly in that namespace.
 
-These are finite semantic, word-algebra, and block-product checks together with an abstract Ramsey transfer. BlockSchemes uses actual Boolean characteristic functions with XOR addition and conjunction multiplication; its finite list identities do not assume an infinite Ramsey principle. **Not yet formalized:** the interval representation, finite interval realization, high-endpoint selection, modular residue theorem, atomless partition fusion, cofinal Boolean block embeddings, canonical support forests, local algebraic modular recurrence and thickness, the syndetic classification for both intrinsic and endpoint scalar sets, prescribed ambient inflation, finite dual Ramsey and relative-front Boolean completion, uniform/graded modular monoids, global prime-valuation rigidity, finite-age unavoidability versus recurrence, fair splitting, Hindman/Milliken--Taylor, Devlin's theorem, the concrete interval/endpoint occurrence equivalence and embedding correspondence, the infinite reflected embedding, and the requested recurrent diary Ramsey theorem. The source IRT, occurrence equivalence, and action laws in DevlinTransfer are explicit hypotheses, not new axioms or claimed formalizations of those results.
+These are finite semantic, word-algebra, and block-product checks together with an abstract Ramsey transfer. BlockSchemes uses actual Boolean characteristic functions with XOR addition and conjunction multiplication; its finite list identities do not assume an infinite Ramsey principle. **Not yet formalized:** the interval representation, finite interval realization, high-endpoint selection, modular residue theorem, atomless partition fusion, cofinal Boolean block embeddings, canonical support forests, local algebraic modular recurrence and thickness, the syndetic classification for both intrinsic and endpoint scalar sets, prescribed ambient inflation, finite dual Ramsey and relative-front Boolean completion, uniform/graded modular monoids, global prime-valuation rigidity, finite-age unavoidability versus recurrence, fair splitting, Hindman/Milliken--Taylor, Devlin's theorem, the concrete interval/endpoint occurrence equivalence and embedding correspondence, the infinite reflected embedding, existence and transport of finite splitting obstructions, and the new theorem that every nontrivial finite type in every unavoidable expansion has infinite big Ramsey degree. The source IRT, occurrence equivalence, and action laws in DevlinTransfer are explicit hypotheses, not new axioms or claimed formalizations of those results.
 
 In particular no checked theorem asserts that the proposed raw endpoint records are recurrent. The manuscript proves that exact signed-run types are avoidable.
 
@@ -49,19 +49,21 @@ From this repository:
     lake build
     lake env lean BooleanAlgebraChecks.lean
 
-The forty-four principal declarations audited in BooleanAlgebraChecks.lean depend only on propext and, where needed, Quot.sound. The two basic transport lemmas are axiom-free. There are no sorry, admit, or new mathematical axioms. The recorded output is in verification/boolean-algebra/axioms.txt.
+The forty-six principal declarations audited in BooleanAlgebraChecks.lean depend only on propext and, where needed, Quot.sound. The two basic transport lemmas are axiom-free. There are no sorry, admit, or new mathematical axioms. The recorded output is in verification/boolean-algebra/axioms.txt.
 
 The local root build includes the existing root pseudotree modules and the Boolean imports. The build and principal-axiom results for this checkpoint are recorded in verification/boolean-algebra/validation.json.
 
 The Boolean modules are imported by AllThoseBigRamsey.BooleanAlgebra and by the root library, so the normal root build includes them. The existing nested pseudotree validation package has not been changed.
 
-## Remaining development
+## Mathematical outcome and remaining development
 
-The manuscript now proves a native IRT theorem for a coherent Devlin endpoint expansion, with full coverage of its finite occurrences. Its exact endpoint types are avoidable in arbitrary bare Boolean copies.
+The manuscript proves that **every unavoidable relational expansion B*/B has infinite copy and embedding big Ramsey degree for every finite expanded Boolean type with at least two atoms**. Consequently there is no unavoidable IRT expansion and no recurrent generalized big Ramsey structure. These are independently audited English proofs; this repository does not claim a full formalization of them.
 
-The manuscript now supplies cofinal block embeddings over frozen finite prefixes, exact tail-reservoir coverage, and a local Hindman theorem for splitting diagrams. These are English proofs. The unrestricted Ramsey construction must additionally preserve colour decisions through both child reservoirs and retain fairness and full occurrence coverage. Every two-atom copy is a block image of the first split, so all block maps cannot be taken as the diary-preserving monoid. Coarsening endpoint types requires additional Boolean embeddings: any two distinct fine types remain unavoidable if outputs are restricted to interval-generated copies.
+For an unavoidable family of r-atom copies, a finite avoiding queue gives a splitting obstruction F with t atoms. Every type-preserving-and-reflecting embedding transports it with the same t. Local intrinsic recurrence and the shifted-palette bound force at least ceil(q/(2^(t-1)*(2^(r-1)-1))) colours inside every such image. The finite shifted-palette step is checked in PaletteCoverage; the queue existence, Boolean completion, and transport are mathematical inputs supplied in the manuscript.
 
-The upper target remains one-type canonization for unavoidable normalized types, hence finite-family canonization. No simultaneous canonization of a countably infinite family is claimed.
+The nonrecurrent generalized definition remains open because its homogeneous outputs may be bare Boolean copies containing no expanded self-copy. The native Devlin endpoint theorem remains valid on interval-generated targets, and the F2 reduced-column expansion remains a valid recurrent benchmark. The affine Hindman theorem inside an arbitrary unavoidable Boolean family does not assert atomless Boolean closure or full occurrence coverage.
+
+The GitHub simplification audit also corrected the distinction between the first-split fibre and all fibres of a graded-monoid invariant map, and refuted the claimed universal occurrence of contiguous support forests. The canonical finite forest representation itself remains valid.
 
 ## Assistance
 
@@ -80,6 +82,16 @@ The new Lean theorem supplies the exact finite substitution identity used by the
 
 CompensatedWords.compensated_word_formula uses the actual Bool-list word and SignRuns.runs. It proves that later probe packets cancel all optional even weights. theta_reaches and compensated_interval prove coverage of every integer in the indicated interval, with the weight list fixed. Twelve private word-summary lemmas support the eight public results.
 
-PaletteCoverage.palette_cover_bound proves q <= d*M for coverage of distinct values by bounded palettes. completed_occurrences_palette_bound transports it through explicit witness recurrence and completion into admissible occurrences. Those hypotheses are not assumed as axioms. One private list-cardinality lemma supports the three public results.
+PaletteCoverage.palette_cover_bound proves q <= d*M for coverage of distinct values by bounded palettes. completed_occurrences_palette_bound transports it through explicit witness recurrence and completion into admissible occurrences. Those hypotheses are not assumed as axioms. One private list-cardinality lemma supports the five public results.
 
-The local root build passed with 36 jobs and the principal check file passed with 44 declarations. No infinite Boolean Ramsey theorem, thickness theorem, or syndeticity criterion has been added as a Lean axiom. Their Boolean constructions and infinite arguments are English proofs. The manuscript proves that the untyped full relative front has infinite degree, even though every requested finite envelope can be canonized by finite dual Ramsey.
+The local root build passed with 36 jobs and the principal check file passed with 46 declarations. No infinite Boolean Ramsey theorem, thickness theorem, or syndeticity criterion has been added as a Lean axiom. Their Boolean constructions and infinite arguments are English proofs. The manuscript proves that the untyped full relative front has infinite degree, even though every requested finite envelope can be canonized by finite dual Ramsey.
+
+## Shifted palettes for unavoidable expansions
+
+`PaletteCoverage.shifted_palette_cover_bound` proves
+
+    values.length <= shifts.length * palettes.length * M
+
+for a finite list of distinct values covered by indexed images of palettes of length at most M. The maps are arbitrary; injectivity is not needed. `completed_occurrences_shifted_palette_bound` transfers this estimate through explicit witness recurrence and occurrence completion. In the Boolean application the maps subtract one of the finitely many seam offsets associated with F.
+
+These results do not assume unavoidability, an infinite queue theorem, or the infinite-degree conclusion as an axiom. They verify the finite quantitative implication used after the manuscript supplies those semantic and infinite arguments.

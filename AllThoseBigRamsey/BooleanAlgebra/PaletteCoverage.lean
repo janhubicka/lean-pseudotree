@@ -9,6 +9,13 @@ contains at most `M` values, and `d` palettes suffice, then `q ≤ d * M`.
 The last theorem transports this bound through an explicit completion
 relation from witnesses to actual occurrences.  Recurrence and Boolean
 completion are hypotheses; no infinite Ramsey or recurrence axiom is added.
+
+For an avoiding finite Boolean queue leaf, a completed witness may occur in
+one of finitely many translated slices. The final two theorems allow an
+arbitrary indexed family of maps on palette entries and prove the extra
+factor given by the number of such maps. Injectivity of the maps is not
+needed. In the Boolean application they are subtraction by the finitely
+many offsets associated with the old finite algebra.
 -/
 
 namespace AllThoseBigRamsey.BooleanAlgebra.PaletteCoverage
@@ -83,5 +90,71 @@ theorem completed_occurrences_palette_bound
   obtain ⟨w, hw⟩ := hrecur a ha
   obtain ⟨o, ho, hwo⟩ := hcomplete w
   exact ⟨palette o, hcolours o ho, hw ▸ hwo⟩
+
+/-- A finite family of images of small palettes covers at most the product
+of the numbers of maps and palettes and the palette-size bound. The maps
+may be arbitrary, and repeated indices or palettes only weaken the bound.
+-/
+theorem shifted_palette_cover_bound
+    (values : List α) (palettes : List (List β)) (shifts : List Index)
+    (M : Nat) (shift : Index → β → α)
+    (hvalues : values.Nodup)
+    (hcover : ∀ a ∈ values, ∃ i ∈ shifts, ∃ p ∈ palettes,
+      ∃ b ∈ p, shift i b = a)
+    (hsize : ∀ p ∈ palettes, p.length ≤ M) :
+    values.length ≤ shifts.length * palettes.length * M := by
+  let shiftedPalettes := shifts.flatMap fun i =>
+    palettes.map fun p => p.map (shift i)
+  have hcover' : ∀ a ∈ values, ∃ p ∈ shiftedPalettes, a ∈ p := by
+    intro a ha
+    obtain ⟨i, hi, p, hp, b, hb, hba⟩ := hcover a ha
+    refine ⟨p.map (shift i), ?_, ?_⟩
+    · apply List.mem_flatMap.mpr
+      exact ⟨i, hi, List.mem_map.mpr ⟨p, hp, rfl⟩⟩
+    · exact List.mem_map.mpr ⟨b, hb, hba⟩
+  have hsize' : ∀ p ∈ shiftedPalettes, p.length ≤ M := by
+    intro p hp
+    obtain ⟨i, _, hip⟩ := List.mem_flatMap.mp hp
+    obtain ⟨q, hq, rfl⟩ := List.mem_map.mp hip
+    simpa using hsize q hq
+  have hlength : shiftedPalettes.length = shifts.length * palettes.length := by
+    have hlengthAll : ∀ js : List Index,
+        (js.flatMap fun i => palettes.map fun p => p.map (shift i)).length =
+          js.length * palettes.length := by
+      intro js
+      induction js with
+      | nil => simp
+      | cons i is ih =>
+          simp only [List.flatMap_cons, List.length_append, List.length_map,
+            List.length_cons, Nat.add_mul, Nat.one_mul]
+          omega
+    exact hlengthAll shifts
+  have hbound := palette_cover_bound values shiftedPalettes M
+    hvalues hcover' hsize'
+  simpa only [hlength] using hbound
+
+/-- Transport the shifted-palette estimate through explicit recurrence and
+completion hypotheses. A completed occurrence contains a palette entry
+which maps to the witness value under one of the finitely listed maps.
+No queue, unavoidability, or infinite recurrence statement is assumed by
+the library beyond the displayed hypotheses.
+-/
+theorem completed_occurrences_shifted_palette_bound
+    (values : List α) (colours : List (List β)) (shifts : List Index)
+    (M : Nat) (shift : Index → β → α)
+    (evaluate : Witness → α) (palette : Occurrence → List β)
+    (admissible : Occurrence → Prop)
+    (hvalues : values.Nodup)
+    (hrecur : ∀ a ∈ values, ∃ w, evaluate w = a)
+    (hcomplete : ∀ w, ∃ o, admissible o ∧
+      ∃ i ∈ shifts, ∃ b ∈ palette o, shift i b = evaluate w)
+    (hcolours : ∀ o, admissible o → palette o ∈ colours)
+    (hsize : ∀ p ∈ colours, p.length ≤ M) :
+    values.length ≤ shifts.length * colours.length * M := by
+  apply shifted_palette_cover_bound values colours shifts M shift hvalues ?_ hsize
+  intro a ha
+  obtain ⟨w, hw⟩ := hrecur a ha
+  obtain ⟨o, ho, i, hi, b, hb, hbw⟩ := hcomplete w
+  exact ⟨i, hi, palette o, hcolours o ho, b, hb, hbw.trans hw⟩
 
 end AllThoseBigRamsey.BooleanAlgebra.PaletteCoverage

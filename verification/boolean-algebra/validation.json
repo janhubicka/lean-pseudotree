@@ -1,8 +1,8 @@
 {
   "date": "2026-11-27",
-  "base_commit": "ee84d3962c8e937376490b2d4e7d895c61d9dcbf",
-  "paper_commit": "646756c0ddfd483161a03aa3c9a19246aa390b06",
-  "paper_source_sha256": "5c8428592a1d8bb1b8453337e8e0b0870f22259c0e33ef05d74ebe9f70f2424b",
+  "base_commit": "95015a3542bc722dab7e5507d99ab2569d60dccf",
+  "paper_commit": "1c7a6a9248e8eef7b3ffcaa3c5bccab394eb2ee0",
+  "paper_source_sha256": "3022a19970d2f913e29877b8e16a1bce7ed008b9cf84e5b08508c42089123ca7",
   "compiler": "Lean 4.35.0-rc3",
   "root_build": {
     "command": "lake build",
@@ -12,7 +12,7 @@
   "boolean_checks": {
     "command": "lake env lean BooleanAlgebraChecks.lean",
     "exit_code": 0,
-    "principal_axiom_checks": 44,
+    "principal_axiom_checks": 46,
     "axioms": [
       "propext",
       "Quot.sound"
@@ -29,31 +29,33 @@
     "DevlinTransfer": 4,
     "BlockSchemes": 15,
     "SignedSupport": 10,
-    "total": 82,
+    "total": 84,
     "CompensatedWords": 8,
-    "PaletteCoverage": 3
+    "PaletteCoverage": 5
   },
-  "scope": "Finite boundary events, support/germ states, signed-word identities, Boolean characteristic-function block products, composition of incidence/base-character profiles, exact signed-support evaluation and block substitution, positive antichain words, actual compensated-word identities and interval coverage, finite palette cardinality bounds and transport through explicit recurrence/completion hypotheses, and abstract equivariant IRT transport with finite-family iteration. The source IRT, concrete occurrence equivalence, and action laws are explicit hypotheses. Canonical support forests, intrinsic and endpoint local thickness, prescribed-defect realization, both exact syndetic scalar criteria and infinite-degree fibre consequences, local intrinsic modular recurrence, uniform and graded cofinal modular monoids, global prime-valuation rigidity, finite-age unavoidability without recurrence, finite dual Ramsey envelopes and quotient diagrams, relative tail-cut completion, fair splitting, Hindman/Milliken--Taylor, interval realization, recurrent endpoint profiles, and concrete Devlin correspondence remain English proofs. No unrestricted typed Boolean Ramsey theorem is asserted.",
+  "scope": "Finite boundary events, support/germ states, signed-word identities, Boolean characteristic-function block products, composition of incidence/base-character profiles, exact signed-support evaluation and block substitution, positive antichain words, actual compensated-word identities and interval coverage, finite palette and shifted-palette cardinality bounds with transport through explicit witness recurrence and occurrence-completion hypotheses, and abstract equivariant IRT transport with finite-family iteration. The source IRT, concrete occurrence equivalence, and action laws are explicit hypotheses. The finite splitting obstruction, its preservation and reflection under expanded embeddings, the theorem that every nontrivial finite type in every unavoidable relational expansion has infinite copy and embedding big Ramsey degree, and the nonexistence of recurrent generalized big Ramsey structures remain English proofs. The support-forest constructions, local intrinsic and endpoint thickness, syndetic scalar criteria, modular recurrence, graded-monoid first-split-fibre obstruction, global prime-valuation rigidity, finite-age unavoidability without recurrence, finite dual Ramsey envelopes and relative-front completion, queue density, monochromatic affine finite-sums families, Hindman/Milliken--Taylor, interval realization, and the concrete Devlin correspondence also remain English proofs. The nonrecurrent generalized upper-bound problem remains open; no unrestricted typed Boolean Ramsey theorem is asserted.",
   "paper_pdf_validation": {
-    "pages": 42,
+    "pages": 21,
     "pdflatex_passes": 2,
+    "warnings": false,
     "undefined_references": false,
     "overfull_boxes": false,
-    "visual_review": "All 42 pages rendered and reviewed in contact sheets; compensated-word construction, scalar criterion, endpoint realization, finite dual Ramsey, and relative-front palette pages inspected individually."
+    "visual_review": "All 21 pages rendered and reviewed in contact sheets; the finite splitting/palette theorem page (15) and the affine-sums/forest-counterexample page (18) inspected individually."
   },
   "private_lemma_counts": {
     "CompensatedWords": 12,
     "PaletteCoverage": 1,
     "total": 13
   },
-  "new_modules": [
-    {
-      "path": "AllThoseBigRamsey/BooleanAlgebra/CompensatedWords.lean",
-      "sha256": "f9a513374adf676b9d88b42cec0fbd9aec19b09b1d5164ec0d95dd01aa486ba6"
-    },
+  "reviewed_paper_base_commit": "58fe0fc888ea5d9049223b04744831a27c2f150e",
+  "modified_modules": [
     {
       "path": "AllThoseBigRamsey/BooleanAlgebra/PaletteCoverage.lean",
-      "sha256": "c228f7d0b844bfe30301a4928e58df25cc5cb302de11839a7981e3d794de7e9e"
+      "sha256": "9afc2ef63827a49437f9a5b4dede79e16b88b48a99555dd25976bf02ccd97205",
+      "new_public_theorems": [
+        "shifted_palette_cover_bound",
+        "completed_occurrences_shifted_palette_bound"
+      ]
     }
   ]
 }

@@ -43,3 +43,6 @@
 'AllThoseBigRamsey.BooleanAlgebra.PaletteCoverage.palette_cover_bound' depends on axioms: [propext, Quot.sound]
 'AllThoseBigRamsey.BooleanAlgebra.PaletteCoverage.completed_occurrences_palette_bound' depends on axioms: [propext,
  Quot.sound]
+'AllThoseBigRamsey.BooleanAlgebra.PaletteCoverage.shifted_palette_cover_bound' depends on axioms: [propext, Quot.sound]
+'AllThoseBigRamsey.BooleanAlgebra.PaletteCoverage.completed_occurrences_shifted_palette_bound' depends on axioms: [propext,
+ Quot.sound]
