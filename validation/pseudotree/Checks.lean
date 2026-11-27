@@ -219,6 +219,14 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.RevisedConvention.revised_recurrent_code_sets
 #print axioms AllThoseBigRamsey.Pseudotree.RevisedDiaryExpansion.native_recurrence
 
+-- Compiled rightmost diary characterization and actual copy partition.
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedChainDiaries.rightmost_rule
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedChainDiaries.diaryEquiv
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedChainDiaries.chainDiary_card
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedCopyCanonization.finite_fragment
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedCopyCanonization.no_proper_unavoidable_refinement
+#print axioms AllThoseBigRamsey.Pseudotree.RevisedCopyCanonization.sharpness
+
 run_cmd do
   let env ← Lean.getEnv
   let allowed : List Lean.Name := [`propext, `Classical.choice, `Quot.sound]

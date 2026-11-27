@@ -112,3 +112,16 @@ compiled in the subsequent full build but remain outside this audit.
 The only failed module, RevisedChainDegrees, reported a missing
 membership witness and missing import, with consequent errors.
 No duplicate CI for the source-identical promotion.
+
+## Audited rightmost diary and minimal partition checkpoint
+
+Exact-head run 45908856042 (job 140212066348) at 189d10e5cea245d1ece626f046311ad2c59c9037
+passed the independent transitive audit of 5403 declarations with only
+propext, Classical.choice and Quot.sound. New audited results are the
+literal revised rightmost diary characterization and count, and the
+native finite-fragment theorem for literal copies, minimal unavoidability
+and sharpness. This promotion preserves the exact audited module blobs.
+RevisedChainDegrees compiled in the subsequent full build. The only
+failure was a reversed palette equality in RevisedDiaryRealization.
+The latter and the exact normalized degree assembly await the next
+cumulative audit. Redundant main CI is skipped.
