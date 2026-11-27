@@ -23,7 +23,7 @@ abbrev P := RevisedSparseModel
 variable {A : Type} [SemilatticeInf A] [language.Structure A] [MeetsInterpreted A]
   [Fintype A] [Nonempty A]
 
-def label (e : A ↪[language] P) (a : A) : Word := code (words e) (word (e a))
+noncomputable def label (e : A ↪[language] P) (a : A) : Word := code (words e) (word (e a))
 
 theorem words_card (e : A ↪[language] P) : (words e).card = Fintype.card A := by
   unfold words
@@ -54,19 +54,19 @@ function symbols are already fixed by the reduct. -/
 noncomputable def induced (e : A ↪[language] P) : expandedLanguage.Structure A where
   funMap := fun f x => match f with
     | .meet => x 0 ⊓ x 1
-  RelMap := fun r x => Structure.RelMap (L := expandedLanguage) r (e ∘ x)
+  RelMap := fun r x => FirstOrder.Language.Structure.RelMap (L := expandedLanguage) r (e ∘ x)
 
 def SameExpansion (e g : A ↪[language] P) : Prop :=
   ∀ (n : Nat) (r : Relation n) (x : Fin n → A),
-    Structure.RelMap (L := expandedLanguage) r (e ∘ x) ↔
-      Structure.RelMap (L := expandedLanguage) r (g ∘ x)
+    FirstOrder.Language.Structure.RelMap (L := expandedLanguage) r (e ∘ x) ↔
+      FirstOrder.Language.Structure.RelMap (L := expandedLanguage) r (g ∘ x)
 
 theorem induced_eq_iff (e g : A ↪[language] P) :
     induced e = induced g ↔ SameExpansion e g := by
   constructor
   · intro h n r x
     have h' := congrArg (fun S : expandedLanguage.Structure A =>
-      @Structure.RelMap expandedLanguage A S n r x) h
+      @FirstOrder.Language.Structure.RelMap expandedLanguage A S n r x) h
     exact Iff.of_eq h'
   · intro h
     have hr : (induced e).RelMap = (induced g).RelMap := by

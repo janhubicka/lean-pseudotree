@@ -463,3 +463,15 @@ provide an explicit equivalence between independently specified
 labeled diary pairs and actual induced expanded structures on A.
 The proof is drafted, awaiting compilation and cumulative audit.
 No new mathematical axioms or explicit admissions.
+
+## Audited exact revised degrees; classification repair
+
+Run 45921125425 (job 140251844386) at ec8cff90e6ea471e6101b6c37e43e9818a20d3f4 passed the
+5439-declaration independent audit. The exact revised chain degree,
+abstract labeled realization and normalized pair, characterization
+of realized labels, and infinitely many labels for each nonchain
+are checked; those exact blobs have been promoted to main at 43dcece03adbdb21a8f1a1832b04fe2cfb978a7a.
+The classification module reported missing noncomputable on
+the label definition and unqualified FirstOrder.Language.Structure.RelMap.
+Both underlying errors are repaired. The next run checks the repaired
+full induced-expansion classification. No new axioms or admissions.
