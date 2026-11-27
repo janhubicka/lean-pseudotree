@@ -17,9 +17,10 @@ language that records both order and the graph of meet.
 The revised literal order and fixed FIFO queue are validated separately
 from the original chain-only proof below. See
 [the current statement map](../../docs/Pseudotree-Manuscript-Validation.md)
-for the exact audited revised endpoints and pending adapters.
-The current audited degree theorem is
-`RevisedChainDegrees.exact_degree`, with
+for the exact audited revised endpoints. The final full build and
+cumulative audit of 5,498 declarations passed at `fce8813d6341f029520e697eefed1d3e451205f2`.
+The current audited literal-copy degree theorem is
+`RevisedChainDegrees.exact_copy_degree` (with `exact_degree` for embeddings), with
 `RevisedChainDiaries.chainDiary_card` identifying the bound with the
 number of rightmost generalized chain diaries. The revised native IRT,
 recurrence, finite Ramsey-age and analytic copy-space endpoints are also

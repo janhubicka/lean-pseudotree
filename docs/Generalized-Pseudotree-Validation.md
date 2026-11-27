@@ -507,3 +507,28 @@ a reflected empty tail). Both are repaired. The next independent audit
 includes the two successfully compiled adapter modules. The local BRS
 module remains downstream of the classification. No proof obligations
 were weakened, and no new axioms or admissions were introduced.
+
+## Completed final validation
+
+The exact-head [full CI run 45985075218](https://github.com/janhubicka/lean-pseudotree/actions/runs/45985075218)
+(job 140458485649) at `fce8813d6341f029520e697eefed1d3e451205f2` succeeded. Both builds completed with
+9,312 jobs. The independent endpoint audit covered 5,446 declarations
+and the final cumulative audit covered **5,498 declarations**. Only
+`propext`, `Classical.choice` and `Quot.sound` were permitted.
+The exact audited commit was fast-forwarded to main. The core run
+45985075053 also passed.
+
+The last five adapters are all compiled and included in the final
+audit: literal-copy chain degree, arbitrary-diary subset normalization,
+revised word order and separator-prefix clauses, induced-expansion
+classification, and local labeled generalized BRS. The manuscript
+at `32ff5e7e1f09323aa6bdc9f2c10cbca83fe04963` pins this exact audited Lean commit. The
+[statement map](Pseudotree-Manuscript-Validation.md) records the final
+scope. The countably branching application uses the defining Fraisse
+age, not a separately constructed concrete model; the abstract
+explanatory BRS equivalences are not independently formalized.
+All concrete main theorem endpoints are audited. No pending compiler
+errors or new axioms in the full aggregate.
+
+This documentation-only commit leaves the audited Lean files,
+toolchain, dependency pins and workflow unchanged.

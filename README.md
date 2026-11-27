@@ -16,8 +16,11 @@ The revised development now covers the literal unchanged FIFO queue,
 exact chain degrees, generalized diary realization, recurrent native
 expansion, IRT, finite Ramsey age, non-precompactness, minimal unavoidable
 copy partition, the concrete Ellentuck theorem and the native analytic
-copy-space theorem. The last independent audit checked 5,439 pseudotree
-declarations at [43dcece03adb](https://github.com/janhubicka/lean-pseudotree/commit/43dcece03adbdb21a8f1a1832b04fe2cfb978a7a).
+copy-space theorem. The final cumulative audit checked **5,498 pseudotree declarations**
+at [fce8813d6341](https://github.com/janhubicka/lean-pseudotree/commit/fce8813d6341f029520e697eefed1d3e451205f2),
+including exact literal-copy chain degrees, the induced-expansion
+bijection and local generalized BRS, with only standard logical axioms.
+[Full CI passed](https://github.com/janhubicka/lean-pseudotree/actions/runs/45985075218).
 See [the current statement map](docs/Pseudotree-Manuscript-Validation.md)
 and [the cumulative audit ledger](docs/Generalized-Pseudotree-Validation.md)
-for remaining statement-level obligations and exact-head build results.
+for statement-level scope and exact-head build results.
