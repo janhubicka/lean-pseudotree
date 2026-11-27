@@ -4,7 +4,7 @@ This development accompanies [boolean-algebra.tex](https://github.com/janhubicka
 
 ## Scope
 
-The six modules contain **71 proved theorems** over Lean/Std:
+The eight modules contain **82 public proved theorems**, with **13 private supporting lemmas**, over Lean/Std. The table counts public declarations:
 
 | Module | Theorems | Mathematical content |
 | --- | ---: | --- |
@@ -14,6 +14,8 @@ The six modules contain **71 proved theorems** over Lean/Std:
 | DevlinTransfer | 4 | Abstract equivariant transport of IRT, preservation under composition, finite iteration, and a finite palette factorization |
 | BlockSchemes | 15 | Triangular Boolean block products, the scalar-product criterion under coefficient uniqueness, and composition of incidence and base-character profiles |
 | SignedSupport | 10 | Signed coefficient words with old offsets, concatenation, exact ordered block substitution, and positive antichain words |
+| CompensatedWords | 8 | Actual head/probe sign words, optional-weight cancellation, every possible terminal seam count, and a whole interval of compensated values |
+| PaletteCoverage | 3 | Finite palette cardinality bound and transport through explicit recurrent-witness completion |
 
 A frontier support is represented as a finite list and interpreted through membership. Order and repeated labels in that list are semantically irrelevant. Validity of states and legality of splits are explicit predicates; these files do not assume every abstract infinite path represents a clopen element.
 
@@ -34,7 +36,7 @@ A frontier support is represented as a finite list and interpreted through membe
 
 Namespace prefixes are AllThoseBigRamsey.BooleanAlgebra. Boundary declarations are directly in that namespace.
 
-These are finite semantic, word-algebra, and block-product checks together with an abstract Ramsey transfer. BlockSchemes uses actual Boolean characteristic functions with XOR addition and conjunction multiplication; its finite list identities do not assume an infinite Ramsey principle. **Not yet formalized:** the interval representation, finite interval realization, high-endpoint selection, modular residue theorem, atomless partition fusion, cofinal Boolean block embeddings, canonical support forests, local algebraic modular recurrence, uniform/graded modular monoids, global prime-valuation rigidity, finite-age unavoidability versus recurrence, fair splitting, Hindman/Milliken--Taylor, Devlin's theorem, the concrete interval/endpoint occurrence equivalence and embedding correspondence, the infinite reflected embedding, and the requested recurrent diary Ramsey theorem. The source IRT, occurrence equivalence, and action laws in DevlinTransfer are explicit hypotheses, not new axioms or claimed formalizations of those results.
+These are finite semantic, word-algebra, and block-product checks together with an abstract Ramsey transfer. BlockSchemes uses actual Boolean characteristic functions with XOR addition and conjunction multiplication; its finite list identities do not assume an infinite Ramsey principle. **Not yet formalized:** the interval representation, finite interval realization, high-endpoint selection, modular residue theorem, atomless partition fusion, cofinal Boolean block embeddings, canonical support forests, local algebraic modular recurrence and thickness, the syndetic classification for both intrinsic and endpoint scalar sets, prescribed ambient inflation, finite dual Ramsey and relative-front Boolean completion, uniform/graded modular monoids, global prime-valuation rigidity, finite-age unavoidability versus recurrence, fair splitting, Hindman/Milliken--Taylor, Devlin's theorem, the concrete interval/endpoint occurrence equivalence and embedding correspondence, the infinite reflected embedding, and the requested recurrent diary Ramsey theorem. The source IRT, occurrence equivalence, and action laws in DevlinTransfer are explicit hypotheses, not new axioms or claimed formalizations of those results.
 
 In particular no checked theorem asserts that the proposed raw endpoint records are recurrent. The manuscript proves that exact signed-run types are avoidable.
 
@@ -47,7 +49,7 @@ From this repository:
     lake build
     lake env lean BooleanAlgebraChecks.lean
 
-The thirty-three principal declarations audited in BooleanAlgebraChecks.lean depend only on propext and, where needed, Quot.sound. The two basic transport lemmas are axiom-free. There are no sorry, admit, or new mathematical axioms. The recorded output is in verification/boolean-algebra/axioms.txt.
+The forty-four principal declarations audited in BooleanAlgebraChecks.lean depend only on propext and, where needed, Quot.sound. The two basic transport lemmas are axiom-free. There are no sorry, admit, or new mathematical axioms. The recorded output is in verification/boolean-algebra/axioms.txt.
 
 The local root build includes the existing root pseudotree modules and the Boolean imports. The build and principal-axiom results for this checkpoint are recorded in verification/boolean-algebra/validation.json.
 
@@ -73,3 +75,11 @@ The complete finite support-forest representation and its quotient contraction l
 The manuscript proves that any Boolean self-embedding which never decreases the valuation of the support run count at one fixed prime must preserve the exact run count and reduced signed word. The proof uses actual source/image tail selection and finite nested-chain probes. It is not yet formalized in Lean. Likewise the cofinal uniform/graded modular monoids and the counterexample separating finite-age unavoidability from recurrence are English results.
 
 The new Lean theorem supplies the exact finite substitution identity used by these arguments. Its hypotheses are incidence compatibility, an increasing source support, and matching old offsets. Nonempty disjoint ordered block supports and the correspondence to actual Boolean basis coordinates are supplied by the mathematical application. No Ramsey, recurrence, atomlessness, or valuation-rigidity axiom has been introduced.
+
+## Compensated spectra and relative fronts
+
+CompensatedWords.compensated_word_formula uses the actual Bool-list word and SignRuns.runs. It proves that later probe packets cancel all optional even weights. theta_reaches and compensated_interval prove coverage of every integer in the indicated interval, with the weight list fixed. Twelve private word-summary lemmas support the eight public results.
+
+PaletteCoverage.palette_cover_bound proves q <= d*M for coverage of distinct values by bounded palettes. completed_occurrences_palette_bound transports it through explicit witness recurrence and completion into admissible occurrences. Those hypotheses are not assumed as axioms. One private list-cardinality lemma supports the three public results.
+
+The local root build passed with 36 jobs and the principal check file passed with 44 declarations. No infinite Boolean Ramsey theorem, thickness theorem, or syndeticity criterion has been added as a Lean axiom. Their Boolean constructions and infinite arguments are English proofs. The manuscript proves that the untyped full relative front has infinite degree, even though every requested finite envelope can be canonized by finite dual Ramsey.

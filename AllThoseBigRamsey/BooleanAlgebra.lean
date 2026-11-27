@@ -4,3 +4,5 @@ import AllThoseBigRamsey.BooleanAlgebra.SignRuns
 import AllThoseBigRamsey.BooleanAlgebra.DevlinTransfer
 import AllThoseBigRamsey.BooleanAlgebra.BlockSchemes
 import AllThoseBigRamsey.BooleanAlgebra.SignedSupport
+import AllThoseBigRamsey.BooleanAlgebra.CompensatedWords
+import AllThoseBigRamsey.BooleanAlgebra.PaletteCoverage

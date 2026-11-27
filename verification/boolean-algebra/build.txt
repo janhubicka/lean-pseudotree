@@ -1,4 +1,5 @@
-✔ [31/34] Built AllThoseBigRamsey.BooleanAlgebra.SignedSupport (1.0s)
-✔ [32/34] Built AllThoseBigRamsey.BooleanAlgebra (308ms)
-✔ [33/34] Built AllThoseBigRamsey (340ms)
-Build completed successfully (34 jobs).
+✔ [32/36] Built AllThoseBigRamsey.BooleanAlgebra.PaletteCoverage (653ms)
+✔ [33/36] Built AllThoseBigRamsey.BooleanAlgebra.CompensatedWords (804ms)
+✔ [34/36] Built AllThoseBigRamsey.BooleanAlgebra (339ms)
+✔ [35/36] Built AllThoseBigRamsey (366ms)
+Build completed successfully (36 jobs).

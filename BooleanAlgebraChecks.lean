@@ -1,3 +1,5 @@
+import AllThoseBigRamsey.BooleanAlgebra.PaletteCoverage
+import AllThoseBigRamsey.BooleanAlgebra.CompensatedWords
 import AllThoseBigRamsey.BooleanAlgebra.SignedSupport
 import AllThoseBigRamsey.BooleanAlgebra.Boundary
 import AllThoseBigRamsey.BooleanAlgebra.Frontier
@@ -38,3 +40,15 @@ import AllThoseBigRamsey.BooleanAlgebra.BlockSchemes
 #print axioms AllThoseBigRamsey.BooleanAlgebra.SignedSupport.wordFrom_block_substitution
 #print axioms AllThoseBigRamsey.BooleanAlgebra.SignedSupport.word_block_substitution
 #print axioms AllThoseBigRamsey.BooleanAlgebra.SignedSupport.word_of_antichain
+
+#print axioms AllThoseBigRamsey.BooleanAlgebra.CompensatedWords.initial_run_formula
+#print axioms AllThoseBigRamsey.BooleanAlgebra.CompensatedWords.theta_eq_runs_sub_one
+#print axioms AllThoseBigRamsey.BooleanAlgebra.CompensatedWords.compensation_balance
+#print axioms AllThoseBigRamsey.BooleanAlgebra.CompensatedWords.compensated_word_formula
+#print axioms AllThoseBigRamsey.BooleanAlgebra.CompensatedWords.integrate_length
+#print axioms AllThoseBigRamsey.BooleanAlgebra.CompensatedWords.changesFrom_integrate
+#print axioms AllThoseBigRamsey.BooleanAlgebra.CompensatedWords.theta_reaches
+#print axioms AllThoseBigRamsey.BooleanAlgebra.CompensatedWords.compensated_interval
+#print axioms AllThoseBigRamsey.BooleanAlgebra.PaletteCoverage.flatten_length_le
+#print axioms AllThoseBigRamsey.BooleanAlgebra.PaletteCoverage.palette_cover_bound
+#print axioms AllThoseBigRamsey.BooleanAlgebra.PaletteCoverage.completed_occurrences_palette_bound
