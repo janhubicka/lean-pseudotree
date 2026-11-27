@@ -28,3 +28,4 @@ import PseudotreeValidation.RevisedChainCopyDegree
 import PseudotreeValidation.RevisedLocalBRS
 import PseudotreeValidation.RevisedWordLex
 import PseudotreeValidation.GeneralizedSubsetNormalization
+import PseudotreeValidation.AbstractLocalBRS

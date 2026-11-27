@@ -333,6 +333,12 @@ import Lean
 #print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.subset_diary_axioms
 #print axioms AllThoseBigRamsey.Pseudotree.GeneralizedNormalization.normalize_subset
 
+-- Abstract generalized big Ramsey structure equivalences.
+#print axioms AllThoseBigRamsey.Pseudotree.AbstractLocalBRS.precompact_iff
+#print axioms AllThoseBigRamsey.Pseudotree.AbstractLocalBRS.recurrent_iff
+#print axioms AllThoseBigRamsey.Pseudotree.AbstractLocalBRS.minimal_iff
+#print axioms AllThoseBigRamsey.Pseudotree.AbstractLocalBRS.embedding_action_injective
+
 run_cmd do
   let env ← Lean.getEnv
   let allowed : List Lean.Name := [`propext, `Classical.choice, `Quot.sound]

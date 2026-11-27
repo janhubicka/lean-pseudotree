@@ -109,3 +109,21 @@ continues to cite the independently verified pseudotree commit.
 The dependency-integrity and marker checks passed; standalone
 execution of the new convenience scripts and full TeX compilation
 have not been performed.
+
+## Combined main and remaining abstract proposition
+
+The combined pseudotree/Boolean companion main commit
+12392752df02ef52843b168a997e566c62b630d2 passed exact-head full
+run 45994764823 (job 140491288222); the cumulative pseudotree audit
+again checked 5165 declarations using only standard axioms.
+Subsequent Boolean-only changes are preserved.
+
+AbstractLocalBRS is a separate draft formalization of the three
+general equivalences of Proposition local-brs, including relative
+minimality inside every reduct self-copy (not merely minimality at
+the ambient copy). It uses an occurrence action with composition and
+identity and instantiates it with actual first-order embeddings.
+Finite palettes, relative refinements and expansion-preserving
+self-embeddings are explicit. This additional auxiliary development
+awaits compilation; the existing fully audited pseudotree endpoints
+are unchanged.
